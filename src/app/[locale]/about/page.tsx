@@ -210,7 +210,7 @@ export default function AboutPage() {
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-6">
               {t("intro1")}
             </p>
-            <p className="text-base text-gray-500 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
               {t("intro2")}
             </p>
           </motion.div>
@@ -265,7 +265,7 @@ export default function AboutPage() {
             </motion.h2>
 
             <motion.p
-              className="text-gray-600 leading-relaxed mb-6"
+              className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -275,7 +275,7 @@ export default function AboutPage() {
             </motion.p>
 
             <motion.p
-              className="text-gray-500 leading-relaxed"
+              className="text-base sm:text-lg text-gray-600 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
