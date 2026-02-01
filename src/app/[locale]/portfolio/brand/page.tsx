@@ -4,57 +4,58 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import { useTranslations } from "next-intl";
 
 const brandImages = [
   {
     id: 1,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Brand Story",
-    caption: "Visual identity, redefined",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/11/BRANDPHOTOGRAPHY_08_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Brand Photography",
+    caption: "Visual identity that resonates",
     year: "2024",
-    size: "medium",
-    position: "left",
-    aspectRatio: "4/5",
+    size: "large",
+    position: "center",
+    aspectRatio: "3/4",
   },
   {
     id: 2,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Product Detail",
-    caption: "Where details speak volumes",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/11/BRANDPHOTOGRAPHY_15_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Business Portrait",
+    caption: "Elevating your presence",
     year: "2024",
-    size: "large",
+    size: "small",
     position: "right",
     aspectRatio: "3/4",
   },
   {
     id: 3,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Team Portrait",
-    caption: "The faces behind the brand",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/11/BRANDPHOTOGRAPHY_05_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Product Shot",
+    caption: "Details that define you",
     year: "2023",
+    size: "medium",
+    position: "left",
+    aspectRatio: "3/4",
+  },
+  {
+    id: 4,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/11/BRANDPHOTOGRAPHY_22_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Brand Story",
+    caption: "Authenticity meets aesthetics",
+    year: "2024",
     size: "small",
     position: "center",
     aspectRatio: "3/4",
   },
   {
-    id: 4,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Creative Direction",
-    caption: "Crafting authentic narratives",
-    year: "2024",
+    id: 5,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/11/BRANDPHOTOGRAPHY_20_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Commercial",
+    caption: "Your brand, beautifully told",
+    year: "2023",
     size: "medium",
     position: "right",
-    aspectRatio: "5/6",
-  },
-  {
-    id: 5,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Lifestyle Brand",
-    caption: "Stories that resonate",
-    year: "2023",
-    size: "small",
-    position: "left",
-    aspectRatio: "4/3",
+    aspectRatio: "3/4",
   },
 ];
 
@@ -328,11 +329,32 @@ function CinematicLightbox({
 }
 
 export default function BrandPortfolioPage() {
+  const t = useTranslations("Portfolio.brand");
+  const tCommon = useTranslations("Common");
   const [isMounted, setIsMounted] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState<number | null>(null);
   const { isExiting } = usePageTransition();
+
+  // Get translated images
+  const translatedImages = t.raw("images") as Array<{
+    id: number;
+    caption: string;
+    year: string;
+    alt: string;
+  }>;
+
+  // Merge with original images (keeping layout and src)
+  const localizedImages = brandImages.map((img) => {
+    const translated = translatedImages.find(ti => ti.id === img.id);
+    return {
+      ...img,
+      caption: translated?.caption || img.caption,
+      year: translated?.year || img.year,
+      alt: translated?.alt || img.alt
+    };
+  });
 
   useEffect(() => {
     setIsMounted(true);
@@ -358,7 +380,7 @@ export default function BrandPortfolioPage() {
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8 }}
             >
-              Portfolio — Brand
+              {t("label")}
             </motion.span>
 
             <h1 className="font-serif text-[14vw] sm:text-[10vw] md:text-[8vw] leading-[0.85] tracking-tighter mb-8">
@@ -369,7 +391,7 @@ export default function BrandPortfolioPage() {
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  Your story,
+                  {t("title")}
                 </motion.span>
               </span>
               <span className="block overflow-hidden">
@@ -383,7 +405,7 @@ export default function BrandPortfolioPage() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  visualized.
+                  {t("titleItalic")}
                 </motion.span>
               </span>
             </h1>
@@ -396,8 +418,7 @@ export default function BrandPortfolioPage() {
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Elevate your brand with imagery that speaks your language.
-              From product shots to team portraits, every frame tells your story.
+              {t("description")}
             </motion.p>
 
             <motion.div
@@ -408,7 +429,7 @@ export default function BrandPortfolioPage() {
             >
               <span className="w-12 h-[1px] bg-gray-300" />
               <span className="text-xs uppercase tracking-[0.2em] text-gray-400">
-                {brandImages.length} Works
+                {t("worksCount", { count: localizedImages.length })} Works
               </span>
             </motion.div>
           </div>
@@ -417,7 +438,7 @@ export default function BrandPortfolioPage() {
 
       <section className="py-16 sm:py-24 px-6 sm:px-12 max-w-[1800px] mx-auto">
         <div className="flex flex-col">
-          {brandImages.map((image, index) => {
+          {localizedImages.map((image, index) => {
             const speedMap: { [key: string]: number } = {
               small: 0.12,
               medium: 0.06,
@@ -495,16 +516,16 @@ export default function BrandPortfolioPage() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block">
-                Your Brand
+                {t("cta.label")}
               </span>
               <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-[1] mb-6">
-                Let's build your <span className="italic">visual identity</span>
+                {t("cta.title")} <span className="italic">{t("cta.titleItalic")}</span>
               </h2>
               <a
-                href="mailto:hello@loesnooitgedagt.com"
+                href={`mailto:${tCommon("email")}`}
                 className="inline-block text-sm uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors"
               >
-                Get in touch
+                {t("cta.button")}
               </a>
             </motion.div>
 
@@ -516,8 +537,7 @@ export default function BrandPortfolioPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <p className="text-gray-500 text-sm leading-relaxed">
-                Whether you're launching a new venture or refreshing an established brand,
-                I create imagery that captures your essence and resonates with your audience.
+                {t("cta.description")}
               </p>
             </motion.div>
           </div>
@@ -525,7 +545,7 @@ export default function BrandPortfolioPage() {
       </section>
 
       <CinematicLightbox
-        images={brandImages}
+        images={localizedImages}
         currentIndex={currentImageIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
