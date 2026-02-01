@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 
 const portraitImages = [
   {
@@ -326,6 +327,7 @@ export default function PortraitPortfolioPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState<number | null>(null);
+  const { isExiting } = usePageTransition();
 
   useEffect(() => {
     setIsMounted(true);
@@ -337,7 +339,11 @@ export default function PortraitPortfolioPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <motion.div
+      className="bg-white min-h-screen"
+      animate={isExiting ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: transitionEase }}
+    >
       <section className="pt-32 pb-16 sm:pb-24 px-6 sm:px-12 max-w-[1800px] mx-auto">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-8 lg:col-span-6">
@@ -520,6 +526,6 @@ export default function PortraitPortfolioPage() {
         onClose={() => setLightboxOpen(false)}
         onNavigate={setCurrentImageIndex}
       />
-    </div>
+    </motion.div>
   );
 }

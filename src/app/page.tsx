@@ -1,12 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import WebGLImage from "@/components/WebGLImage";
 import ProjectModal from "@/components/ProjectModal";
-import { useEffect, useRef, useState, useCallback, Suspense } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { useSplitTransition } from "@/context/SplitTransitionContext";
+import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 import { useRouter, useSearchParams } from "next/navigation";
+
+// Easing curves
+const ease = [0.22, 1, 0.36, 1];
 
 // Services data with slugs for portfolio routes
 const services = [
@@ -37,19 +41,21 @@ const services = [
   },
 ];
 
-// Service item component with hover effect and split transition
+// Service item component with hover effect and exit animation
 function ServiceItem({
   title,
   slug,
   index,
   image,
   onServiceClick,
+  isExiting,
 }: {
   title: string;
   slug: string;
   index: number;
   image: string;
   onServiceClick: (e: React.MouseEvent<HTMLDivElement>, slug: string, title: string) => void;
+  isExiting: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -67,6 +73,11 @@ function ServiceItem({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
+      animate={isExiting ? {
+        opacity: 0,
+        x: -50,
+        transition: { duration: 0.4, delay: index * 0.05, ease }
+      } : {}}
     >
       <div className="flex justify-between items-center">
         <div className="flex items-baseline gap-4 sm:gap-8">
@@ -75,8 +86,8 @@ function ServiceItem({
           </span>
           <motion.h3
             className="font-serif text-2xl sm:text-4xl md:text-5xl"
-            animate={{ x: isHovered ? 20 : 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            animate={{ x: isHovered && !isExiting ? 20 : 0 }}
+            transition={{ duration: 0.3, ease }}
           >
             {title}
           </motion.h3>
@@ -84,14 +95,14 @@ function ServiceItem({
         <motion.div
           className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center"
           animate={{
-            scale: isHovered ? 1.2 : 1,
-            backgroundColor: isHovered ? "#000" : "transparent"
+            scale: isHovered && !isExiting ? 1.2 : 1,
+            backgroundColor: isHovered && !isExiting ? "#000" : "transparent"
           }}
           transition={{ duration: 0.3 }}
         >
           <motion.span
             className="text-lg"
-            animate={{ color: isHovered ? "#fff" : "#000" }}
+            animate={{ color: isHovered && !isExiting ? "#fff" : "#000" }}
           >
             →
           </motion.span>
@@ -99,28 +110,29 @@ function ServiceItem({
       </div>
 
       {/* Floating image on hover */}
-      <motion.div
-        className="fixed pointer-events-none z-50 w-64 h-80 overflow-hidden"
-        style={{
-          top: "50%",
-          right: "10%",
-          translateY: "-50%",
-        }}
-        initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-        animate={{
-          opacity: isHovered ? 1 : 0,
-          scale: isHovered ? 1 : 0.8,
-          rotate: isHovered ? 0 : -5
-        }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover"
-        />
-      </motion.div>
+      <AnimatePresence>
+        {isHovered && !isExiting && (
+          <motion.div
+            className="fixed pointer-events-none z-50 w-64 h-80 overflow-hidden"
+            style={{
+              top: "50%",
+              right: "10%",
+              translateY: "-50%",
+            }}
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            transition={{ duration: 0.4, ease }}
+          >
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -271,6 +283,84 @@ const projects = [
   },
 ];
 
+// Gallery item component with proper exit animation handling
+function GalleryItem({
+  project,
+  index,
+  isExiting,
+  onProjectClick,
+  imageRefs,
+  isModalOpen,
+  selectedProject,
+}: {
+  project: typeof projects[0];
+  index: number;
+  isExiting: boolean;
+  onProjectClick: (project: typeof projects[0]) => void;
+  imageRefs: React.MutableRefObject<Map<string, HTMLDivElement>>;
+  isModalOpen: boolean;
+  selectedProject: typeof projects[0] | null;
+}) {
+  const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
+
+  return (
+    <div
+      onClick={() => onProjectClick(project)}
+      className="cursor-pointer"
+    >
+      <motion.div
+        className="group"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={!isExiting ? { opacity: 1, y: 0 } : undefined}
+        viewport={{ once: true, amount: 0.1 }}
+        onAnimationComplete={() => {
+          if (!isExiting) setHasAnimatedIn(true);
+        }}
+        animate={isExiting ? {
+          opacity: 0,
+          y: -30,
+          transition: { duration: 0.5, delay: Math.min(index * 0.03, 0.15), ease }
+        } : undefined}
+        transition={{ duration: 0.7, delay: Math.min(index * 0.05, 0.3), ease }}
+      >
+        <div
+          ref={(el) => {
+            if (el) imageRefs.current.set(project.slug, el);
+          }}
+          data-gallery-image
+          data-project-slug={project.slug}
+          className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
+          style={{
+            aspectRatio: project.aspectRatio,
+            visibility:
+              isModalOpen && selectedProject?.slug === project.slug
+                ? "hidden"
+                : "visible",
+          }}
+        >
+          <div className="absolute inset-0 w-full h-full">
+            <WebGLImage
+              key={project.id}
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full"
+            />
+          </div>
+        </div>
+
+        <div className={`flex flex-col items-start ${project.width}`}>
+          <span className="text-xs uppercase tracking-widest text-gray-500 mb-2">
+            {(index + 1).toString().padStart(2, "0")} / {project.category}
+          </span>
+          <h3 className="font-serif text-3xl sm:text-4xl italic group-hover:text-gray-600 transition-colors duration-300">
+            {project.title}
+          </h3>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 // Parallax container component
 function ParallaxContainer({
   children,
@@ -388,7 +478,12 @@ function HomeContent() {
   const [isMounted, setIsMounted] = useState(false);
 
   // Split transition for services
-  const { startSplitTransition, isTransitioning } = useSplitTransition();
+  const { startSplitTransition, isExiting: isSplitExiting } = useSplitTransition();
+  // Page transition for nav links
+  const { isExiting: isPageExiting } = usePageTransition();
+
+  // Combined exit state
+  const isExiting = isSplitExiting || isPageExiting;
 
   // Ensure animations trigger after mount
   useEffect(() => {
@@ -449,7 +544,7 @@ function HomeContent() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Handle service click - triggers split transition
+  // Handle service click - triggers split transition with exit animations
   const handleServiceClick = (
     e: React.MouseEvent<HTMLDivElement>,
     slug: string,
@@ -530,8 +625,14 @@ function HomeContent() {
             <span className="block overflow-hidden">
               <motion.span
                 initial={{ y: "100%" }}
-                animate={{ y: isMounted ? 0 : "100%" }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                animate={{
+                  y: isExiting ? "100%" : isMounted ? 0 : "100%"
+                }}
+                transition={{
+                  duration: isExiting ? 0.5 : 1.2,
+                  delay: isExiting ? 0.1 : 0,
+                  ease
+                }}
                 className="block"
               >
                 LOES
@@ -540,8 +641,14 @@ function HomeContent() {
             <span className="block overflow-hidden">
               <motion.span
                 initial={{ y: "100%" }}
-                animate={{ y: isMounted ? 0 : "100%" }}
-                transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                animate={{
+                  y: isExiting ? "100%" : isMounted ? 0 : "100%"
+                }}
+                transition={{
+                  duration: isExiting ? 0.5 : 1.2,
+                  delay: isExiting ? 0.05 : 0.15,
+                  ease
+                }}
                 className="block"
               >
                 NOOITGEDAGT
@@ -550,8 +657,14 @@ function HomeContent() {
             <span className="block overflow-hidden mt-4">
               <motion.span
                 initial={{ y: "100%" }}
-                animate={{ y: isMounted ? 0 : "100%" }}
-                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                animate={{
+                  y: isExiting ? "100%" : isMounted ? 0 : "100%"
+                }}
+                transition={{
+                  duration: isExiting ? 0.5 : 1.2,
+                  delay: isExiting ? 0 : 0.3,
+                  ease
+                }}
                 className="block text-[3vw] sm:text-[2vw] tracking-wider text-gray-400"
               >
                 CAPTURING LIFE | LOVE | STYLE | YOU
@@ -560,8 +673,15 @@ function HomeContent() {
           </h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            animate={{
+              opacity: isExiting ? 0 : isMounted ? 1 : 0,
+              y: isExiting ? -20 : isMounted ? 0 : 20
+            }}
+            transition={{
+              duration: isExiting ? 0.4 : 0.8,
+              delay: isExiting ? 0 : 0.3,
+              ease
+            }}
             className="mt-12 flex justify-end"
           >
             <p className="max-w-md text-sm sm:text-base leading-relaxed text-gray-600">
@@ -584,55 +704,15 @@ function HomeContent() {
                 className={`${project.colSpan} ${project.colStart}`}
               >
                 <ParallaxContainer scrollSpeed={scrollSpeed}>
-                  <div
-                    onClick={() => handleProjectClick(project)}
-                    className="cursor-pointer"
-                  >
-                    <motion.div
-                      className="group"
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.1 }}
-                      transition={{ duration: 0.7, delay: Math.min(index * 0.05, 0.3), ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <div
-                        ref={(el) => {
-                          if (el) imageRefs.current.set(project.slug, el);
-                        }}
-                        data-gallery-image
-                        data-project-slug={project.slug}
-                        className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
-                        style={{
-                          aspectRatio: project.aspectRatio,
-                          visibility:
-                            isModalOpen && selectedProject?.slug === project.slug
-                              ? "hidden"
-                              : "visible",
-                        }}
-                      >
-                        <div className="absolute inset-0 w-full h-full">
-                          <WebGLImage
-                            key={project.id}
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full"
-                          />
-                        </div>
-                      </div>
-
-                      <div
-                        className={`flex flex-col items-start ${project.width}`}
-                      >
-                        <span className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-                          {(index + 1).toString().padStart(2, "0")} /{" "}
-                          {project.category}
-                        </span>
-                        <h3 className="font-serif text-3xl sm:text-4xl italic group-hover:text-gray-600 transition-colors duration-300">
-                          {project.title}
-                        </h3>
-                      </div>
-                    </motion.div>
-                  </div>
+                  <GalleryItem
+                    project={project}
+                    index={index}
+                    isExiting={isExiting}
+                    onProjectClick={handleProjectClick}
+                    imageRefs={imageRefs}
+                    isModalOpen={isModalOpen}
+                    selectedProject={selectedProject}
+                  />
                 </ParallaxContainer>
               </div>
             );
@@ -647,6 +727,7 @@ function HomeContent() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
+              animate={isExiting ? { opacity: 0, transition: { duration: 0.3 } } : {}}
             >
               Services
             </motion.span>
@@ -657,6 +738,11 @@ function HomeContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              animate={isExiting ? {
+                opacity: 0,
+                y: -30,
+                transition: { duration: 0.4, ease }
+              } : {}}
             >
               What I <span className="italic">offer</span>
             </motion.h2>
@@ -671,13 +757,21 @@ function HomeContent() {
                 index={index}
                 image={service.image}
                 onServiceClick={handleServiceClick}
+                isExiting={isExiting}
               />
             ))}
           </div>
         </section>
 
         {/* Footer */}
-        <section className="border-t border-gray-200 pt-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8">
+        <motion.section
+          className="border-t border-gray-200 pt-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8"
+          animate={isExiting ? {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 0.3, delay: 0.2, ease }
+          } : {}}
+        >
           <div>
             <span className="block text-xs uppercase tracking-widest text-gray-400 mb-2">
               Contact
@@ -703,7 +797,7 @@ function HomeContent() {
               LinkedIn
             </a>
           </div>
-        </section>
+        </motion.section>
       </motion.div>
 
       {/* Project Modal */}

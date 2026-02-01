@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navigation from "@/components/Navigation";
 import { TransitionProvider } from "@/context/TransitionContext";
 import { SplitTransitionProvider } from "@/context/SplitTransitionContext";
+import { PageTransitionProvider } from "@/context/PageTransitionContext";
 import SplitTransitionOverlay from "@/components/SplitTransitionOverlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -40,14 +41,16 @@ export default function RootLayout({
     >
       <body className="antialiased bg-white text-black selection:bg-black selection:text-white cursor-none">
         <TransitionProvider>
-          <SplitTransitionProvider>
-            <SmoothScroll>
-              <CustomCursor />
-              <Navigation />
-              <SplitTransitionOverlay />
-              <main className="min-h-screen">{children}</main>
-            </SmoothScroll>
-          </SplitTransitionProvider>
+          <PageTransitionProvider>
+            <SplitTransitionProvider>
+              <SmoothScroll>
+                <CustomCursor />
+                <Navigation />
+                <SplitTransitionOverlay />
+                <main className="min-h-screen">{children}</main>
+              </SmoothScroll>
+            </SplitTransitionProvider>
+          </PageTransitionProvider>
         </TransitionProvider>
       </body>
     </html>

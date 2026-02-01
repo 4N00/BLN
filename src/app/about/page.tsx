@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 
 // Animated text that reveals character by character
 function AnimatedText({
@@ -111,6 +112,7 @@ export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const { isExiting } = usePageTransition();
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -127,7 +129,12 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-white">
+    <motion.div
+      ref={containerRef}
+      className="bg-white"
+      animate={isExiting ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: transitionEase }}
+    >
       {/* Hero Section */}
       <motion.section
         ref={heroRef}
@@ -381,6 +388,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

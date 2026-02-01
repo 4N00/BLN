@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
+import TransitionLink from "./TransitionLink";
 
 const portfolioCategories = [
   { href: "/portfolio/lifestyle", label: "Lifestyle" },
@@ -42,8 +42,8 @@ export default function Navigation() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside as any);
+    return () => document.removeEventListener("mousedown", handleClickOutside as any);
   }, []);
 
   // Close menus on route change
@@ -64,11 +64,13 @@ export default function Navigation() {
     };
   }, [mobileMenuOpen]);
 
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-[100] px-6 md:px-10 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
         {/* Logo */}
-        <Link href="/" className="pointer-events-auto group relative">
+        <TransitionLink href="/" className="pointer-events-auto group relative">
           <motion.span
             className="font-playfair text-xl md:text-2xl tracking-tight block"
             whileHover={{ x: 5 }}
@@ -83,13 +85,13 @@ export default function Navigation() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ width: "100%" }}
           />
-        </Link>
+        </TransitionLink>
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-8 pointer-events-auto items-center">
           {/* Index link */}
           <li className="relative">
-            <Link
+            <TransitionLink
               href="/"
               className={cn(
                 "nav-link uppercase text-[11px] tracking-[0.2em] font-light py-2 block transition-opacity duration-500 relative",
@@ -104,7 +106,7 @@ export default function Navigation() {
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 />
               )}
-            </Link>
+            </TransitionLink>
           </li>
 
           {/* Portfolio dropdown */}
@@ -157,7 +159,7 @@ export default function Navigation() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.03 * index, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <Link
+                        <TransitionLink
                           href={category.href}
                           className={cn(
                             "nav-link block py-2 text-[11px] uppercase tracking-[0.15em] transition-opacity duration-500",
@@ -167,7 +169,7 @@ export default function Navigation() {
                           )}
                         >
                           {category.label}
-                        </Link>
+                        </TransitionLink>
                       </motion.div>
                     ))}
                   </div>
@@ -179,7 +181,7 @@ export default function Navigation() {
           {/* Other links */}
           {links.slice(1).map((link) => (
             <li key={link.href} className="relative">
-              <Link
+              <TransitionLink
                 href={link.href}
                 className={cn(
                   "nav-link uppercase text-[11px] tracking-[0.2em] font-light py-2 block transition-opacity duration-500 relative",
@@ -194,7 +196,7 @@ export default function Navigation() {
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 )}
-              </Link>
+              </TransitionLink>
             </li>
           ))}
         </ul>
@@ -263,9 +265,9 @@ export default function Navigation() {
                   exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Link
+                  <TransitionLink
                     href="/"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                     className="group flex items-center gap-4"
                   >
                     <span className={cn(
@@ -286,7 +288,7 @@ export default function Navigation() {
                       whileInView={{ scaleX: 1 }}
                       transition={{ duration: 0.8, delay: 0.3 }}
                     />
-                  </Link>
+                  </TransitionLink>
                 </motion.div>
 
                 {/* Portfolio with sub-items */}
@@ -327,9 +329,9 @@ export default function Navigation() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4, delay: 0.2 + index * 0.05 }}
                       >
-                        <Link
+                        <TransitionLink
                           href={category.href}
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={closeMobileMenu}
                           className={cn(
                             "group flex items-center gap-3 py-1 transition-all duration-300",
                             pathname === category.href ? "text-white" : "text-white/50 hover:text-white"
@@ -339,7 +341,7 @@ export default function Navigation() {
                             className="w-4 h-[1px] bg-current transition-all duration-300 group-hover:w-8"
                           />
                           <span className="text-lg tracking-wide">{category.label}</span>
-                        </Link>
+                        </TransitionLink>
                       </motion.div>
                     ))}
                   </div>
@@ -352,9 +354,9 @@ export default function Navigation() {
                   exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Link
+                  <TransitionLink
                     href="/investment"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                     className="group flex items-center gap-4"
                   >
                     <span className={cn(
@@ -375,7 +377,7 @@ export default function Navigation() {
                       whileInView={{ scaleX: 1 }}
                       transition={{ duration: 0.8, delay: 0.4 }}
                     />
-                  </Link>
+                  </TransitionLink>
                 </motion.div>
 
                 {/* About */}
@@ -385,9 +387,9 @@ export default function Navigation() {
                   exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.5, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Link
+                  <TransitionLink
                     href="/about"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                     className="group flex items-center gap-4"
                   >
                     <span className={cn(
@@ -408,7 +410,7 @@ export default function Navigation() {
                       whileInView={{ scaleX: 1 }}
                       transition={{ duration: 0.8, delay: 0.45 }}
                     />
-                  </Link>
+                  </TransitionLink>
                 </motion.div>
 
                 {/* Contact */}
@@ -418,9 +420,9 @@ export default function Navigation() {
                   exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Link
+                  <TransitionLink
                     href="/contact"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                     className="group flex items-center gap-4"
                   >
                     <span className={cn(
@@ -441,7 +443,7 @@ export default function Navigation() {
                       whileInView={{ scaleX: 1 }}
                       transition={{ duration: 0.8, delay: 0.5 }}
                     />
-                  </Link>
+                  </TransitionLink>
                 </motion.div>
               </nav>
 

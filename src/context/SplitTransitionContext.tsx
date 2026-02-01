@@ -7,7 +7,7 @@ export interface SplitTransitionData {
   targetRoute: string;
   targetCategory: string;
   scrollPosition: number;
-  phase: "idle" | "covering" | "splitting" | "complete";
+  phase: "idle" | "exiting" | "covering" | "splitting" | "complete";
   direction: "forward" | "backward";
 }
 
@@ -17,6 +17,7 @@ interface SplitTransitionContextType {
   setPhase: (phase: SplitTransitionData["phase"]) => void;
   clearTransition: () => void;
   isTransitioning: boolean;
+  isExiting: boolean;
 }
 
 const SplitTransitionContext = createContext<SplitTransitionContextType | null>(null);
@@ -28,7 +29,7 @@ export function SplitTransitionProvider({ children }: { children: ReactNode }) {
     (data: Omit<SplitTransitionData, "phase">) => {
       setTransitionData({
         ...data,
-        phase: "covering", // Start with covering phase
+        phase: "exiting", // Start with exiting phase - page content animates out first
       });
     },
     []
@@ -43,6 +44,8 @@ export function SplitTransitionProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const isTransitioning = transitionData !== null && transitionData.phase !== "idle";
+  // Keep isExiting true during exiting AND covering phases to prevent content flash
+  const isExiting = transitionData?.phase === "exiting" || transitionData?.phase === "covering";
 
   return (
     <SplitTransitionContext.Provider
@@ -52,6 +55,7 @@ export function SplitTransitionProvider({ children }: { children: ReactNode }) {
         setPhase,
         clearTransition,
         isTransitioning,
+        isExiting,
       }}
     >
       {children}

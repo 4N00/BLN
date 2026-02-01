@@ -2,16 +2,22 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 
 export default function ContactPage() {
   const [isMounted, setIsMounted] = useState(false);
+  const { isExiting } = usePageTransition();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
-    <div className="bg-white min-h-screen flex items-center justify-center px-6 sm:px-12">
+    <motion.div
+      className="bg-white min-h-screen flex items-center justify-center px-6 sm:px-12"
+      animate={isExiting ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: transitionEase }}
+    >
       <div className="max-w-[1200px] w-full py-32">
         {/* Main content */}
         <div className="text-center">
@@ -112,6 +118,6 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

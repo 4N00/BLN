@@ -32,14 +32,18 @@ export default function SplitTransitionOverlay() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Lock scroll and hide nav when transition starts
+  // Lock scroll when exiting starts
   useEffect(() => {
-    if (transitionData?.phase === "covering") {
+    if (transitionData?.phase === "exiting") {
       const lenis = (window as any).lenis;
       if (lenis) lenis.stop();
       document.body.style.overflow = "hidden";
+    }
+  }, [transitionData?.phase]);
 
-      // Hide the navigation during transition
+  // Hide nav when covering starts
+  useEffect(() => {
+    if (transitionData?.phase === "covering") {
       const nav = document.querySelector("nav");
       if (nav) {
         (nav as HTMLElement).style.transition = "opacity 0.2s ease";
@@ -48,7 +52,19 @@ export default function SplitTransitionOverlay() {
     }
   }, [transitionData?.phase]);
 
-  // Orchestrate the transition
+  // Handle the exiting phase - wait for page content to animate out, then show panels
+  useEffect(() => {
+    if (!transitionData || transitionData.phase !== "exiting") return;
+
+    // Wait for exit animations on the page (600ms), then start covering
+    const exitTimer = setTimeout(() => {
+      setPhase("covering");
+    }, 700);
+
+    return () => clearTimeout(exitTimer);
+  }, [transitionData?.phase, setPhase]);
+
+  // Orchestrate the covering and splitting phases
   useEffect(() => {
     if (!transitionData || transitionData.phase !== "covering") return;
 
@@ -65,8 +81,8 @@ export default function SplitTransitionOverlay() {
     };
 
     const orchestrate = async () => {
-      // Wait for cover animation to complete (screen is now fully white)
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      // Wait for cover animation to complete (panels slide in)
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       // Navigate while screen is covered
       if (!hasNavigated.current) {
@@ -78,8 +94,8 @@ export default function SplitTransitionOverlay() {
       const scrollInterval = setInterval(forceScrollToTop, 30);
       forceScrollToTop();
 
-      // Wait for new page to load (2 seconds total from click)
-      await new Promise((resolve) => setTimeout(resolve, 1600));
+      // Wait for new page to load
+      await new Promise((resolve) => setTimeout(resolve, 1200));
 
       // Now split the cover open to reveal the new page
       setPhase("splitting");
@@ -121,7 +137,10 @@ export default function SplitTransitionOverlay() {
 
   if (!mounted) return null;
 
-  const isActive = transitionData && transitionData.phase !== "idle" && transitionData.phase !== "complete";
+  // Only show overlay during covering and splitting phases
+  const showOverlay = transitionData &&
+    (transitionData.phase === "covering" || transitionData.phase === "splitting");
+
   const splitY = transitionData?.splitY ?? dimensions.vh / 2;
   const { vh } = dimensions;
 
@@ -131,7 +150,7 @@ export default function SplitTransitionOverlay() {
   // Render to body using portal for highest z-index control
   return createPortal(
     <AnimatePresence>
-      {isActive && (
+      {showOverlay && (
         <>
           {/* Top panel */}
           <motion.div
@@ -147,7 +166,7 @@ export default function SplitTransitionOverlay() {
             }}
             exit={{ y: -splitY - 50 }}
             transition={{
-              duration: isCovering ? 0.4 : 1,
+              duration: isCovering ? 0.5 : 1,
               ease: isCovering ? [0.4, 0, 0.2, 1] : [0.76, 0, 0.24, 1],
             }}
           />
@@ -166,7 +185,7 @@ export default function SplitTransitionOverlay() {
             }}
             exit={{ y: vh - splitY + 50 }}
             transition={{
-              duration: isCovering ? 0.4 : 1,
+              duration: isCovering ? 0.5 : 1,
               ease: isCovering ? [0.4, 0, 0.2, 1] : [0.76, 0, 0.24, 1],
             }}
           />
@@ -184,7 +203,7 @@ export default function SplitTransitionOverlay() {
             exit={{ opacity: 0 }}
             transition={{
               duration: 0.3,
-              delay: isCovering ? 0.3 : 0,
+              delay: isCovering ? 0.4 : 0,
             }}
           />
         </>

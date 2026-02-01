@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import TransitionLink from "@/components/TransitionLink";
 
 // Investment packages data
 const packages = [
@@ -196,7 +197,7 @@ function PackageCard({
         </ul>
 
         {/* CTA */}
-        <Link
+        <TransitionLink
           href="/contact"
           className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] group/link"
         >
@@ -215,7 +216,7 @@ function PackageCard({
           >
             →
           </motion.span>
-        </Link>
+        </TransitionLink>
 
         {/* Hover image preview */}
         <motion.div
@@ -242,13 +243,18 @@ function PackageCard({
 export default function InvestmentPage() {
   const [isMounted, setIsMounted] = useState(false);
   const [hoveredPackage, setHoveredPackage] = useState<number | null>(null);
+  const { isExiting } = usePageTransition();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
-    <div className="bg-white min-h-screen">
+    <motion.div
+      className="bg-white min-h-screen"
+      animate={isExiting ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: transitionEase }}
+    >
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-24 pb-16 px-6 sm:px-12 overflow-hidden">
         <div className="max-w-[1800px] mx-auto w-full">
@@ -450,12 +456,12 @@ export default function InvestmentPage() {
               <p className="text-gray-500 text-sm leading-relaxed mb-8">
                 Still have questions? Feel free to reach out—I'm always happy to chat about your vision.
               </p>
-              <Link
+              <TransitionLink
                 href="/contact"
                 className="text-sm uppercase tracking-[0.15em] border-b border-black pb-1 hover:border-gray-400 transition-colors"
               >
                 Contact me
-              </Link>
+              </TransitionLink>
             </motion.div>
 
             <div className="col-span-12 md:col-span-6 md:col-start-7">
@@ -480,6 +486,6 @@ export default function InvestmentPage() {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }
