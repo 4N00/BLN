@@ -8,6 +8,7 @@ import { useEffect, useRef, useState, Suspense } from "react";
 import { useSplitTransition } from "@/context/SplitTransitionContext";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 // Easing curves
 const ease = [0.22, 1, 0.36, 1];
@@ -463,6 +464,8 @@ function ParallaxContainer({
 }
 
 function HomeContent() {
+  const t = useTranslations("Home");
+  const tCommon = useTranslations("Common");
   const router = useRouter();
   const searchParams = useSearchParams();
   const imageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
@@ -484,6 +487,32 @@ function HomeContent() {
 
   // Combined exit state
   const isExiting = isSplitExiting || isPageExiting;
+
+  // Get translated services and projects
+  const translatedServices = t.raw("services.items") as Array<{ title: string; slug: string }>;
+  const translatedProjects = t.raw("projects") as Array<{
+    id: number;
+    title: string;
+    category: string;
+    slug: string;
+    description: string;
+  }>;
+
+  // Merge translated content with images and layout
+  const localizedServices = services.map((service, index) => ({
+    ...service,
+    title: translatedServices[index]?.title || service.title
+  }));
+
+  const localizedProjects = projects.map((project) => {
+    const translated = translatedProjects.find(p => p.id === project.id);
+    return {
+      ...project,
+      title: translated?.title || project.title,
+      category: translated?.category || project.category,
+      description: translated?.description || project.description
+    };
+  });
 
   // Ensure animations trigger after mount
   useEffect(() => {
@@ -520,7 +549,7 @@ function HomeContent() {
   useEffect(() => {
     const projectSlug = searchParams.get("project");
     if (projectSlug && !isModalOpen && !isOpeningModal.current) {
-      const project = projects.find((p) => p.slug === projectSlug);
+      const project = localizedProjects.find((p) => p.slug === projectSlug);
       if (project) {
         // Small delay to ensure refs are populated
         setTimeout(() => {
@@ -635,7 +664,7 @@ function HomeContent() {
                 }}
                 className="block"
               >
-                LOES
+                {t("hero.title1")}
               </motion.span>
             </span>
             <span className="block overflow-hidden">
@@ -651,7 +680,7 @@ function HomeContent() {
                 }}
                 className="block"
               >
-                NOOITGEDAGT
+                {t("hero.title2")}
               </motion.span>
             </span>
             <span className="block overflow-hidden mt-4">
@@ -667,7 +696,7 @@ function HomeContent() {
                 }}
                 className="block text-[3vw] sm:text-[2vw] tracking-wider text-gray-400"
               >
-                CAPTURING LIFE | LOVE | STYLE | YOU
+                {t("hero.subtitle")}
               </motion.span>
             </span>
           </h1>
@@ -685,16 +714,14 @@ function HomeContent() {
             className="mt-12 flex justify-end"
           >
             <p className="max-w-md text-sm sm:text-base leading-relaxed text-gray-600">
-              A curated collection of visual narratives capturing the unseen and
-              the unspoken. Loes Nooitgedagt explores the boundary between reality
-              and imagination.
+              {t("intro")}
             </p>
           </motion.div>
         </section>
 
         {/* Gallery Grid */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-24 md:mb-32">
-          {projects.map((project, index) => {
+          {localizedProjects.map((project, index) => {
             const scrollSpeed =
               index % 3 === 0 ? 0.08 : index % 3 === 1 ? -0.05 : 0.1;
 
@@ -729,7 +756,7 @@ function HomeContent() {
               viewport={{ once: true }}
               animate={isExiting ? { opacity: 0, transition: { duration: 0.3 } } : {}}
             >
-              Services
+              {t("services.label")}
             </motion.span>
 
             <motion.h2
@@ -744,12 +771,12 @@ function HomeContent() {
                 transition: { duration: 0.4, ease }
               } : {}}
             >
-              What I <span className="italic">offer</span>
+              {t("services.title")} <span className="italic">{t("services.titleItalic")}</span>
             </motion.h2>
           </div>
 
           <div className="border-t border-gray-200">
-            {services.map((service, index) => (
+            {localizedServices.map((service, index) => (
               <ServiceItem
                 key={service.title}
                 title={service.title}
@@ -774,13 +801,13 @@ function HomeContent() {
         >
           <div>
             <span className="block text-xs uppercase tracking-widest text-gray-400 mb-2">
-              Contact
+              {tCommon("contact")}
             </span>
             <a
-              href="mailto:hello@loesnooitgedagt.com"
+              href={`mailto:${tCommon("email")}`}
               className="font-serif text-2xl sm:text-3xl hover:underline"
             >
-              hello@loesnooitgedagt.com
+              {tCommon("email")}
             </a>
           </div>
           <div className="flex gap-6">
@@ -788,13 +815,13 @@ function HomeContent() {
               href="#"
               className="text-xs uppercase tracking-widest hover:text-gray-500"
             >
-              Instagram
+              {tCommon("instagram")}
             </a>
             <a
               href="#"
               className="text-xs uppercase tracking-widest hover:text-gray-500"
             >
-              LinkedIn
+              {tCommon("linkedin")}
             </a>
           </div>
         </motion.section>
@@ -807,7 +834,7 @@ function HomeContent() {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onClosingStart={handleClosingStart}
-        allProjects={projects}
+        allProjects={localizedProjects}
       />
     </>
   );

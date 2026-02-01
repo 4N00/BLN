@@ -7,6 +7,8 @@ import { TransitionProvider } from "@/context/TransitionContext";
 import { SplitTransitionProvider } from "@/context/SplitTransitionContext";
 import { PageTransitionProvider } from "@/context/PageTransitionContext";
 import SplitTransitionOverlay from "@/components/SplitTransitionOverlay";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getLocale } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cormorant = Cormorant_Garamond({
@@ -29,29 +31,34 @@ export const metadata: Metadata = {
 
 import CustomCursor from "@/components/CustomCursor";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${inter.variable} ${cormorant.variable} ${playfair.variable}`}
     >
       <body className="antialiased bg-white text-black selection:bg-black selection:text-white cursor-none">
-        <TransitionProvider>
-          <PageTransitionProvider>
-            <SplitTransitionProvider>
-              <SmoothScroll>
-                <CustomCursor />
-                <Navigation />
-                <SplitTransitionOverlay />
-                <main className="min-h-screen">{children}</main>
-              </SmoothScroll>
-            </SplitTransitionProvider>
-          </PageTransitionProvider>
-        </TransitionProvider>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <TransitionProvider>
+            <PageTransitionProvider>
+              <SplitTransitionProvider>
+                <SmoothScroll>
+                  <CustomCursor />
+                  <Navigation />
+                  <SplitTransitionOverlay />
+                  <main className="min-h-screen">{children}</main>
+                </SmoothScroll>
+              </SplitTransitionProvider>
+            </PageTransitionProvider>
+          </TransitionProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

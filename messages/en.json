@@ -1,0 +1,499 @@
+{
+  "Common": {
+    "contact": "Contact",
+    "email": "hello@loesnooitgedagt.com",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "getInTouch": "Get in touch",
+    "emailMe": "Email me",
+    "findMeOn": "Find me on"
+  },
+  "Navigation": {
+    "index": "Index",
+    "portfolio": "Portfolio",
+    "investment": "Investment",
+    "about": "About",
+    "contact": "Contact",
+    "portfolioCategories": {
+      "lifestyle": "Lifestyle",
+      "wedding": "Wedding",
+      "brand": "Brand",
+      "portrait": "Portrait",
+      "event": "Event"
+    }
+  },
+  "Home": {
+    "hero": {
+      "title1": "LOES",
+      "title2": "NOOITGEDAGT",
+      "subtitle": "CAPTURING LIFE | LOVE | STYLE | YOU"
+    },
+    "intro": "A curated collection of visual narratives capturing the unseen and the unspoken. Loes Nooitgedagt explores the boundary between reality and imagination.",
+    "services": {
+      "title": "What I",
+      "titleItalic": "offer",
+      "label": "Services",
+      "items": [
+        {
+          "title": "Lifestyle Photography",
+          "slug": "lifestyle"
+        },
+        {
+          "title": "Wedding Photography",
+          "slug": "wedding"
+        },
+        {
+          "title": "Brand Photography",
+          "slug": "brand"
+        },
+        {
+          "title": "Portrait Photography",
+          "slug": "portrait"
+        },
+        {
+          "title": "Event Photography",
+          "slug": "event"
+        }
+      ]
+    },
+    "projects": [
+      {
+        "id": 1,
+        "title": "Ethereal Gaze",
+        "category": "Portrait",
+        "slug": "ethereal-gaze",
+        "description": "A deep dive into the human soul through the eyes of the beholder. This series explores the vulnerability and strength found in silence."
+      },
+      {
+        "id": 2,
+        "title": "Urban Solitude",
+        "category": "Editorial",
+        "slug": "urban-solitude",
+        "description": "Finding peace in the chaos of the city. A study of shadows, light, and the lonely figures that inhabit the concrete jungle."
+      },
+      {
+        "id": 3,
+        "title": "Liquid Dreams",
+        "category": "Abstract",
+        "slug": "liquid-dreams",
+        "description": "Forms that flow and change, representing the ever-shifting nature of our dreams and subconsciously."
+      },
+      {
+        "id": 4,
+        "title": "Silent Forms",
+        "category": "Still Life",
+        "slug": "silent-forms",
+        "description": "Inanimate objects telling a living story. The beauty of stillness."
+      },
+      {
+        "id": 5,
+        "title": "Portrait Study",
+        "category": "Portrait",
+        "slug": "portrait-study",
+        "description": "A study of human expression and emotion captured in intimate moments."
+      },
+      {
+        "id": 6,
+        "title": "Natural Light",
+        "category": "Portrait",
+        "slug": "natural-light",
+        "description": "Exploring the interplay between natural light and human form."
+      },
+      {
+        "id": 7,
+        "title": "Editorial Story",
+        "category": "Editorial",
+        "slug": "editorial-story",
+        "description": "Editorial photography that tells compelling visual stories."
+      },
+      {
+        "id": 8,
+        "title": "Wedding Moments",
+        "category": "Wedding",
+        "slug": "wedding-moments",
+        "description": "Capturing the most precious moments of love and celebration."
+      }
+    ]
+  },
+  "About": {
+    "label": "About the Artist",
+    "hero": {
+      "title1": "Photos are more",
+      "title2": "than just images;",
+      "title3": "they are",
+      "title3Italic": "artworks"
+    },
+    "intro1": "When I have my camera in hand and look through my lens, I see the world as artwork with special details and stories waiting to be told.",
+    "intro2": "I believe in creating a relaxed and comfortable atmosphere during shoots to capture authentic moments that tell your unique story.",
+    "philosophy": {
+      "label": "Philosophy",
+      "title": "Capturing the essence of moments through a lens that sees the world as artwork",
+      "text1": "Photography is more than clicking a button—it's about connection, emotion, and finding beauty in unexpected places. Every session is an opportunity to create something timeless.",
+      "text2": "I work intuitively, letting moments unfold naturally while guiding you through poses that feel comfortable and authentic. The result? Images that feel like you, not like everyone else."
+    },
+    "stats": [
+      { "number": "150+", "label": "Projects Completed" },
+      { "number": "8", "label": "Years Experience" },
+      { "number": "50+", "label": "Happy Clients" },
+      { "number": "12", "label": "Awards Won" }
+    ],
+    "cta": {
+      "title": "Let's create",
+      "titleItalic": "something beautiful"
+    }
+  },
+  "Contact": {
+    "label": "Contact",
+    "title": "Let's make",
+    "titleItalic": "memories.",
+    "emailLabel": "Email me",
+    "socialLabel": "Find me on"
+  },
+  "Investment": {
+    "label": "Investment",
+    "hero": {
+      "title": "Invest in",
+      "titleItalic": "memories.",
+      "description": "Photography is more than images—it's an investment in moments you'll treasure forever. Each package is thoughtfully designed to meet your unique needs and tell your story with authenticity."
+    },
+    "stats": [
+      { "number": "150+", "label": "Happy clients" },
+      { "number": "8+", "label": "Years experience" }
+    ],
+    "packages": {
+      "label": "Packages",
+      "title": "Find your",
+      "titleItalic": "perfect fit",
+      "description": "Whether it's a lifestyle session, brand shoot, or your wedding day, I offer tailored packages designed to capture your unique story.",
+      "items": [
+        {
+          "id": 1,
+          "title": "Lifestyle",
+          "subtitle": "Capturing everyday beauty",
+          "price": "375",
+          "prefix": "from",
+          "description": "Perfect for personal portraits, family moments, and lifestyle content that tells your unique story.",
+          "features": [
+            "2-hour session",
+            "20+ edited images",
+            "Online gallery",
+            "Print rights included"
+          ],
+          "cta": "More info"
+        },
+        {
+          "id": 2,
+          "title": "Brand",
+          "subtitle": "Visual identity for businesses",
+          "price": "600",
+          "prefix": "from",
+          "description": "Elevate your brand with professional imagery that captures your essence and connects with your audience.",
+          "features": [
+            "Half-day session",
+            "40+ edited images",
+            "Brand consultation",
+            "Commercial license"
+          ],
+          "cta": "More info"
+        },
+        {
+          "id": 3,
+          "title": "Wedding",
+          "subtitle": "Your love story, preserved",
+          "price": "1800",
+          "prefix": "from",
+          "description": "From intimate ceremonies to grand celebrations, every precious moment documented with artistry and heart.",
+          "features": [
+            "Full day coverage",
+            "300+ edited images",
+            "Engagement session",
+            "Premium album"
+          ],
+          "cta": "More info"
+        },
+        {
+          "id": 4,
+          "title": "Portrait",
+          "subtitle": "The art of you",
+          "price": null,
+          "prefix": "on request",
+          "description": "Bespoke portrait sessions tailored to your vision. Fine art, editorial, or personal—crafted just for you.",
+          "features": [
+            "Custom session length",
+            "Artistic direction",
+            "Retouching included",
+            "Fine art prints"
+          ],
+          "cta": "More info"
+        },
+        {
+          "id": 5,
+          "title": "Event",
+          "subtitle": "Moments that matter",
+          "price": null,
+          "prefix": "on request",
+          "description": "Corporate events, celebrations, and gatherings captured with discretion and an eye for authentic moments.",
+          "features": [
+            "Flexible duration",
+            "Quick turnaround",
+            "Multiple photographers",
+            "Event coverage"
+          ],
+          "cta": "More info"
+        }
+      ]
+    },
+    "faq": {
+      "label": "Questions?",
+      "title": "Common questions,",
+      "titleItalic": "answered",
+      "items": [
+        {
+          "q": "How do I book a session?",
+          "a": "Simply reach out via the contact form or email. We'll discuss your vision, preferred dates, and package options to find the perfect fit."
+        },
+        {
+          "q": "When will I receive my images?",
+          "a": "Edited images are typically delivered within 2-3 weeks for lifestyle and portrait sessions, and 4-6 weeks for weddings. Rush delivery available upon request."
+        },
+        {
+          "q": "Can I request specific shots or poses?",
+          "a": "Absolutely! I encourage you to share inspiration and ideas. While I guide the session naturally, your input helps me capture exactly what you envision."
+        }
+      ]
+    },
+    "finalCta": "Contact me"
+  },
+  "Portfolio": {
+    "wedding": {
+      "label": "Portfolio — Wedding",
+      "title": "Love,",
+      "titleItalic": "forever.",
+      "description": "Your wedding day, told through images that feel timeless. From stolen glances to tearful vows, I document the authentic emotions and intimate moments that make your love story uniquely yours.",
+      "worksCount": "{count} Works",
+      "images": [
+        {
+          "id": 1,
+          "caption": "Where two hearts become one",
+          "year": "2024",
+          "alt": "Wedding Romance"
+        },
+        {
+          "id": 2,
+          "caption": "The promise of forever",
+          "year": "2024",
+          "alt": "Wedding Moments"
+        },
+        {
+          "id": 3,
+          "caption": "Love in its purest form",
+          "year": "2023",
+          "alt": "Intimate Ceremony"
+        },
+        {
+          "id": 4,
+          "caption": "Elegance personified",
+          "year": "2024",
+          "alt": "Bridal Portrait"
+        },
+        {
+          "id": 5,
+          "caption": "Nature's blessing",
+          "year": "2023",
+          "alt": "Floral Details"
+        }
+      ],
+      "cta": {
+        "label": "Your Day",
+        "title": "Let's capture",
+        "titleItalic": "your love story",
+        "description": "Every wedding is unique. Let's create a custom package that perfectly captures your special day, from getting ready to the last dance.",
+        "button": "Get in touch"
+      }
+    },
+    "lifestyle": {
+      "label": "Portfolio — Lifestyle",
+      "title": "Life,",
+      "titleItalic": "unscripted.",
+      "description": "Everyday moments elevated into art. Lifestyle photography that captures the beauty in your daily rituals, family connections, and personal style with an authentic, editorial approach.",
+      "worksCount": "{count} Works",
+      "images": [
+        {
+          "id": 1,
+          "caption": "Authenticity in every frame",
+          "year": "2024",
+          "alt": "Lifestyle Portrait"
+        },
+        {
+          "id": 2,
+          "caption": "Stories of connection",
+          "year": "2024",
+          "alt": "Family Moments"
+        },
+        {
+          "id": 3,
+          "caption": "Beauty in simplicity",
+          "year": "2023",
+          "alt": "Natural Light"
+        },
+        {
+          "id": 4,
+          "caption": "Moments that matter",
+          "year": "2024",
+          "alt": "Candid Shot"
+        },
+        {
+          "id": 5,
+          "caption": "Your story, told beautifully",
+          "year": "2023",
+          "alt": "Lifestyle Detail"
+        }
+      ],
+      "cta": {
+        "label": "Your Story",
+        "title": "Let's create",
+        "titleItalic": "something authentic",
+        "description": "Whether it's personal branding, family memories, or content creation, let's craft images that feel true to you.",
+        "button": "Get in touch"
+      }
+    },
+    "brand": {
+      "label": "Portfolio — Brand",
+      "title": "Your story,",
+      "titleItalic": "visualized.",
+      "description": "Brand photography that goes beyond aesthetics. I create visual narratives that communicate your values, connect with your audience, and elevate your business presence.",
+      "worksCount": "{count} Works",
+      "images": [
+        {
+          "id": 1,
+          "caption": "Visual identity that resonates",
+          "year": "2024",
+          "alt": "Brand Photography"
+        },
+        {
+          "id": 2,
+          "caption": "Elevating your presence",
+          "year": "2024",
+          "alt": "Business Portrait"
+        },
+        {
+          "id": 3,
+          "caption": "Details that define you",
+          "year": "2023",
+          "alt": "Product Shot"
+        },
+        {
+          "id": 4,
+          "caption": "Authenticity meets aesthetics",
+          "year": "2024",
+          "alt": "Brand Story"
+        },
+        {
+          "id": 5,
+          "caption": "Your brand, beautifully told",
+          "year": "2023",
+          "alt": "Commercial"
+        }
+      ],
+      "cta": {
+        "label": "Your Brand",
+        "title": "Let's build",
+        "titleItalic": "your visual identity",
+        "description": "From personal brands to established businesses, I'll help you create imagery that truly represents who you are and what you stand for.",
+        "button": "Get in touch"
+      }
+    },
+    "portrait": {
+      "label": "Portfolio — Portrait",
+      "title": "You,",
+      "titleItalic": "reimagined.",
+      "description": "Portrait photography as fine art. Each session is a collaboration, creating images that reveal your essence and tell your story with depth, beauty, and intention.",
+      "worksCount": "{count} Works",
+      "images": [
+        {
+          "id": 1,
+          "caption": "The art of presence",
+          "year": "2024",
+          "alt": "Portrait"
+        },
+        {
+          "id": 2,
+          "caption": "Capturing character",
+          "year": "2024",
+          "alt": "Fine Art Portrait"
+        },
+        {
+          "id": 3,
+          "caption": "Depth and dimension",
+          "year": "2023",
+          "alt": "Editorial Portrait"
+        },
+        {
+          "id": 4,
+          "caption": "Timeless elegance",
+          "year": "2024",
+          "alt": "Studio Portrait"
+        },
+        {
+          "id": 5,
+          "caption": "Your unique story",
+          "year": "2023",
+          "alt": "Creative Portrait"
+        }
+      ],
+      "cta": {
+        "label": "Your Portrait",
+        "title": "Let's create",
+        "titleItalic": "your masterpiece",
+        "description": "Whether for editorial, fine art, or personal reasons, let's craft portraits that are as unique and meaningful as you are.",
+        "button": "Get in touch"
+      }
+    },
+    "event": {
+      "label": "Portfolio — Event",
+      "title": "Moments,",
+      "titleItalic": "preserved.",
+      "description": "Event photography with a documentary approach. From corporate gatherings to intimate celebrations, I capture the energy, emotion, and authentic moments that make your event memorable.",
+      "worksCount": "{count} Works",
+      "images": [
+        {
+          "id": 1,
+          "caption": "Capturing the atmosphere",
+          "year": "2024",
+          "alt": "Event Photography"
+        },
+        {
+          "id": 2,
+          "caption": "Authentic connections",
+          "year": "2024",
+          "alt": "Corporate Event"
+        },
+        {
+          "id": 3,
+          "caption": "Energy and emotion",
+          "year": "2023",
+          "alt": "Celebration"
+        },
+        {
+          "id": 4,
+          "caption": "Details that matter",
+          "year": "2024",
+          "alt": "Event Details"
+        },
+        {
+          "id": 5,
+          "caption": "Memorable moments",
+          "year": "2023",
+          "alt": "Event Coverage"
+        }
+      ],
+      "cta": {
+        "label": "Your Event",
+        "title": "Let's document",
+        "titleItalic": "your occasion",
+        "description": "Whether it's a corporate event, milestone celebration, or special gathering, I'll capture every important moment with professionalism and care.",
+        "button": "Get in touch"
+      }
+    }
+  }
+}

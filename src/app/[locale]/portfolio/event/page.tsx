@@ -4,65 +4,56 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import { useTranslations } from "next-intl";
 
 const eventImages = [
   {
     id: 1,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Celebration",
-    caption: "Moments that matter",
-    year: "2024",
-    size: "medium",
-    position: "center",
-    aspectRatio: "4/5",
-  },
-  {
-    id: 2,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Gathering",
-    caption: "Where memories are made",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/12/VENTIDUE.STUDIOEVENTPHOTOGRAPHYBYLOESNOOITGEDAGT.jpg",
+    alt: "Event Photography",
+    caption: "Capturing the atmosphere",
     year: "2024",
     size: "large",
-    position: "left",
+    position: "center",
     aspectRatio: "3/4",
   },
   {
-    id: 3,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Guest Portrait",
-    caption: "The people who celebrate with you",
-    year: "2023",
+    id: 2,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/12/VENTIDUE.STUDIOEVENTPHOTOGRAPHYBYLOESNOOITGEDAGT11.jpg",
+    alt: "Corporate Event",
+    caption: "Authentic connections",
+    year: "2024",
     size: "small",
     position: "right",
     aspectRatio: "3/4",
   },
   {
-    id: 4,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Details",
-    caption: "Every detail tells a story",
-    year: "2024",
+    id: 3,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/12/VENTIDUE.STUDIOEVENTPHOTOGRAPHYBYLOESNOOITGEDAGT15.jpg",
+    alt: "Celebration",
+    caption: "Energy and emotion",
+    year: "2023",
     size: "medium",
+    position: "left",
+    aspectRatio: "3/4",
+  },
+  {
+    id: 4,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/12/VENTIDUE.STUDIOEVENTPHOTOGRAPHYBYLOESNOOITGEDAGT9.jpg",
+    alt: "Event Details",
+    caption: "Details that matter",
+    year: "2024",
+    size: "small",
     position: "center",
-    aspectRatio: "5/6",
+    aspectRatio: "3/4",
   },
   {
     id: 5,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Decor",
-    caption: "Setting the scene",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/12/VENTIDUE.STUDIOEVENTPHOTOGRAPHYBYLOESNOOITGEDAGT5.jpg",
+    alt: "Event Coverage",
+    caption: "Memorable moments",
     year: "2023",
-    size: "small",
-    position: "left",
-    aspectRatio: "4/3",
-  },
-  {
-    id: 6,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Candid",
-    caption: "Unscripted joy",
-    year: "2024",
-    size: "large",
+    size: "medium",
     position: "right",
     aspectRatio: "3/4",
   },
@@ -323,11 +314,32 @@ function CinematicLightbox({
 }
 
 export default function EventPortfolioPage() {
+  const t = useTranslations("Portfolio.event");
+  const tCommon = useTranslations("Common");
   const [isMounted, setIsMounted] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState<number | null>(null);
   const { isExiting } = usePageTransition();
+
+  // Get translated images
+  const translatedImages = t.raw("images") as Array<{
+    id: number;
+    caption: string;
+    year: string;
+    alt: string;
+  }>;
+
+  // Merge with original images (keeping layout and src)
+  const localizedImages = eventImages.map((img) => {
+    const translated = translatedImages.find(ti => ti.id === img.id);
+    return {
+      ...img,
+      caption: translated?.caption || img.caption,
+      year: translated?.year || img.year,
+      alt: translated?.alt || img.alt
+    };
+  });
 
   useEffect(() => {
     setIsMounted(true);
@@ -353,7 +365,7 @@ export default function EventPortfolioPage() {
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8 }}
             >
-              Portfolio — Event
+              {t("label")}
             </motion.span>
 
             <h1 className="font-serif text-[14vw] sm:text-[10vw] md:text-[8vw] leading-[0.85] tracking-tighter mb-8">
@@ -364,7 +376,7 @@ export default function EventPortfolioPage() {
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  Moments,
+                  {t("title")}
                 </motion.span>
               </span>
               <span className="block overflow-hidden">
@@ -378,7 +390,7 @@ export default function EventPortfolioPage() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  immortalized.
+                  {t("titleItalic")}
                 </motion.span>
               </span>
             </h1>
@@ -391,8 +403,7 @@ export default function EventPortfolioPage() {
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              From intimate gatherings to grand celebrations, I capture the energy,
-              the connections, and the fleeting moments that make your event unforgettable.
+              {t("description")}
             </motion.p>
 
             <motion.div
@@ -403,7 +414,7 @@ export default function EventPortfolioPage() {
             >
               <span className="w-12 h-[1px] bg-gray-300" />
               <span className="text-xs uppercase tracking-[0.2em] text-gray-400">
-                {eventImages.length} Works
+                {t("worksCount", { count: localizedImages.length })}
               </span>
             </motion.div>
           </div>
@@ -412,7 +423,7 @@ export default function EventPortfolioPage() {
 
       <section className="py-16 sm:py-24 px-6 sm:px-12 max-w-[1800px] mx-auto">
         <div className="flex flex-col">
-          {eventImages.map((image, index) => {
+          {localizedImages.map((image, index) => {
             const speedMap: { [key: string]: number } = {
               small: 0.12,
               medium: 0.06,
@@ -490,16 +501,16 @@ export default function EventPortfolioPage() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block">
-                Your Event
+                {t("cta.label")}
               </span>
               <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-[1] mb-6">
-                Let's document your <span className="italic">celebration</span>
+                {t("cta.title")} <span className="italic">{t("cta.titleItalic")}</span>
               </h2>
               <a
-                href="mailto:hello@loesnooitgedagt.com"
+                href={`mailto:${tCommon("email")}`}
                 className="inline-block text-sm uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors"
               >
-                Get in touch
+                {t("cta.button")}
               </a>
             </motion.div>
 
@@ -511,9 +522,7 @@ export default function EventPortfolioPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <p className="text-gray-500 text-sm leading-relaxed">
-                Corporate events, birthday celebrations, milestone gatherings—every event
-                has its own rhythm. I blend into the background to capture authentic moments
-                as they unfold.
+                {t("cta.description")}
               </p>
             </motion.div>
           </div>
@@ -521,7 +530,7 @@ export default function EventPortfolioPage() {
       </section>
 
       <CinematicLightbox
-        images={eventImages}
+        images={localizedImages}
         currentIndex={currentImageIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}

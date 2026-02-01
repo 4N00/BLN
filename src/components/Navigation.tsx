@@ -5,24 +5,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 import TransitionLink from "./TransitionLink";
-
-const portfolioCategories = [
-  { href: "/portfolio/lifestyle", label: "Lifestyle" },
-  { href: "/portfolio/wedding", label: "Wedding" },
-  { href: "/portfolio/brand", label: "Brand" },
-  { href: "/portfolio/portrait", label: "Portrait" },
-  { href: "/portfolio/event", label: "Event" },
-];
-
-const links = [
-  { href: "/", label: "Index" },
-  { href: "/investment", label: "Investment" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navigation() {
   const pathname = usePathname();
+  const t = useTranslations("Navigation");
+
+  const portfolioCategories = [
+    { href: "/portfolio/lifestyle", label: t("portfolioCategories.lifestyle") },
+    { href: "/portfolio/wedding", label: t("portfolioCategories.wedding") },
+    { href: "/portfolio/brand", label: t("portfolioCategories.brand") },
+    { href: "/portfolio/portrait", label: t("portfolioCategories.portrait") },
+    { href: "/portfolio/event", label: t("portfolioCategories.event") },
+  ];
+
+  const links = [
+    { href: "/", label: t("index") },
+    { href: "/investment", label: t("investment") },
+    { href: "/about", label: t("about") },
+    { href: "/contact", label: t("contact") },
+  ];
   const [portfolioOpen, setPortfolioOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
@@ -199,6 +202,11 @@ export default function Navigation() {
               </TransitionLink>
             </li>
           ))}
+
+          {/* Language Switcher */}
+          <li>
+            <LanguageSwitcher />
+          </li>
         </ul>
 
         {/* Mobile Hamburger Button */}
@@ -446,6 +454,16 @@ export default function Navigation() {
                   </TransitionLink>
                 </motion.div>
               </nav>
+
+              {/* Language Switcher for Mobile */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="absolute bottom-32 left-8"
+              >
+                <LanguageSwitcher />
+              </motion.div>
 
               {/* Bottom Info */}
               <motion.div

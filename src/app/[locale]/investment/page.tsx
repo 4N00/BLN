@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 import TransitionLink from "@/components/TransitionLink";
+import { useTranslations } from "next-intl";
 
 // Investment packages data
 const packages = [
@@ -124,11 +125,15 @@ function PackageCard({
   index,
   isHovered,
   onHover,
+  ctaText,
+  onRequestText,
 }: {
   pkg: typeof packages[0];
   index: number;
   isHovered: boolean;
   onHover: (id: number | null) => void;
+  ctaText: string;
+  onRequestText: string;
 }) {
   return (
     <motion.div
@@ -169,7 +174,7 @@ function PackageCard({
             </span>
           ) : (
             <span className="font-serif text-3xl sm:text-4xl italic text-gray-500">
-              Op aanvraag
+              {onRequestText}
             </span>
           )}
         </div>
@@ -202,7 +207,7 @@ function PackageCard({
           className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] group/link"
         >
           <span className="relative">
-            Meer info
+            {ctaText}
             <motion.span
               className="absolute bottom-0 left-0 w-full h-[1px] bg-black origin-left"
               initial={{ scaleX: 0 }}
@@ -241,9 +246,38 @@ function PackageCard({
 }
 
 export default function InvestmentPage() {
+  const t = useTranslations("Investment");
   const [isMounted, setIsMounted] = useState(false);
   const [hoveredPackage, setHoveredPackage] = useState<number | null>(null);
   const { isExiting } = usePageTransition();
+
+  // Get translated packages
+  const translatedPackages = t.raw("packages.items") as Array<{
+    id: number;
+    title: string;
+    subtitle: string;
+    price: string | null;
+    prefix: string;
+    description: string;
+    features: string[];
+    cta: string;
+  }>;
+
+  // Merge with images and href
+  const localizedPackages = packages.map((pkg) => {
+    const translated = translatedPackages.find(p => p.id === pkg.id);
+    return {
+      ...pkg,
+      title: translated?.title || pkg.title,
+      subtitle: translated?.subtitle || pkg.subtitle,
+      prefix: translated?.prefix || pkg.prefix,
+      description: translated?.description || pkg.description,
+      features: translated?.features || pkg.features
+    };
+  });
+
+  // Get stats
+  const stats = t.raw("stats") as Array<{ number: string; label: string }>;
 
   useEffect(() => {
     setIsMounted(true);
@@ -268,7 +302,7 @@ export default function InvestmentPage() {
                 animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
                 transition={{ duration: 0.8 }}
               >
-                Investment
+                {t("label")}
               </motion.span>
 
               {/* Title */}
@@ -280,7 +314,7 @@ export default function InvestmentPage() {
                     animate={{ y: isMounted ? 0 : "100%" }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    Invest in
+                    {t("hero.title")}
                   </motion.span>
                 </span>
                 <span className="block overflow-hidden">
@@ -290,7 +324,7 @@ export default function InvestmentPage() {
                     animate={{ y: isMounted ? 0 : "100%" }}
                     transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    memories.
+                    {t("hero.titleItalic")}
                   </motion.span>
                 </span>
               </h1>
@@ -302,8 +336,7 @@ export default function InvestmentPage() {
                 animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Photography is more than images—it's preserving moments that define who you are.
-                Choose a package that fits your story, or let's create something entirely unique together.
+                {t("hero.description")}
               </motion.p>
 
               {/* Stats */}
@@ -313,14 +346,12 @@ export default function InvestmentPage() {
                 animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <div>
-                  <span className="font-serif text-4xl sm:text-5xl block mb-1">150+</span>
-                  <span className="text-xs uppercase tracking-[0.2em] text-gray-400">Happy clients</span>
-                </div>
-                <div>
-                  <span className="font-serif text-4xl sm:text-5xl block mb-1">8+</span>
-                  <span className="text-xs uppercase tracking-[0.2em] text-gray-400">Years experience</span>
-                </div>
+                {stats.map((stat, index) => (
+                  <div key={index}>
+                    <span className="font-serif text-4xl sm:text-5xl block mb-1">{stat.number}</span>
+                    <span className="text-xs uppercase tracking-[0.2em] text-gray-400">{stat.label}</span>
+                  </div>
+                ))}
               </motion.div>
             </div>
 
@@ -383,7 +414,7 @@ export default function InvestmentPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                Packages
+                {t("packages.label")}
               </motion.span>
               <motion.h2
                 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-[1.1]"
@@ -392,7 +423,7 @@ export default function InvestmentPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1 }}
               >
-                Find your <span className="italic">perfect</span> fit
+                {t("packages.title")} <span className="italic">{t("packages.titleItalic")}</span>
               </motion.h2>
             </div>
             <div className="col-span-12 md:col-span-4 md:col-start-9 flex items-end">
@@ -403,35 +434,45 @@ export default function InvestmentPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Each package is a starting point. Every story is unique, and I'm here to tailor the experience to your needs.
+                {t("packages.description")}
               </motion.p>
             </div>
           </div>
 
           {/* Package cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {packages.slice(0, 3).map((pkg, index) => (
-              <PackageCard
-                key={pkg.id}
-                pkg={pkg}
-                index={index}
-                isHovered={hoveredPackage === pkg.id}
-                onHover={setHoveredPackage}
-              />
-            ))}
+            {localizedPackages.slice(0, 3).map((pkg, index) => {
+              const translated = translatedPackages.find(p => p.id === pkg.id);
+              return (
+                <PackageCard
+                  key={pkg.id}
+                  pkg={pkg}
+                  index={index}
+                  isHovered={hoveredPackage === pkg.id}
+                  onHover={setHoveredPackage}
+                  ctaText={translated?.cta || "More info"}
+                  onRequestText={translated?.prefix || "on request"}
+                />
+              );
+            })}
           </div>
 
           {/* Additional packages */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-6 sm:mt-8 max-w-4xl mx-auto">
-            {packages.slice(3).map((pkg, index) => (
-              <PackageCard
-                key={pkg.id}
-                pkg={pkg}
-                index={index + 3}
-                isHovered={hoveredPackage === pkg.id}
-                onHover={setHoveredPackage}
-              />
-            ))}
+            {localizedPackages.slice(3).map((pkg, index) => {
+              const translated = translatedPackages.find(p => p.id === pkg.id);
+              return (
+                <PackageCard
+                  key={pkg.id}
+                  pkg={pkg}
+                  index={index + 3}
+                  isHovered={hoveredPackage === pkg.id}
+                  onHover={setHoveredPackage}
+                  ctaText={translated?.cta || "More info"}
+                  onRequestText={translated?.prefix || "on request"}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -448,10 +489,10 @@ export default function InvestmentPage() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block">
-                Questions?
+                {t("faq.label")}
               </span>
               <h3 className="font-serif text-3xl sm:text-4xl mb-6">
-                Common questions, <span className="italic">answered</span>
+                {t("faq.title")} <span className="italic">{t("faq.titleItalic")}</span>
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-8">
                 Still have questions? Feel free to reach out—I'm always happy to chat about your vision.
@@ -460,16 +501,12 @@ export default function InvestmentPage() {
                 href="/contact"
                 className="text-sm uppercase tracking-[0.15em] border-b border-black pb-1 hover:border-gray-400 transition-colors"
               >
-                Contact me
+                {t("finalCta")}
               </TransitionLink>
             </motion.div>
 
             <div className="col-span-12 md:col-span-6 md:col-start-7">
-              {[
-                { q: "How do I book a session?", a: "Simply reach out via the contact form or email. We'll discuss your vision and find a date that works." },
-                { q: "What's included in each package?", a: "Every package includes professional editing, an online gallery, and print rights. Specific inclusions vary by package." },
-                { q: "Can packages be customized?", a: "Absolutely! These packages are starting points. I'm happy to create a custom package tailored to your needs." },
-              ].map((faq, index) => (
+              {(t.raw("faq.items") as Array<{ q: string; a: string }>).map((faq, index) => (
                 <motion.div
                   key={index}
                   className="border-b border-gray-200 py-6"

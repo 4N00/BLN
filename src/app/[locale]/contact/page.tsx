@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import { useTranslations } from "next-intl";
 
 export default function ContactPage() {
   const [isMounted, setIsMounted] = useState(false);
   const { isExiting } = usePageTransition();
+  const t = useTranslations("Contact");
+  const tCommon = useTranslations("Common");
 
   useEffect(() => {
     setIsMounted(true);
@@ -28,7 +31,7 @@ export default function ContactPage() {
             animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
             transition={{ duration: 0.8 }}
           >
-            Contact
+            {t("label")}
           </motion.span>
 
           {/* Title */}
@@ -40,7 +43,7 @@ export default function ContactPage() {
                 animate={{ y: isMounted ? 0 : "100%" }}
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               >
-                Let's make
+                {t("title")}
               </motion.span>
             </span>
             <span className="block overflow-hidden">
@@ -50,7 +53,7 @@ export default function ContactPage() {
                 animate={{ y: isMounted ? 0 : "100%" }}
                 transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               >
-                memories.
+                {t("titleItalic")}
               </motion.span>
             </span>
           </h1>
@@ -71,13 +74,13 @@ export default function ContactPage() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <span className="text-xs uppercase tracking-[0.2em] text-gray-400 block mb-4">
-              Email me
+              {t("emailLabel")}
             </span>
             <a
-              href="mailto:hello@loesnooitgedagt.com"
+              href={`mailto:${tCommon("email")}`}
               className="font-serif text-3xl sm:text-4xl md:text-5xl hover:text-gray-500 transition-colors duration-300 group"
             >
-              hello@loesnooitgedagt.com
+              {tCommon("email")}
               <span className="block h-[1px] w-0 group-hover:w-full bg-current mx-auto transition-all duration-500 mt-2" />
             </a>
           </motion.div>
@@ -89,7 +92,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <span className="text-xs uppercase tracking-[0.2em] text-gray-400 block mb-6">
-              Find me on
+              {t("socialLabel")}
             </span>
             <div className="flex justify-center gap-8 sm:gap-12">
               <a
@@ -99,7 +102,7 @@ export default function ContactPage() {
                 className="group"
               >
                 <span className="text-sm sm:text-base uppercase tracking-[0.15em] hover:text-gray-500 transition-colors duration-300">
-                  Instagram
+                  {tCommon("instagram")}
                 </span>
                 <span className="block h-[1px] w-0 group-hover:w-full bg-current transition-all duration-300 mt-1" />
               </a>
@@ -110,7 +113,7 @@ export default function ContactPage() {
                 className="group"
               >
                 <span className="text-sm sm:text-base uppercase tracking-[0.15em] hover:text-gray-500 transition-colors duration-300">
-                  LinkedIn
+                  {tCommon("linkedin")}
                 </span>
                 <span className="block h-[1px] w-0 group-hover:w-full bg-current transition-all duration-300 mt-1" />
               </a>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import { useTranslations } from "next-intl";
 
 const weddingImages = [
   {
@@ -328,11 +329,32 @@ function CinematicLightbox({
 }
 
 export default function WeddingPortfolioPage() {
+  const t = useTranslations("Portfolio.wedding");
+  const tCommon = useTranslations("Common");
   const [isMounted, setIsMounted] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState<number | null>(null);
   const { isExiting } = usePageTransition();
+
+  // Get translated images
+  const translatedImages = t.raw("images") as Array<{
+    id: number;
+    caption: string;
+    year: string;
+    alt: string;
+  }>;
+
+  // Merge with original images (keeping layout and src)
+  const localizedImages = weddingImages.map((img) => {
+    const translated = translatedImages.find(ti => ti.id === img.id);
+    return {
+      ...img,
+      caption: translated?.caption || img.caption,
+      year: translated?.year || img.year,
+      alt: translated?.alt || img.alt
+    };
+  });
 
   useEffect(() => {
     setIsMounted(true);
@@ -358,7 +380,7 @@ export default function WeddingPortfolioPage() {
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8 }}
             >
-              Portfolio — Wedding
+              {t("label")}
             </motion.span>
 
             <h1 className="font-serif text-[14vw] sm:text-[10vw] md:text-[8vw] leading-[0.85] tracking-tighter mb-8">
@@ -369,7 +391,7 @@ export default function WeddingPortfolioPage() {
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  Love,
+                  {t("title")}
                 </motion.span>
               </span>
               <span className="block overflow-hidden">
@@ -383,7 +405,7 @@ export default function WeddingPortfolioPage() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  forever.
+                  {t("titleItalic")}
                 </motion.span>
               </span>
             </h1>
@@ -396,8 +418,7 @@ export default function WeddingPortfolioPage() {
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Your wedding day, told through images that feel like poetry.
-              Every stolen glance, every joyful tear—preserved in timeless elegance.
+              {t("description")}
             </motion.p>
 
             <motion.div
@@ -408,7 +429,7 @@ export default function WeddingPortfolioPage() {
             >
               <span className="w-12 h-[1px] bg-gray-300" />
               <span className="text-xs uppercase tracking-[0.2em] text-gray-400">
-                {weddingImages.length} Works
+                {t("worksCount", { count: localizedImages.length })}
               </span>
             </motion.div>
           </div>
@@ -417,7 +438,7 @@ export default function WeddingPortfolioPage() {
 
       <section className="py-16 sm:py-24 px-6 sm:px-12 max-w-[1800px] mx-auto">
         <div className="flex flex-col">
-          {weddingImages.map((image, index) => {
+          {localizedImages.map((image, index) => {
             const speedMap: { [key: string]: number } = {
               small: 0.12,
               medium: 0.06,
@@ -495,16 +516,16 @@ export default function WeddingPortfolioPage() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block">
-                Your Day
+                {t("cta.label")}
               </span>
               <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-[1] mb-6">
-                Let's capture your <span className="italic">forever</span>
+                {t("cta.title")} <span className="italic">{t("cta.titleItalic")}</span>
               </h2>
               <a
-                href="mailto:hello@loesnooitgedagt.com"
+                href={`mailto:${tCommon("email")}`}
                 className="inline-block text-sm uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors"
               >
-                Get in touch
+                {t("cta.button")}
               </a>
             </motion.div>
 
@@ -516,9 +537,7 @@ export default function WeddingPortfolioPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <p className="text-gray-500 text-sm leading-relaxed">
-                From intimate elopements to grand celebrations, I approach every
-                wedding with the same dedication—to tell your unique love story
-                through images that will move you for generations.
+                {t("cta.description")}
               </p>
             </motion.div>
           </div>
@@ -526,7 +545,7 @@ export default function WeddingPortfolioPage() {
       </section>
 
       <CinematicLightbox
-        images={weddingImages}
+        images={localizedImages}
         currentIndex={currentImageIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}

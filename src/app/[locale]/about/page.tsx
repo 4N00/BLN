@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import { useTranslations } from "next-intl";
 
 // Animated text that reveals character by character
 function AnimatedText({
@@ -101,18 +102,14 @@ function ParallaxSection({
   );
 }
 
-const stats = [
-  { number: "150+", label: "Projects Completed" },
-  { number: "8", label: "Years Experience" },
-  { number: "50+", label: "Happy Clients" },
-  { number: "12", label: "Awards Won" },
-];
-
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
   const { isExiting } = usePageTransition();
+  const t = useTranslations("About");
+
+  const stats = t.raw("stats") as Array<{ number: string; label: string }>;
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -150,7 +147,7 @@ export default function AboutPage() {
               transition={{ duration: 1 }}
             >
               <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 block">
-                About the Artist
+                {t("label")}
               </span>
             </motion.div>
 
@@ -162,7 +159,7 @@ export default function AboutPage() {
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  Photos are more
+                  {t("hero.title1")}
                 </motion.span>
               </span>
               <span className="block overflow-hidden">
@@ -172,7 +169,7 @@ export default function AboutPage() {
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  than just images;
+                  {t("hero.title2")}
                 </motion.span>
               </span>
               <span className="block overflow-hidden">
@@ -182,8 +179,8 @@ export default function AboutPage() {
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  they are{" "}
-                  <span className="italic text-gray-400">artworks</span>
+                  {t("hero.title3")}{" "}
+                  <span className="italic text-gray-400">{t("hero.title3Italic")}</span>
                 </motion.span>
               </span>
             </h1>
@@ -211,12 +208,10 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-6">
-              When I have my camera in hand and look through my lens, I see the
-              world as artwork with special details and stories waiting to be told.
+              {t("intro1")}
             </p>
             <p className="text-base text-gray-500 leading-relaxed">
-              I believe in creating a relaxed and comfortable atmosphere during
-              shoots to capture authentic moments that tell your unique story.
+              {t("intro2")}
             </p>
           </motion.div>
         </div>
@@ -256,7 +251,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              Philosophy
+              {t("philosophy.label")}
             </motion.span>
 
             <motion.h2
@@ -266,8 +261,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              Capturing the <span className="italic">essence</span> of moments
-              through a lens that sees the world as <span className="italic">artwork</span>
+              {t("philosophy.title")}
             </motion.h2>
 
             <motion.p
@@ -277,10 +271,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Every photograph is an opportunity to freeze a moment in time, to
-              preserve the emotions, the light, the unspoken words between people.
-              I approach each session as a collaboration, working with you to
-              create images that are authentically yours.
+              {t("philosophy.text1")}
             </motion.p>
 
             <motion.p
@@ -290,9 +281,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              My work is influenced by fine art, fashion editorial, and the raw
-              beauty of everyday life. I believe the best images come from genuine
-              connections and moments of vulnerability.
+              {t("philosophy.text2")}
             </motion.p>
           </div>
         </div>
@@ -350,8 +339,8 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                Let's create <br />
-                <span className="italic">something beautiful</span>
+                {t("cta.title")} <br />
+                <span className="italic">{t("cta.titleItalic")}</span>
               </motion.h2>
             </div>
 

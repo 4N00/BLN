@@ -4,15 +4,16 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import { useTranslations } from "next-intl";
 
 // Lifestyle photography images with carefully planned layout
-// Pattern: medium center -> small right -> large center -> small left -> medium right -> small center
+// Pattern: medium center -> small right -> large center -> small left -> medium right
 const lifestyleImages = [
   {
     id: 1,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Lizzy",
-    caption: "The quiet strength in vulnerability",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FAM_01_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Lifestyle Portrait",
+    caption: "Authenticity in every frame",
     year: "2024",
     size: "medium",
     position: "center",
@@ -21,18 +22,18 @@ const lifestyleImages = [
   {
     id: 2,
     src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Kiki",
-    caption: "Where life begins",
+    alt: "Family Moments",
+    caption: "Stories of connection",
     year: "2024",
     size: "small",
     position: "right",
-    aspectRatio: "4/5",
+    aspectRatio: "3/4",
   },
   {
     id: 3,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Syl",
-    caption: "Light as language",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Natural Light",
+    caption: "Beauty in simplicity",
     year: "2023",
     size: "large",
     position: "center",
@@ -40,33 +41,23 @@ const lifestyleImages = [
   },
   {
     id: 4,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Kiki II",
-    caption: "In anticipation",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_ANOUK_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Candid Shot",
+    caption: "Moments that matter",
     year: "2024",
     size: "small",
     position: "left",
-    aspectRatio: "4/3",
+    aspectRatio: "3/4",
   },
   {
     id: 5,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_WATER_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Water",
-    caption: "Beneath the surface",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/newborn_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Lifestyle Detail",
+    caption: "Your story, told beautifully",
     year: "2023",
     size: "medium",
     position: "right",
     aspectRatio: "3/4",
-  },
-  {
-    id: 6,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Flora",
-    caption: "Still life, still breathing",
-    year: "2023",
-    size: "small",
-    position: "center",
-    aspectRatio: "5/6",
   },
 ];
 
@@ -354,11 +345,32 @@ function CinematicLightbox({
 }
 
 export default function LifestylePortfolioPage() {
+  const t = useTranslations("Portfolio.lifestyle");
+  const tCommon = useTranslations("Common");
   const [isMounted, setIsMounted] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState<number | null>(null);
   const { isExiting } = usePageTransition();
+
+  // Get translated images
+  const translatedImages = t.raw("images") as Array<{
+    id: number;
+    caption: string;
+    year: string;
+    alt: string;
+  }>;
+
+  // Merge with original images (keeping layout and src)
+  const localizedImages = lifestyleImages.map((img) => {
+    const translated = translatedImages.find(ti => ti.id === img.id);
+    return {
+      ...img,
+      caption: translated?.caption || img.caption,
+      year: translated?.year || img.year,
+      alt: translated?.alt || img.alt
+    };
+  });
 
   useEffect(() => {
     setIsMounted(true);
