@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import ProjectPageClient from "./ProjectPageClient";
 
 // Mock data service (same as Homepage for now)
-export const projects = [
+const projects = [
   {
     id: 1,
     title: "Ethereal Gaze",

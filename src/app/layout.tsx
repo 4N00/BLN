@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond, Playfair_Display } from "next/font/google"; 
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navigation from "@/components/Navigation";
+import { TransitionProvider } from "@/context/TransitionContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cormorant = Cormorant_Garamond({
@@ -36,11 +37,13 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable} ${playfair.variable}`}
     >
       <body className="antialiased bg-white text-black selection:bg-black selection:text-white cursor-none">
-        <SmoothScroll>
-          <CustomCursor />
-          <Navigation />
-          <main className="min-h-screen">{children}</main>
-        </SmoothScroll>
+        <TransitionProvider>
+          <SmoothScroll>
+            <CustomCursor />
+            <Navigation />
+            <main className="min-h-screen">{children}</main>
+          </SmoothScroll>
+        </TransitionProvider>
       </body>
     </html>
   );

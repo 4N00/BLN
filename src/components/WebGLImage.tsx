@@ -171,7 +171,7 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
       
       // Calculate and cache stable scale when texture loads
       if (texture.image && !stableScaleRef.current) {
-        const textureAspect = texture.image.width / texture.image.height;
+        const textureAspect = (texture.image as HTMLImageElement).width / (texture.image as HTMLImageElement).height;
         // @ts-ignore - useThree size type
         const containerAspect = size.width > 0 && size.height > 0 
           ? size.width / size.height
@@ -221,7 +221,7 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
         );
       } else if (mesh.current && texture && texture.image) {
         // Fallback: calculate scale if stable scale not set yet
-        const textureAspect = texture.image.width / texture.image.height;
+        const textureAspect = (texture.image as HTMLImageElement).width / (texture.image as HTMLImageElement).height;
         let scaleX = viewport.width;
         let scaleY = viewport.height;
         
@@ -268,7 +268,7 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
 
   // Calculate aspect ratio from texture
   const textureAspect = texture.image
-    ? texture.image.width / texture.image.height
+    ? (texture.image as HTMLImageElement).width / (texture.image as HTMLImageElement).height
     : 3 / 4; // Default aspect ratio
 
   // Calculate container aspect ratio from actual container size
@@ -325,6 +325,7 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
       <planeGeometry args={[1, 1, 32, 32]} />
       {/* @ts-ignore - React Three Fiber types */}
       <primitive object={material} attach="material" />
+      {/* @ts-ignore - React Three Fiber types */}
     </mesh>
   );
 }

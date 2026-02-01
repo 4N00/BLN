@@ -4,6 +4,8 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import WebGLImage from "@/components/WebGLImage";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useTransition } from "@/context/TransitionContext";
 
 const projects = [
   {
@@ -230,6 +232,39 @@ function ParallaxContainer({
 }
 
 export default function Home() {
+  const router = useRouter();
+  const { setTransitionData, transitionData } = useTransition();
+  const imageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  const handleProjectClick = (
+    e: React.MouseEvent,
+    project: typeof projects[0]
+  ) => {
+    e.preventDefault();
+
+    const imageContainer = imageRefs.current.get(project.slug);
+    if (imageContainer) {
+      const rect = imageContainer.getBoundingClientRect();
+
+      setTransitionData({
+        slug: project.slug,
+        image: project.image,
+        rect: {
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+          scrollY: window.scrollY,
+        },
+      });
+    }
+
+    // Navigate after a small delay to ensure state is set
+    setTimeout(() => {
+      router.push(`/work/${project.slug}`);
+    }, 10);
+  };
+
   return (
     <div className="pt-32 pb-20 px-6 sm:px-12 max-w-[1800px] mx-auto">
       {/* Intro Section */}
@@ -279,40 +314,23 @@ export default function Home() {
               className={`${project.colSpan} ${project.colStart}`}
             >
               <ParallaxContainer scrollSpeed={scrollSpeed}>
-                <Link
-                  href={`/work/${project.slug}`}
-                  onClick={(e) => {
-                    // Scroll to top immediately when clicking, before navigation
-                    const lenis = (window as any).lenis;
-                    if (lenis) {
-                      lenis.scrollTo(0, {
-                        duration: 0.8,
-                        easing: (t: number) =>
-                          Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                        immediate: false,
-                      });
-                    } else {
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }
-                  }}
+                <div
+                  onClick={(e) => handleProjectClick(e, project)}
+                  className="cursor-pointer"
                 >
                   <motion.div
-                    className="group cursor-pointer"
+                    className="group"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <motion.div
-                      layoutId={`image-container-${project.slug}`}
+                    <div
+                      ref={(el) => {
+                        if (el) imageRefs.current.set(project.slug, el);
+                      }}
                       className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
                       style={{ aspectRatio: project.aspectRatio }}
-                      transition={{
-                        layout: {
-                          duration: 1.8,
-                          ease: [0.16, 1, 0.3, 1],
-                        },
-                      }}
                     >
                       <div className="absolute inset-0 w-full h-full">
                         <WebGLImage
@@ -322,7 +340,7 @@ export default function Home() {
                           className="w-full h-full"
                         />
                       </div>
-                    </motion.div>
+                    </div>
 
                     <div
                       className={`flex flex-col items-start ${project.width}`}
@@ -336,7 +354,7 @@ export default function Home() {
                       </h3>
                     </div>
                   </motion.div>
-                </Link>
+                </div>
               </ParallaxContainer>
             </div>
           );
