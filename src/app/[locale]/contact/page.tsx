@@ -26,7 +26,7 @@ export default function ContactPage() {
         <div className="text-center">
           {/* Label */}
           <motion.span
-            className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 block"
+            className="text-xs uppercase tracking-[0.4em] text-gray-700 mb-8 block"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
             transition={{ duration: 0.8 }}
@@ -48,7 +48,7 @@ export default function ContactPage() {
             </span>
             <span className="block overflow-hidden">
               <motion.span
-                className="block italic text-gray-400"
+                className="block italic text-gray-700"
                 initial={{ y: "100%" }}
                 animate={{ y: isMounted ? 0 : "100%" }}
                 transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
@@ -73,7 +73,7 @@ export default function ContactPage() {
             animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-gray-400 block mb-4">
+            <span className="text-xs uppercase tracking-[0.2em] text-gray-700 block mb-4">
               {t("emailLabel")}
             </span>
             <a
@@ -91,7 +91,7 @@ export default function ContactPage() {
             animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-gray-400 block mb-6">
+            <span className="text-xs uppercase tracking-[0.2em] text-gray-700 block mb-6">
               {t("socialLabel")}
             </span>
             <div className="flex justify-center gap-8 sm:gap-12">

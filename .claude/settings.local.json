@@ -5,7 +5,10 @@
       "WebFetch(domain:loesnooitgedagt.com)",
       "Bash(ls:*)",
       "Bash(npx tsc:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(git diff:*)"
     ]
   }
 }

@@ -360,7 +360,7 @@ export default function EventPortfolioPage() {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-8 lg:col-span-6">
             <motion.span
-              className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-6 block"
+              className="text-xs uppercase tracking-[0.4em] text-gray-700 mb-6 block"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8 }}
@@ -381,7 +381,7 @@ export default function EventPortfolioPage() {
               </span>
               <span className="block overflow-hidden">
                 <motion.span
-                  className="block italic text-gray-400"
+                  className="block italic text-gray-700"
                   initial={{ y: "100%" }}
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{
@@ -413,7 +413,7 @@ export default function EventPortfolioPage() {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <span className="w-12 h-[1px] bg-gray-300" />
-              <span className="text-xs uppercase tracking-[0.2em] text-gray-400">
+              <span className="text-xs uppercase tracking-[0.2em] text-gray-700">
                 {t("worksCount", { count: localizedImages.length })}
               </span>
             </motion.div>
@@ -500,7 +500,7 @@ export default function EventPortfolioPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block">
+              <span className="text-xs uppercase tracking-[0.3em] text-gray-700 mb-4 block">
                 {t("cta.label")}
               </span>
               <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-[1] mb-6">

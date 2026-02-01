@@ -146,7 +146,7 @@ export default function AboutPage() {
               animate={{ opacity: isMounted ? 1 : 0 }}
               transition={{ duration: 1 }}
             >
-              <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 block">
+              <span className="text-xs uppercase tracking-[0.3em] text-gray-700 mb-6 block">
                 {t("label")}
               </span>
             </motion.div>
@@ -180,7 +180,7 @@ export default function AboutPage() {
                   transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {t("hero.title3")}{" "}
-                  <span className="italic text-gray-400">{t("hero.title3Italic")}</span>
+                  <span className="italic text-gray-700">{t("hero.title3Italic")}</span>
                 </motion.span>
               </span>
             </h1>
@@ -246,7 +246,7 @@ export default function AboutPage() {
 
           <div className="lg:col-span-6 lg:col-start-7 flex flex-col justify-center">
             <motion.span
-              className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 block"
+              className="text-xs uppercase tracking-[0.3em] text-gray-700 mb-6 block"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -324,7 +324,7 @@ export default function AboutPage() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
             <div>
               <motion.span
-                className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 block"
+                className="text-xs uppercase tracking-[0.3em] text-gray-700 mb-6 block"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}

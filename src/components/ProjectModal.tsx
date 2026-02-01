@@ -343,7 +343,7 @@ export default function ProjectModal({
               >
                 <button
                   onClick={handleClose}
-                  className="inline-flex items-center text-xs uppercase tracking-widest text-gray-400 hover:text-black transition-colors mb-8 cursor-pointer"
+                  className="inline-flex items-center text-xs uppercase tracking-widest text-gray-700 hover:text-black transition-colors mb-8 cursor-pointer"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" /> Back to Index
                 </button>
@@ -356,7 +356,7 @@ export default function ProjectModal({
                     <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       {project.description || "A beautiful photography project."}
                     </p>
-                    <div className="mt-4 text-xs uppercase tracking-widest text-gray-400">
+                    <div className="mt-4 text-xs uppercase tracking-widest text-gray-700">
                       Category: {project.category}
                     </div>
                   </div>
@@ -394,7 +394,7 @@ export default function ProjectModal({
                         unoptimized
                       />
                     </div>
-                    <span className="mt-4 text-xs text-gray-400 uppercase tracking-widest">
+                    <span className="mt-4 text-xs text-gray-700 uppercase tracking-widest">
                       Figure 0{idx + 1}
                     </span>
                   </motion.div>
@@ -414,7 +414,7 @@ export default function ProjectModal({
                   }}
                   className="group flex flex-col items-start gap-2"
                 >
-                  <span className="text-xs uppercase tracking-widest text-gray-400 group-hover:text-gray-600 transition-colors">
+                  <span className="text-xs uppercase tracking-widest text-gray-700 group-hover:text-gray-600 transition-colors">
                     Previous Project
                   </span>
                   <span className="font-serif text-2xl italic group-hover:underline">
@@ -427,7 +427,7 @@ export default function ProjectModal({
                   }}
                   className="group flex flex-col items-end gap-2 text-right"
                 >
-                  <span className="text-xs uppercase tracking-widest text-gray-400 group-hover:text-gray-600 transition-colors">
+                  <span className="text-xs uppercase tracking-widest text-gray-700 group-hover:text-gray-600 transition-colors">
                     Next Project
                   </span>
                   <span className="font-serif text-2xl italic group-hover:underline">

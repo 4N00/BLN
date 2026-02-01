@@ -67,7 +67,7 @@ export default function OptimizedImage({
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <span className="text-gray-400 text-sm">Failed to load image</span>
+          <span className="text-gray-700 text-sm">Failed to load image</span>
         </div>
       )}
     </div>

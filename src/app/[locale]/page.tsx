@@ -82,7 +82,7 @@ function ServiceItem({
     >
       <div className="flex justify-between items-center">
         <div className="flex items-baseline gap-4 sm:gap-8">
-          <span className="text-xs text-gray-400 font-mono">
+          <span className="text-xs text-gray-700 font-mono">
             {(index + 1).toString().padStart(2, "0")}
           </span>
           <motion.h3
@@ -694,7 +694,7 @@ function HomeContent() {
                   delay: isExiting ? 0 : 0.3,
                   ease
                 }}
-                className="block text-[3vw] sm:text-[2vw] tracking-wider text-gray-400"
+                className="block text-[3vw] sm:text-[2vw] tracking-wider text-gray-700"
               >
                 {t("hero.subtitle")}
               </motion.span>
@@ -750,7 +750,7 @@ function HomeContent() {
         <section className="mb-32 sm:mb-48">
           <div className="mb-16 sm:mb-24">
             <motion.span
-              className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 block"
+              className="text-xs uppercase tracking-[0.3em] text-gray-700 mb-6 block"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -800,7 +800,7 @@ function HomeContent() {
           } : {}}
         >
           <div>
-            <span className="block text-xs uppercase tracking-widest text-gray-400 mb-2">
+            <span className="block text-xs uppercase tracking-widest text-gray-700 mb-2">
               {tCommon("contact")}
             </span>
             <a

@@ -157,20 +157,20 @@ function PackageCard({
           <h3 className="font-serif text-4xl sm:text-5xl mb-2 tracking-tight">
             {pkg.title}
           </h3>
-          <span className="text-sm text-gray-400 tracking-wide">
+          <span className="text-sm text-gray-700 tracking-wide">
             {pkg.subtitle}
           </span>
         </div>
 
         {/* Price */}
         <div className="mb-8">
-          <span className="text-xs uppercase tracking-[0.2em] text-gray-400 block mb-1">
+          <span className="text-xs uppercase tracking-[0.2em] text-gray-700 block mb-1">
             {pkg.prefix}
           </span>
           {pkg.price ? (
             <span className="font-serif text-5xl sm:text-6xl tracking-tight">
               €{pkg.price}
-              <span className="text-2xl text-gray-400">,-</span>
+              <span className="text-2xl text-gray-700">,-</span>
             </span>
           ) : (
             <span className="font-serif text-3xl sm:text-4xl italic text-gray-500">
@@ -297,7 +297,7 @@ export default function InvestmentPage() {
             <div className="col-span-12 lg:col-span-6 relative z-10">
               {/* Label */}
               <motion.span
-                className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 block"
+                className="text-xs uppercase tracking-[0.4em] text-gray-700 mb-8 block"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
                 transition={{ duration: 0.8 }}
@@ -319,7 +319,7 @@ export default function InvestmentPage() {
                 </span>
                 <span className="block overflow-hidden">
                   <motion.span
-                    className="block italic text-gray-400"
+                    className="block italic text-gray-700"
                     initial={{ y: "100%" }}
                     animate={{ y: isMounted ? 0 : "100%" }}
                     transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
@@ -349,7 +349,7 @@ export default function InvestmentPage() {
                 {stats.map((stat, index) => (
                   <div key={index}>
                     <span className="font-serif text-4xl sm:text-5xl block mb-1">{stat.number}</span>
-                    <span className="text-xs uppercase tracking-[0.2em] text-gray-400">{stat.label}</span>
+                    <span className="text-xs uppercase tracking-[0.2em] text-gray-700">{stat.label}</span>
                   </div>
                 ))}
               </motion.div>
@@ -387,7 +387,7 @@ export default function InvestmentPage() {
             transition={{ duration: 1, delay: 1 }}
             style={{ transformOrigin: "top" }}
           />
-          <span className="text-xs uppercase tracking-[0.2em] text-gray-400">Scroll</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-gray-700">Scroll</span>
         </motion.div>
       </section>
 
@@ -408,7 +408,7 @@ export default function InvestmentPage() {
           <div className="grid grid-cols-12 gap-6 mb-16 sm:mb-24">
             <div className="col-span-12 md:col-span-6">
               <motion.span
-                className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block"
+                className="text-xs uppercase tracking-[0.3em] text-gray-700 mb-4 block"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -488,7 +488,7 @@ export default function InvestmentPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block">
+              <span className="text-xs uppercase tracking-[0.3em] text-gray-700 mb-4 block">
                 {t("faq.label")}
               </span>
               <h3 className="font-serif text-3xl sm:text-4xl mb-6">
