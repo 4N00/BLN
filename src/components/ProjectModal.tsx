@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import WebGLImage from "./WebGLImage";
+import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 
 interface Project {
   id: number;
@@ -49,6 +50,9 @@ export default function ProjectModal({
   const modalRef = useRef<HTMLDivElement>(null);
   const savedImageRect = useRef<ImageRect | null>(null);
   const closeTargetRect = useRef<ImageRect | null>(null);
+
+  // Get page transition state for exit animations when navigating away
+  const { isExiting: isPageExiting } = usePageTransition();
 
   // Mount check for portal
   useEffect(() => {
@@ -231,8 +235,8 @@ export default function ProjectModal({
           {/* Background overlay */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: isClosing ? 0 : 1 }}
-            transition={{ duration: isClosing ? 0.6 : 0.4 }}
+            animate={{ opacity: isClosing || isPageExiting ? 0 : 1 }}
+            transition={{ duration: isClosing ? 0.6 : isPageExiting ? 0.5 : 0.4 }}
             className="fixed inset-0 bg-white z-40"
             style={{ pointerEvents: "none" }}
           />
@@ -305,13 +309,15 @@ export default function ProjectModal({
           )}
 
           {/* Modal content - only visible when fully open */}
-          <div
+          <motion.div
             ref={modalRef}
             className="fixed inset-0 z-50 overflow-y-auto"
             style={{
-              pointerEvents: isOpen_ ? "auto" : "none",
+              pointerEvents: isOpen_ && !isPageExiting ? "auto" : "none",
               visibility: isOpen_ ? "visible" : "hidden",
             }}
+            animate={isPageExiting ? { opacity: 0, y: -40 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: transitionEase }}
           >
             <div className="bg-white min-h-screen">
               {/* Hero Image - static, shown when modal is open */}
@@ -430,7 +436,7 @@ export default function ProjectModal({
                 </button>
               </motion.div>
             </div>
-          </div>
+          </motion.div>
         </>
       )}
     </>
