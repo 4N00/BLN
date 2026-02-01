@@ -13,6 +13,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import CustomCursor from "@/components/CustomCursor";
 import StructuredData from "@/components/StructuredData";
+import { OrganizationSchema, PersonSchema, WebSiteSchema } from "@/components/AdvancedStructuredData";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cormorant = Cormorant_Garamond({
@@ -34,8 +35,23 @@ export const metadata: Metadata = {
     default: "Loes Nooitgedagt | Photography Portfolio",
     template: "%s | Loes Nooitgedagt Photography"
   },
-  description: "Professional photography services specializing in lifestyle, wedding, brand, portrait, and event photography. Capturing life, love, style, and you.",
-  keywords: ["photography", "wedding photographer", "lifestyle photography", "brand photography", "portrait photographer", "event photography", "Netherlands photographer", "professional photographer"],
+  description: "Award-winning photographer in Netherlands ✨ Specializing in Wedding, Lifestyle, Brand & Portrait Photography | 150+ Happy Clients | Book Your Session →",
+  keywords: [
+    "photographer Netherlands",
+    "wedding photographer",
+    "bruidsfotograaf",
+    "lifestyle photography",
+    "lifestyle fotografie",
+    "brand photography",
+    "bedrijfsfotografie",
+    "portrait photographer",
+    "portretfotograaf",
+    "event photography",
+    "professional photographer Netherlands",
+    "fotograaf Nederland",
+    "Amsterdam photographer",
+    "destination wedding photographer"
+  ],
   authors: [{ name: "Loes Nooitgedagt" }],
   creator: "Loes Nooitgedagt",
   openGraph: {
@@ -92,10 +108,19 @@ export default async function RootLayout({
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="geo.region" content="NL" />
+        <meta name="geo.placename" content="Netherlands" />
+        <meta name="language" content={locale} />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="alternate" hrefLang="en" href="https://loesnooitgedagt.com" />
+        <link rel="alternate" hrefLang="nl" href="https://loesnooitgedagt.com" />
+        <link rel="alternate" hrefLang="x-default" href="https://loesnooitgedagt.com" />
         <StructuredData />
+        <OrganizationSchema />
+        <PersonSchema />
+        <WebSiteSchema />
       </head>
       <body className="antialiased bg-white text-black selection:bg-black selection:text-white cursor-none">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white">

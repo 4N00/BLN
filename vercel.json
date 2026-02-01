@@ -72,11 +72,5 @@
       "destination": "/",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/(en|nl)",
-      "destination": "/"
-    }
   ]
 }
