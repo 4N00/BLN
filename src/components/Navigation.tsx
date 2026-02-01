@@ -71,9 +71,9 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-[100] px-6 md:px-10 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+      <nav className="fixed top-0 left-0 w-full z-[100] px-6 md:px-10 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-none" aria-label="Main navigation">
         {/* Logo */}
-        <TransitionLink href="/" className="pointer-events-auto group relative">
+        <TransitionLink href="/" className="pointer-events-auto group relative" aria-label="Loes Nooitgedagt - Home">
           <motion.span
             className="font-playfair text-xl md:text-2xl tracking-tight block"
             whileHover={{ x: 5 }}
@@ -124,6 +124,9 @@ export default function Navigation() {
                 "nav-link uppercase text-[11px] tracking-[0.2em] font-light flex items-center gap-2 py-2 transition-opacity duration-500 relative",
                 isPortfolioActive ? "opacity-100" : "opacity-50 hover:opacity-100"
               )}
+              aria-expanded={portfolioOpen}
+              aria-haspopup="true"
+              aria-label="Portfolio menu"
             >
               Portfolio
               <motion.svg
@@ -213,7 +216,8 @@ export default function Navigation() {
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden pointer-events-auto relative w-8 h-8 flex items-center justify-center"
-          aria-label="Toggle menu"
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
         >
           <div className="relative w-6 h-4 flex flex-col justify-between">
             <motion.span
