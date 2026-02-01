@@ -18,7 +18,7 @@ function AnimatedText({
     <motion.span className={className}>
       {children.split("").map((char, i) => (
         <motion.span
-          key={i}
+          key={`${char}-${i}`}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -117,9 +117,10 @@ export default function AboutPage() {
     offset: ["start start", "end start"]
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
-  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+  // Only start fading at 60% scroll, complete at 100%
+  const heroOpacity = useTransform(scrollYProgress, [0.5, 1], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0.5, 1], [1, 0.98]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 30]);
 
   useEffect(() => {
     setIsMounted(true);

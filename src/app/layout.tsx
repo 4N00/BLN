@@ -4,6 +4,8 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navigation from "@/components/Navigation";
 import { TransitionProvider } from "@/context/TransitionContext";
+import { SplitTransitionProvider } from "@/context/SplitTransitionContext";
+import SplitTransitionOverlay from "@/components/SplitTransitionOverlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cormorant = Cormorant_Garamond({
@@ -38,11 +40,14 @@ export default function RootLayout({
     >
       <body className="antialiased bg-white text-black selection:bg-black selection:text-white cursor-none">
         <TransitionProvider>
-          <SmoothScroll>
-            <CustomCursor />
-            <Navigation />
-            <main className="min-h-screen">{children}</main>
-          </SmoothScroll>
+          <SplitTransitionProvider>
+            <SmoothScroll>
+              <CustomCursor />
+              <Navigation />
+              <SplitTransitionOverlay />
+              <main className="min-h-screen">{children}</main>
+            </SmoothScroll>
+          </SplitTransitionProvider>
         </TransitionProvider>
       </body>
     </html>

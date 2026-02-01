@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 export default function CustomCursor() {
   const [isPointer, setIsPointer] = useState(false);
   const [isGalleryImage, setIsGalleryImage] = useState(false);
+  const [isNavLink, setIsNavLink] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -30,6 +31,10 @@ export default function CustomCursor() {
       // Check if hovering over a gallery image
       const galleryImage = target.closest("[data-gallery-image]");
       setIsGalleryImage(!!galleryImage);
+
+      // Check if hovering over a nav link
+      const navLink = target.closest(".nav-link");
+      setIsNavLink(!!navLink);
     };
 
     window.addEventListener("mousemove", moveCursor);
@@ -42,12 +47,14 @@ export default function CustomCursor() {
   useEffect(() => {
     if (isGalleryImage) {
       scale.set(5);
+    } else if (isNavLink) {
+      scale.set(3.5);
     } else if (isPointer) {
       scale.set(2.5);
     } else {
       scale.set(1);
     }
-  }, [isGalleryImage, isPointer, scale]);
+  }, [isGalleryImage, isNavLink, isPointer, scale]);
 
   // Cursor size
   const size = 16;

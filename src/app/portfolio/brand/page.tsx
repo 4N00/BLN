@@ -4,81 +4,66 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-// Lifestyle photography images with carefully planned layout
-// Pattern: medium center -> small right -> large center -> small left -> medium right -> small center
-const lifestyleImages = [
+const brandImages = [
   {
     id: 1,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Lizzy",
-    caption: "The quiet strength in vulnerability",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Brand Story",
+    caption: "Visual identity, redefined",
     year: "2024",
     size: "medium",
-    position: "center",
-    aspectRatio: "3/4",
-  },
-  {
-    id: 2,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Kiki",
-    caption: "Where life begins",
-    year: "2024",
-    size: "small",
-    position: "right",
+    position: "left",
     aspectRatio: "4/5",
   },
   {
-    id: 3,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Syl",
-    caption: "Light as language",
-    year: "2023",
+    id: 2,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Product Detail",
+    caption: "Where details speak volumes",
+    year: "2024",
     size: "large",
+    position: "right",
+    aspectRatio: "3/4",
+  },
+  {
+    id: 3,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Team Portrait",
+    caption: "The faces behind the brand",
+    year: "2023",
+    size: "small",
     position: "center",
     aspectRatio: "3/4",
   },
   {
     id: 4,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Kiki II",
-    caption: "In anticipation",
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Creative Direction",
+    caption: "Crafting authentic narratives",
     year: "2024",
+    size: "medium",
+    position: "right",
+    aspectRatio: "5/6",
+  },
+  {
+    id: 5,
+    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    alt: "Lifestyle Brand",
+    caption: "Stories that resonate",
+    year: "2023",
     size: "small",
     position: "left",
     aspectRatio: "4/3",
   },
-  {
-    id: 5,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_WATER_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Water",
-    caption: "Beneath the surface",
-    year: "2023",
-    size: "medium",
-    position: "right",
-    aspectRatio: "3/4",
-  },
-  {
-    id: 6,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Flora",
-    caption: "Still life, still breathing",
-    year: "2023",
-    size: "small",
-    position: "center",
-    aspectRatio: "5/6",
-  },
 ];
 
-// Get layout classes based on size and position
 function getLayoutClasses(size: string, position: string) {
-  // Size determines width
   const sizeClasses = {
     small: "md:w-[30%]",
     medium: "md:w-[45%]",
     large: "md:w-[60%]",
   };
 
-  // Position determines alignment
   const positionClasses = {
     left: "md:ml-0 md:mr-auto",
     right: "md:ml-auto md:mr-0",
@@ -91,7 +76,6 @@ function getLayoutClasses(size: string, position: string) {
   return `w-full ${width} ${align}`;
 }
 
-// Parallax container component - keeps scroll overlap working
 function ParallaxContainer({
   children,
   className,
@@ -192,7 +176,6 @@ function ParallaxContainer({
   );
 }
 
-// Cinematic lightbox
 function CinematicLightbox({
   images,
   currentIndex,
@@ -200,7 +183,7 @@ function CinematicLightbox({
   onClose,
   onNavigate,
 }: {
-  images: typeof lifestyleImages;
+  images: typeof brandImages;
   currentIndex: number;
   isOpen: boolean;
   onClose: () => void;
@@ -244,7 +227,6 @@ function CinematicLightbox({
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[200] bg-black"
         >
-          {/* Close button */}
           <motion.button
             className="absolute top-8 right-8 z-20 text-white/40 hover:text-white transition-colors"
             initial={{ opacity: 0, y: -20 }}
@@ -255,7 +237,6 @@ function CinematicLightbox({
             <span className="text-xs uppercase tracking-[0.3em]">Close</span>
           </motion.button>
 
-          {/* Main image area */}
           <div className="absolute inset-0 flex items-center justify-center p-8 sm:p-16">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
@@ -278,7 +259,6 @@ function CinematicLightbox({
             </AnimatePresence>
           </div>
 
-          {/* Caption */}
           <motion.div
             className="absolute bottom-24 left-0 right-0 text-center z-10"
             initial={{ opacity: 0, y: 30 }}
@@ -293,7 +273,6 @@ function CinematicLightbox({
             </h3>
           </motion.div>
 
-          {/* Navigation arrows */}
           <motion.button
             className="absolute left-8 top-1/2 -translate-y-1/2 z-20 group"
             onClick={() => {
@@ -320,7 +299,6 @@ function CinematicLightbox({
             </span>
           </motion.button>
 
-          {/* Progress indicator */}
           <div className="absolute top-8 left-8 z-20">
             <span className="text-white/30 text-xs tracking-[0.3em] font-mono">
               {(currentIndex + 1).toString().padStart(2, "0")} —{" "}
@@ -333,7 +311,7 @@ function CinematicLightbox({
   );
 }
 
-export default function LifestylePortfolioPage() {
+export default function BrandPortfolioPage() {
   const [isMounted, setIsMounted] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -350,21 +328,18 @@ export default function LifestylePortfolioPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Header Section */}
       <section className="pt-32 pb-16 sm:pb-24 px-6 sm:px-12 max-w-[1800px] mx-auto">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-8 lg:col-span-6">
-            {/* Category label */}
             <motion.span
               className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-6 block"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8 }}
             >
-              Portfolio — Lifestyle
+              Portfolio — Brand
             </motion.span>
 
-            {/* Title */}
             <h1 className="font-serif text-[14vw] sm:text-[10vw] md:text-[8vw] leading-[0.85] tracking-tighter mb-8">
               <span className="block overflow-hidden">
                 <motion.span
@@ -373,7 +348,7 @@ export default function LifestylePortfolioPage() {
                   animate={{ y: isMounted ? 0 : "100%" }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  Life,
+                  Your story,
                 </motion.span>
               </span>
               <span className="block overflow-hidden">
@@ -387,7 +362,7 @@ export default function LifestylePortfolioPage() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  unscripted.
+                  visualized.
                 </motion.span>
               </span>
             </h1>
@@ -400,8 +375,8 @@ export default function LifestylePortfolioPage() {
               animate={{ opacity: isMounted ? 1 : 0, y: isMounted ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Moments caught between breaths. The way light falls on skin at
-              golden hour. A glance, a touch, a laugh—preserved forever.
+              Elevate your brand with imagery that speaks your language.
+              From product shots to team portraits, every frame tells your story.
             </motion.p>
 
             <motion.div
@@ -412,29 +387,23 @@ export default function LifestylePortfolioPage() {
             >
               <span className="w-12 h-[1px] bg-gray-300" />
               <span className="text-xs uppercase tracking-[0.2em] text-gray-400">
-                {lifestyleImages.length} Works
+                {brandImages.length} Works
               </span>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Gallery - Carefully planned layout with parallax overlap */}
       <section className="py-16 sm:py-24 px-6 sm:px-12 max-w-[1800px] mx-auto">
         <div className="flex flex-col">
-          {lifestyleImages.map((image, index) => {
-            // Varied scroll speeds - smaller images move faster for depth effect
+          {brandImages.map((image, index) => {
             const speedMap: { [key: string]: number } = {
               small: 0.12,
               medium: 0.06,
               large: 0.03,
             };
-            // Alternate directions for visual interest
             const direction = index % 2 === 0 ? 1 : -1;
             const scrollSpeed = speedMap[image.size] * direction;
-
-            // Larger negative margins between different sized images for overlap
-            // But less overlap when same sizes are adjacent
             const marginTop = index === 0 ? "" : "-mt-12 md:-mt-24";
 
             return (
@@ -459,7 +428,6 @@ export default function LifestylePortfolioPage() {
                     }}
                   >
                     <div
-                      data-gallery-image
                       className="relative overflow-hidden mb-6 bg-gray-100"
                       style={{ aspectRatio: image.aspectRatio, maxHeight: "80vh" }}
                       onMouseEnter={() => setIsHovered(index)}
@@ -495,7 +463,6 @@ export default function LifestylePortfolioPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-24 sm:py-32 px-6 sm:px-12 border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto">
           <div className="grid grid-cols-12 gap-6">
@@ -507,10 +474,10 @@ export default function LifestylePortfolioPage() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 block">
-                Interested?
+                Your Brand
               </span>
               <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-[1] mb-6">
-                Let's create your <span className="italic">story</span>
+                Let's build your <span className="italic">visual identity</span>
               </h2>
               <a
                 href="mailto:hello@loesnooitgedagt.com"
@@ -528,18 +495,16 @@ export default function LifestylePortfolioPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <p className="text-gray-500 text-sm leading-relaxed">
-                Every session begins with a conversation. Tell me about the
-                moments that matter to you, and together we'll create something
-                timeless.
+                Whether you're launching a new venture or refreshing an established brand,
+                I create imagery that captures your essence and resonates with your audience.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Lightbox */}
       <CinematicLightbox
-        images={lifestyleImages}
+        images={brandImages}
         currentIndex={currentImageIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}

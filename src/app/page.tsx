@@ -4,49 +4,65 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import WebGLImage from "@/components/WebGLImage";
 import ProjectModal from "@/components/ProjectModal";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, Suspense } from "react";
+import { useSplitTransition } from "@/context/SplitTransitionContext";
+import { useRouter, useSearchParams } from "next/navigation";
 
-// Services data
+// Services data with slugs for portfolio routes
 const services = [
   {
     title: "Lifestyle Photography",
+    slug: "lifestyle",
     image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
   },
   {
     title: "Wedding Photography",
+    slug: "wedding",
     image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg"
   },
   {
     title: "Brand Photography",
+    slug: "brand",
     image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
   },
   {
     title: "Portrait Photography",
+    slug: "portrait",
     image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
   },
   {
     title: "Event Photography",
+    slug: "event",
     image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
   },
 ];
 
-// Service item component with hover effect
+// Service item component with hover effect and split transition
 function ServiceItem({
   title,
+  slug,
   index,
-  image
+  image,
+  onServiceClick,
 }: {
   title: string;
+  slug: string;
   index: number;
   image: string;
+  onServiceClick: (e: React.MouseEvent<HTMLDivElement>, slug: string, title: string) => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    onServiceClick(e, slug, title);
+  };
 
   return (
     <motion.div
       className="group relative border-b border-gray-200 py-6 sm:py-8 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -77,7 +93,7 @@ function ServiceItem({
             className="text-lg"
             animate={{ color: isHovered ? "#fff" : "#000" }}
           >
-            +
+            →
           </motion.span>
         </motion.div>
       </div>
@@ -356,7 +372,9 @@ function ParallaxContainer({
   );
 }
 
-export default function Home() {
+function HomeContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const imageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [selectedImageRect, setSelectedImageRect] = useState<{
@@ -369,14 +387,90 @@ export default function Home() {
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
+  // Split transition for services
+  const { startSplitTransition, isTransitioning } = useSplitTransition();
+
   // Ensure animations trigger after mount
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Track if we're currently opening the modal (to avoid race conditions with URL sync)
+  const isOpeningModal = useRef(false);
+  // Track if modal close was triggered by back button
+  const closingFromBackButton = useRef(false);
+
+  // Handle browser back button - listen to popstate
+  useEffect(() => {
+    const handlePopState = () => {
+      if (isModalOpen && !isClosing) {
+        // Close modal when back button is pressed
+        closingFromBackButton.current = true;
+        setIsClosing(true);
+        setTimeout(() => {
+          setIsModalOpen(false);
+          setIsClosing(false);
+          setSelectedProject(null);
+          setSelectedImageRect(null);
+          closingFromBackButton.current = false;
+        }, 500);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [isModalOpen, isClosing]);
+
+  // Check URL on mount for direct link to modal
+  useEffect(() => {
+    const projectSlug = searchParams.get("project");
+    if (projectSlug && !isModalOpen && !isOpeningModal.current) {
+      const project = projects.find((p) => p.slug === projectSlug);
+      if (project) {
+        // Small delay to ensure refs are populated
+        setTimeout(() => {
+          const imageContainer = imageRefs.current.get(project.slug);
+          if (imageContainer) {
+            const rect = imageContainer.getBoundingClientRect();
+            setSelectedImageRect({
+              top: rect.top,
+              left: rect.left,
+              width: rect.width,
+              height: rect.height,
+            });
+          }
+          setSelectedProject(project);
+          setIsModalOpen(true);
+          setIsClosing(false);
+        }, 100);
+      }
+    }
+  // Only run on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Handle service click - triggers split transition
+  const handleServiceClick = (
+    e: React.MouseEvent<HTMLDivElement>,
+    slug: string,
+    title: string
+  ) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const splitY = rect.top + rect.height / 2;
+
+    startSplitTransition({
+      splitY,
+      targetRoute: `/portfolio/${slug}`,
+      targetCategory: title.replace(" Photography", ""),
+      scrollPosition: window.scrollY,
+      direction: "forward",
+    });
+  };
+
   const handleProjectClick = (project: typeof projects[0]) => {
     const imageContainer = imageRefs.current.get(project.slug);
     if (imageContainer) {
+      isOpeningModal.current = true;
       const rect = imageContainer.getBoundingClientRect();
       setSelectedImageRect({
         top: rect.top,
@@ -387,6 +481,14 @@ export default function Home() {
       setSelectedProject(project);
       setIsModalOpen(true);
       setIsClosing(false);
+
+      // Update URL with project slug using history API (creates new history entry)
+      window.history.pushState({ modal: true, project: project.slug }, "", `/?project=${project.slug}`);
+
+      // Reset flag after a tick
+      setTimeout(() => {
+        isOpeningModal.current = false;
+      }, 0);
     }
   };
 
@@ -402,6 +504,12 @@ export default function Home() {
       setIsClosing(false);
       setSelectedProject(null);
       setSelectedImageRect(null);
+
+      // Update URL to remove project param (if not triggered by back button)
+      if (!closingFromBackButton.current) {
+        window.history.pushState({}, "", "/");
+      }
+      closingFromBackButton.current = false;
     }
     // If called without animationComplete, do nothing - modal handles animation
   };
@@ -465,7 +573,7 @@ export default function Home() {
         </section>
 
         {/* Gallery Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-48 md:mb-64">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-24 md:mb-32">
           {projects.map((project, index) => {
             const scrollSpeed =
               index % 3 === 0 ? 0.08 : index % 3 === 1 ? -0.05 : 0.1;
@@ -559,8 +667,10 @@ export default function Home() {
               <ServiceItem
                 key={service.title}
                 title={service.title}
+                slug={service.slug}
                 index={index}
                 image={service.image}
+                onServiceClick={handleServiceClick}
               />
             ))}
           </div>
@@ -606,5 +716,14 @@ export default function Home() {
         allProjects={projects}
       />
     </>
+  );
+}
+
+// Wrap with Suspense for useSearchParams
+export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
   );
 }

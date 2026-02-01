@@ -255,7 +255,7 @@ export default function ProjectPageClient({
       >
         {project.images?.map((img, idx) => (
           <motion.div
-            key={idx}
+            key={img}
             initial={{ opacity: 0, y: 30 }}
             animate={{
               opacity: showContent ? 1 : 0,
