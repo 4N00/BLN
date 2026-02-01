@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
+import { useRouter } from "next/navigation";
 import WebGLImage from "@/components/WebGLImage";
 import { useTransition } from "@/context/TransitionContext";
 
@@ -27,36 +28,53 @@ export default function ProjectPageClient({
   nextProject: Project;
   prevProject: Project;
 }) {
-  const { transitionData, clearTransition } = useTransition();
+  const { transitionData, clearTransition, setTransitionData } = useTransition();
   const [animationComplete, setAnimationComplete] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
-  // Check if we have valid transition data for this project
-  const hasTransitionData = transitionData && transitionData.slug === project.slug;
+  // Check if we have valid forward transition data for this project
+  const hasTransitionData = transitionData?.direction === "forward" && transitionData.slug === project.slug;
 
   // Disable scrolling and set initial state
   useLayoutEffect(() => {
-    if (hasTransitionData) {
-      // Scroll to top instantly so the hero target position is correct
-      window.scrollTo({ top: 0, behavior: "instant" });
-
+    if (hasTransitionData && transitionData?.rect) {
       // Disable Lenis during animation
       const lenis = (window as any).lenis;
       if (lenis) {
         lenis.stop();
       }
 
+      // Scroll to where the spacer positions the hero at the clicked image's location
+      // The spacer height equals the absolute position of where we want the hero
+      const scrollTarget = transitionData.rect.scrollY + transitionData.rect.top;
+      window.scrollTo({ top: scrollTarget, behavior: "instant" });
+
+      if (lenis) {
+        lenis.scrollTo(scrollTarget, { immediate: true });
+      }
+
       // Also prevent native scroll
       document.body.style.overflow = "hidden";
 
-      // Get target rect after scroll
-      if (heroRef.current) {
-        setTargetRect(heroRef.current.getBoundingClientRect());
-      }
+      // Target rect: hero will be at top of viewport after scroll
+      requestAnimationFrame(() => {
+        setTargetRect({
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight * 0.6,
+          bottom: window.innerHeight * 0.6,
+          right: window.innerWidth,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        } as DOMRect);
+      });
     }
-  }, [hasTransitionData]);
+  }, [hasTransitionData, transitionData]);
 
   // Handle animation complete
   useEffect(() => {
@@ -70,7 +88,7 @@ export default function ProjectPageClient({
   const handleAnimationComplete = () => {
     setAnimationComplete(true);
 
-    // Re-enable scrolling
+    // Re-enable scrolling - don't reset scroll position
     document.body.style.overflow = "";
     const lenis = (window as any).lenis;
     if (lenis) {
@@ -93,9 +111,56 @@ export default function ProjectPageClient({
 
   const initialPos = hasTransitionData && transitionData?.rect ? transitionData.rect : null;
 
+  // Store the original position data for backward transition
+  const originalRect = useRef<{ scrollY: number; top: number } | null>(null);
+
+  // Store the original rect for backward transition
+  useEffect(() => {
+    if (hasTransitionData && transitionData?.rect) {
+      originalRect.current = {
+        scrollY: transitionData.rect.scrollY,
+        top: transitionData.rect.top,
+      };
+    }
+  }, [hasTransitionData, transitionData]);
+
+  const handleBackClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (heroRef.current) {
+      const heroRect = heroRef.current.getBoundingClientRect();
+
+      setTransitionData({
+        slug: project.slug,
+        image: project.image,
+        rect: {
+          top: heroRect.top,
+          left: heroRect.left,
+          width: heroRect.width,
+          height: heroRect.height,
+          scrollY: originalRect.current?.scrollY ?? 0,
+        },
+        direction: "backward",
+      });
+    }
+
+    setTimeout(() => {
+      router.push("/");
+    }, 10);
+  };
+
+  // Calculate the spacer height to push content down to where the clicked image was
+  // This is the scroll position + the viewport-relative top position of the clicked image
+  const spacerHeight = transitionData?.rect
+    ? transitionData.rect.scrollY + transitionData.rect.top
+    : 0;
+
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Image Container - this is the target position */}
+      {/* Spacer to position hero where the clicked image was */}
+      <div style={{ height: spacerHeight }} aria-hidden="true" />
+
+      {/* Hero Image Container - positioned where clicked image was */}
       <div
         ref={heroRef}
         className="w-full h-[60vh] relative overflow-hidden bg-gray-100"
@@ -112,7 +177,7 @@ export default function ProjectPageClient({
         </div>
       </div>
 
-      {/* Animating Image - starts at clicked position, animates to hero */}
+      {/* Animating Image - starts at clicked position, expands to full width */}
       {hasTransitionData && initialPos && targetRect && !animationComplete && (
         <motion.div
           initial={{
@@ -123,9 +188,9 @@ export default function ProjectPageClient({
           }}
           animate={{
             top: targetRect.top,
-            left: targetRect.left,
-            width: targetRect.width,
-            height: targetRect.height,
+            left: 0,
+            width: "100%",
+            height: "60vh",
           }}
           transition={{
             duration: 0.85,
@@ -159,12 +224,12 @@ export default function ProjectPageClient({
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="px-6 sm:px-12 max-w-[1800px] mx-auto pt-12"
       >
-        <Link
-          href="/"
-          className="inline-flex items-center text-xs uppercase tracking-widest text-gray-400 hover:text-black transition-colors mb-8"
+        <button
+          onClick={handleBackClick}
+          className="inline-flex items-center text-xs uppercase tracking-widest text-gray-400 hover:text-black transition-colors mb-8 cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Index
-        </Link>
+        </button>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:items-end mb-12">
           <h1 className="font-serif text-[10vw] sm:text-[8vw] leading-[0.85] italic">

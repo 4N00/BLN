@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import Link from "next/link";
+import Image from "next/image";
 import WebGLImage from "@/components/WebGLImage";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "@/context/TransitionContext";
 
@@ -233,8 +233,67 @@ function ParallaxContainer({
 
 export default function Home() {
   const router = useRouter();
-  const { setTransitionData, transitionData } = useTransition();
+  const { setTransitionData, transitionData, clearTransition } = useTransition();
   const imageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const [animationComplete, setAnimationComplete] = useState(false);
+  const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
+
+  // Check if we have a backward transition
+  const hasBackwardTransition = transitionData?.direction === "backward";
+  const backwardProject = hasBackwardTransition
+    ? projects.find((p) => p.slug === transitionData.slug)
+    : null;
+
+  // Handle backward transition setup
+  useLayoutEffect(() => {
+    if (hasBackwardTransition && transitionData?.rect) {
+      // Scroll to the position where the image should land
+      window.scrollTo({ top: transitionData.rect.scrollY, behavior: "instant" });
+
+      // Disable Lenis during animation
+      const lenis = (window as any).lenis;
+      if (lenis) {
+        lenis.stop();
+      }
+
+      document.body.style.overflow = "hidden";
+
+      // Get target rect after scroll - need small delay for DOM to settle
+      requestAnimationFrame(() => {
+        const targetElement = imageRefs.current.get(transitionData.slug);
+        if (targetElement) {
+          setTargetRect(targetElement.getBoundingClientRect());
+        }
+      });
+    }
+  }, [hasBackwardTransition, transitionData]);
+
+  // Handle no backward transition
+  useEffect(() => {
+    if (!hasBackwardTransition) {
+      setAnimationComplete(true);
+    }
+  }, [hasBackwardTransition]);
+
+  const handleAnimationComplete = () => {
+    setAnimationComplete(true);
+
+    // Re-enable scrolling
+    document.body.style.overflow = "";
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.start();
+    }
+
+    clearTransition();
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   const handleProjectClick = (
     e: React.MouseEvent,
@@ -256,6 +315,7 @@ export default function Home() {
           height: rect.height,
           scrollY: window.scrollY,
         },
+        direction: "forward",
       });
     }
 
@@ -267,6 +327,42 @@ export default function Home() {
 
   return (
     <div className="pt-32 pb-20 px-6 sm:px-12 max-w-[1800px] mx-auto">
+      {/* Backward Transition Animation */}
+      {hasBackwardTransition && transitionData && targetRect && !animationComplete && backwardProject && (
+        <motion.div
+          initial={{
+            top: transitionData.rect.top,
+            left: transitionData.rect.left,
+            width: transitionData.rect.width,
+            height: transitionData.rect.height,
+          }}
+          animate={{
+            top: targetRect.top,
+            left: targetRect.left,
+            width: targetRect.width,
+            height: targetRect.height,
+          }}
+          transition={{
+            duration: 0.85,
+            ease: [0.32, 0.72, 0, 1],
+          }}
+          onAnimationComplete={handleAnimationComplete}
+          className="fixed overflow-hidden bg-gray-100"
+          style={{
+            zIndex: 100,
+          }}
+        >
+          <Image
+            src={backwardProject.image}
+            alt={backwardProject.title}
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+        </motion.div>
+      )}
+
       {/* Intro Section */}
       <section className="mb-32">
         <h1 className="font-serif text-[12vw] leading-[0.85] tracking-tighter">
@@ -330,7 +426,15 @@ export default function Home() {
                         if (el) imageRefs.current.set(project.slug, el);
                       }}
                       className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
-                      style={{ aspectRatio: project.aspectRatio }}
+                      style={{
+                        aspectRatio: project.aspectRatio,
+                        visibility:
+                          hasBackwardTransition &&
+                          !animationComplete &&
+                          transitionData?.slug === project.slug
+                            ? "hidden"
+                            : "visible",
+                      }}
                     >
                       <div className="absolute inset-0 w-full h-full">
                         <WebGLImage

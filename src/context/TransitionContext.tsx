@@ -14,6 +14,7 @@ interface TransitionData {
   slug: string;
   image: string;
   rect: ImageRect;
+  direction: "forward" | "backward";
 }
 
 interface TransitionContextType {
