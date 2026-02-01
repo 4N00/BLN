@@ -28,7 +28,8 @@ interface ProjectModalProps {
   project: Project | null;
   imageRect: ImageRect | null;
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (animationComplete?: boolean) => void;
+  onClosingStart?: () => void;
   allProjects: Project[];
 }
 
@@ -37,6 +38,7 @@ export default function ProjectModal({
   imageRect,
   isOpen,
   onClose,
+  onClosingStart,
   allProjects,
 }: ProjectModalProps) {
   const [animationPhase, setAnimationPhase] = useState<
@@ -46,6 +48,7 @@ export default function ProjectModal({
   const [mounted, setMounted] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const savedImageRect = useRef<ImageRect | null>(null);
+  const closeTargetRect = useRef<ImageRect | null>(null);
 
   // Mount check for portal
   useEffect(() => {
@@ -86,28 +89,51 @@ export default function ProjectModal({
     if (animationPhase === "closing") {
       setAnimationPhase("closed");
       setShowContent(false);
+      closeTargetRect.current = null;
       document.body.style.overflow = "";
       const lenis = (window as any).lenis;
       if (lenis) {
         lenis.start();
       }
-      onClose();
+      onClose(true); // Signal that animation is complete
     }
   }, [animationPhase, onClose]);
 
   const handleClose = useCallback(() => {
-    if (animationPhase === "open") {
+    if (animationPhase === "open" && project) {
       setShowContent(false);
       // Reset scroll position before closing animation
       if (modalRef.current) {
         modalRef.current.scrollTop = 0;
       }
+
+      // Get the current position of the original image on the home page
+      const originalImage = document.querySelector(
+        `[data-gallery-image][data-project-slug="${project.slug}"]`
+      ) as HTMLElement;
+
+      if (originalImage) {
+        const rect = originalImage.getBoundingClientRect();
+        closeTargetRect.current = {
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+        };
+      } else {
+        // Fallback to saved rect if element not found
+        closeTargetRect.current = savedImageRect.current;
+      }
+
+      // Notify parent that closing is starting (so home content can fade in)
+      onClosingStart?.();
+
       // Small delay for content to fade out
       setTimeout(() => {
         setAnimationPhase("closing");
       }, 100);
     }
-  }, [animationPhase]);
+  }, [animationPhase, project, onClosingStart]);
 
   // Reset modal scroll position when opening
   useEffect(() => {
@@ -206,15 +232,15 @@ export default function ProjectModal({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isClosing ? 0 : 1 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: isClosing ? 0.6 : 0.4 }}
             className="fixed inset-0 bg-white z-40"
             style={{ pointerEvents: "none" }}
           />
 
           {/* Animating image container - visible during expand and close */}
-          {(isExpanding || isClosing) && (
+          {isExpanding && (
             <motion.div
-              key="animating-image"
+              key="expanding-image"
               initial={{
                 top: currentImageRect.top,
                 left: currentImageRect.left,
@@ -222,18 +248,49 @@ export default function ProjectModal({
                 height: currentImageRect.height,
               }}
               animate={{
-                top: isExpanding ? 0 : currentImageRect.top,
-                left: isExpanding ? 0 : currentImageRect.left,
-                width: isExpanding ? "100vw" : currentImageRect.width,
-                height: isExpanding ? "60vh" : currentImageRect.height,
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "60vh",
               }}
               transition={{
                 duration: 0.85,
                 ease: [0.32, 0.72, 0, 1],
               }}
-              onAnimationComplete={
-                isExpanding ? handleExpandComplete : handleCloseComplete
-              }
+              onAnimationComplete={handleExpandComplete}
+              className="fixed overflow-hidden bg-gray-100 z-[60]"
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                priority
+                unoptimized
+              />
+            </motion.div>
+          )}
+
+          {isClosing && closeTargetRect.current && (
+            <motion.div
+              key="closing-image"
+              initial={{
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "60vh",
+              }}
+              animate={{
+                top: closeTargetRect.current.top,
+                left: closeTargetRect.current.left,
+                width: closeTargetRect.current.width,
+                height: closeTargetRect.current.height,
+              }}
+              transition={{
+                duration: 0.85,
+                ease: [0.32, 0.72, 0, 1],
+              }}
+              onAnimationComplete={handleCloseComplete}
               className="fixed overflow-hidden bg-gray-100 z-[60]"
             >
               <Image

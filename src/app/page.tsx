@@ -279,6 +279,7 @@ export default function Home() {
     height: number;
   } | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   // Ensure animations trigger after mount
@@ -298,14 +299,24 @@ export default function Home() {
       });
       setSelectedProject(project);
       setIsModalOpen(true);
+      setIsClosing(false);
     }
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    // Reset state immediately - modal handles its own animation
-    setSelectedProject(null);
-    setSelectedImageRect(null);
+  const handleClosingStart = () => {
+    // Modal is starting to close - begin fading home content back in
+    setIsClosing(true);
+  };
+
+  const handleCloseModal = (animationComplete?: boolean) => {
+    if (animationComplete) {
+      // Called when modal animation is fully complete
+      setIsModalOpen(false);
+      setIsClosing(false);
+      setSelectedProject(null);
+      setSelectedImageRect(null);
+    }
+    // If called without animationComplete, do nothing - modal handles animation
   };
 
   return (
@@ -313,9 +324,9 @@ export default function Home() {
       {/* Main content */}
       <motion.div
         animate={{
-          opacity: isModalOpen ? 0 : 1,
+          opacity: isModalOpen && !isClosing ? 0 : 1,
         }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.5 }}
         className="pt-32 pb-20 px-6 sm:px-12 max-w-[1800px] mx-auto"
       >
         {/* Intro Section */}
@@ -384,6 +395,7 @@ export default function Home() {
                           if (el) imageRefs.current.set(project.slug, el);
                         }}
                         data-gallery-image
+                        data-project-slug={project.slug}
                         className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
                         style={{
                           aspectRatio: project.aspectRatio,
@@ -458,6 +470,7 @@ export default function Home() {
         imageRect={selectedImageRect}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+        onClosingStart={handleClosingStart}
         allProjects={projects}
       />
     </>
