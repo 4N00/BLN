@@ -15,7 +15,7 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+    <nav className="fixed top-0 left-0 w-full z-[100] px-6 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
       <Link href="/" className="pointer-events-auto group">
         <span className="font-playfair text-xl tracking-tighter">
           Loes Nooitgedagt

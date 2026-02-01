@@ -21,6 +21,18 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Keep cursor visible on touch devices where custom cursor doesn't work */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
 /* Lenis Recommended Styles */
 html.lenis, html.lenis body {
   height: auto;
