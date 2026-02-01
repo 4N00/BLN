@@ -1,0 +1,19 @@
+# Target modern browsers to reduce polyfills and bundle size
+# This eliminates legacy JavaScript transforms mentioned in Lighthouse
+
+# Modern browsers with good market share
+>0.2%
+not dead
+not op_mini all
+
+# Support last 2 versions of major browsers
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# Exclude older browsers that require heavy polyfills
+not IE 11
+not IE_Mob 11
+not Android < 5
+not Samsung < 10

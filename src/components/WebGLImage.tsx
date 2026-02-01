@@ -100,9 +100,9 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
 
     // Proxy external images through Next.js API to bypass CORS
     const isExternal = src.startsWith("http");
-    // Add cache-busting parameter to ensure fresh load (only for proxy)
+    // Use consistent URL for better caching
     const textureUrl = isExternal
-      ? `/api/image-proxy?url=${encodeURIComponent(src)}&_t=${Date.now()}`
+      ? `/api/image-proxy?url=${encodeURIComponent(src)}`
       : src;
 
     // Load texture with proper CORS handling

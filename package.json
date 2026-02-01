@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run analyze",
     "start": "next start",
     "lint": "eslint",
+    "analyze": "ANALYZE=true next build",
     "deploy:vercel": "curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_K6e2m1HGK1IY3kxVn6VQkBJ47CVA/sqXEbLxnPm",
     "push:deploy": "git push && npm run deploy:vercel"
   },
