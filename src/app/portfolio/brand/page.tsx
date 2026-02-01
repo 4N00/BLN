@@ -77,6 +77,7 @@ function getLayoutClasses(size: string, position: string) {
   return `w-full ${width} ${align}`;
 }
 
+// Parallax container - disabled on mobile for better performance
 function ParallaxContainer({
   children,
   className,
@@ -89,12 +90,22 @@ function ParallaxContainer({
   const ref = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 120, damping: 50 });
   const springY = useSpring(y, { stiffness: 120, damping: 50 });
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -111,10 +122,10 @@ function ParallaxContainer({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (isMobile || !ref.current) return;
 
     const updateParallax = () => {
       if (!ref.current) return;
@@ -161,7 +172,11 @@ function ParallaxContainer({
     };
 
     updateParallax();
-  }, [mousePos, scrollY, x, y, scrollSpeed]);
+  }, [mousePos, scrollY, x, y, scrollSpeed, isMobile]);
+
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -410,7 +425,7 @@ export default function BrandPortfolioPage() {
             };
             const direction = index % 2 === 0 ? 1 : -1;
             const scrollSpeed = speedMap[image.size] * direction;
-            const marginTop = index === 0 ? "" : "-mt-12 md:-mt-24";
+            const marginTop = index === 0 ? "" : "mt-8 md:-mt-24";
 
             return (
               <ParallaxContainer

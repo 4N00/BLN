@@ -93,6 +93,7 @@ function getLayoutClasses(size: string, position: string) {
 }
 
 // Parallax container component - keeps scroll overlap working
+// Disabled on mobile for better performance and UX
 function ParallaxContainer({
   children,
   className,
@@ -105,12 +106,24 @@ function ParallaxContainer({
   const ref = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 120, damping: 50 });
   const springY = useSpring(y, { stiffness: 120, damping: 50 });
 
+  // Check if mobile on mount and resize
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Skip parallax effects on mobile
+    if (isMobile) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -127,10 +140,11 @@ function ParallaxContainer({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    // Skip parallax effects on mobile
+    if (isMobile || !ref.current) return;
 
     const updateParallax = () => {
       if (!ref.current) return;
@@ -177,7 +191,12 @@ function ParallaxContainer({
     };
 
     updateParallax();
-  }, [mousePos, scrollY, x, y, scrollSpeed]);
+  }, [mousePos, scrollY, x, y, scrollSpeed, isMobile]);
+
+  // On mobile, render without parallax transforms
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -439,9 +458,9 @@ export default function LifestylePortfolioPage() {
             const direction = index % 2 === 0 ? 1 : -1;
             const scrollSpeed = speedMap[image.size] * direction;
 
-            // Larger negative margins between different sized images for overlap
-            // But less overlap when same sizes are adjacent
-            const marginTop = index === 0 ? "" : "-mt-12 md:-mt-24";
+            // Negative margins for overlap effect - only on desktop
+            // On mobile, use positive spacing for clean layout
+            const marginTop = index === 0 ? "" : "mt-8 md:-mt-24";
 
             return (
               <ParallaxContainer
