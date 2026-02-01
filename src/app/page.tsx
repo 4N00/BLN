@@ -12,6 +12,10 @@ const projects = [
     slug: "ethereal-gaze",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
+    colSpan: "md:col-span-5",
+    colStart: "md:col-start-1",
+    aspectRatio: "3/4",
+    width: "w-full md:w-[85%]",
   },
   {
     id: 2,
@@ -20,6 +24,10 @@ const projects = [
     slug: "urban-solitude",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
+    colSpan: "md:col-span-4",
+    colStart: "md:col-start-6",
+    aspectRatio: "4/5",
+    width: "w-full md:w-[90%] md:ml-auto",
   },
   {
     id: 3,
@@ -28,6 +36,10 @@ const projects = [
     slug: "liquid-dreams",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_WATER_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
+    colSpan: "md:col-span-3",
+    colStart: "md:col-start-8",
+    aspectRatio: "3/4",
+    width: "w-full",
   },
   {
     id: 4,
@@ -36,6 +48,10 @@ const projects = [
     slug: "silent-forms",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    colSpan: "md:col-span-4",
+    colStart: "md:col-start-2",
+    aspectRatio: "4/3",
+    width: "w-full md:w-[80%]",
   },
   {
     id: 5,
@@ -44,6 +60,10 @@ const projects = [
     slug: "portrait-study",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    colSpan: "md:col-span-3",
+    colStart: "md:col-start-7",
+    aspectRatio: "3/4",
+    width: "w-full md:w-[75%] md:ml-auto",
   },
   {
     id: 6,
@@ -52,6 +72,10 @@ const projects = [
     slug: "natural-light",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    colSpan: "md:col-span-5",
+    colStart: "md:col-start-1",
+    aspectRatio: "5/6",
+    width: "w-full md:w-[82%]",
   },
   {
     id: 7,
@@ -60,6 +84,10 @@ const projects = [
     slug: "editorial-story",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    colSpan: "md:col-span-4",
+    colStart: "md:col-start-6",
+    aspectRatio: "3/4",
+    width: "w-full md:w-[88%] md:ml-auto",
   },
   {
     id: 8,
@@ -68,6 +96,10 @@ const projects = [
     slug: "wedding-moments",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    colSpan: "md:col-span-3",
+    colStart: "md:col-start-4",
+    aspectRatio: "4/5",
+    width: "w-full md:w-[70%] md:mx-auto",
   },
   {
     id: 9,
@@ -76,6 +108,10 @@ const projects = [
     slug: "maternity-portrait",
     image:
       "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
+    colSpan: "md:col-span-4",
+    colStart: "md:col-start-8",
+    aspectRatio: "3/4",
+    width: "w-full",
   },
 ];
 
@@ -115,42 +151,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery Grid */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12 mb-32">
+      {/* Gallery Grid - Scattered Layout */}
+      <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-32">
         {projects.map((project, index) => (
-          <Link href={`/work/${project.slug}`} key={project.id}>
-            <div className="group cursor-pointer">
-              <div className="relative aspect-[3/4] overflow-hidden mb-6">
-                {/* 
-                    Using WebGLImage for the sophisticated distortion effect.
-                    The component handles its own specific interactions.
-                    Alternatively, using a standard image here for fallback/simplicity 
-                    and ensuring performance while debugging would be safe, 
-                    but sticking to the plan for WebGL.
-                 */}
-                <div className="w-full h-full relative">
-                  {/* 
-                       Note: In a real scenario with many items, having many canvases is bad for perf.
-                       We should use a centralized View, but for 4 items it's usually fine. 
-                       Currently our WebGLImage is hardcoded size relative to viewport in its implementation.
-                       Let's adjust WebGLImage to be responsive or just use simple interaction for now 
-                       if we want to be safe, but let's try the WebGL effect.
-                       
-                       Actually, the implementation of WebGLImage I wrote uses Drei Image with hardcoded scale.
-                       It controls its own canvas. I'll wrap it div to control size.
-                     */}
+          <Link
+            href={`/work/${project.slug}`}
+            key={project.id}
+            className={`${project.colSpan} ${project.colStart}`}
+          >
+            <motion.div
+              className="group cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className={`relative overflow-hidden mb-6 ${project.width}`}>
+                <div
+                  className="relative w-full"
+                  style={{ aspectRatio: project.aspectRatio }}
+                >
                   <WebGLImage
                     key={project.id}
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full"
                   />
-
-                  {/* Overlay for quick info if needed, but keeping it clean */}
                 </div>
               </div>
 
-              <div className="flex flex-col items-start">
+              <div className={`flex flex-col items-start ${project.width}`}>
                 <span className="text-xs uppercase tracking-widest text-gray-500 mb-2">
                   {(index + 1).toString().padStart(2, "0")} / {project.category}
                 </span>
@@ -158,7 +188,7 @@ export default function Home() {
                   {project.title}
                 </h3>
               </div>
-            </div>
+            </motion.div>
           </Link>
         ))}
       </section>

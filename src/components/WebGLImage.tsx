@@ -14,44 +14,54 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Image from "next/image";
 import * as THREE from "three";
 
-// Custom shader for liquid distortion
-const WaveShaderMaterial = {
+// Minimalistic shader with subtle parallax and depth
+const MinimalShaderMaterial = {
   uniforms: {
-    uTime: { value: 0 },
     uTexture: { value: new THREE.Texture() },
     uHover: { value: 0 },
+    uMouse: { value: new THREE.Vector2(0.5, 0.5) },
   },
   vertexShader: `
     varying vec2 vUv;
-    uniform float uTime;
-    uniform float uHover;
+    varying vec3 vPosition;
     
     void main() {
       vUv = uv;
-      vec3 pos = position;
-      
-      // Subtle sine wave movement on hover
-      float noiseFreq = 2.5;
-      float noiseAmp = 0.25;
-      vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);
-      pos.z += sin(noisePos.x) * noiseAmp * uHover;
-      
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      vPosition = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
   `,
   fragmentShader: `
     uniform sampler2D uTexture;
     uniform float uHover;
+    uniform vec2 uMouse;
     varying vec2 vUv;
+    varying vec3 vPosition;
 
     void main() {
       vec2 uv = vUv;
+      vec2 center = vec2(0.5, 0.5);
       
-      // Distortion effect
-      float wave = 0.05 * sin(uv.y * 10.0 + uHover * 5.0);
-      uv.x += wave * uHover;
-
-      vec4 color = texture2D(uTexture, uv);
+      // Calculate distance from mouse to current pixel
+      vec2 mouseOffset = (uMouse - center) * uHover;
+      
+      // Parallax displacement - image shifts opposite to mouse movement
+      uv -= mouseOffset * 0.12;
+      
+      // Subtle zoom towards mouse position
+      vec2 zoomCenter = mix(center, uMouse, uHover * 0.4);
+      uv = zoomCenter + (uv - zoomCenter) * (1.0 - uHover * 0.05);
+      
+      // Sample texture with slight chromatic aberration effect
+      float r = texture2D(uTexture, uv + mouseOffset * 0.003).r;
+      float g = texture2D(uTexture, uv).g;
+      float b = texture2D(uTexture, uv - mouseOffset * 0.003).b;
+      vec4 color = vec4(r, g, b, texture2D(uTexture, uv).a);
+      
+      // Subtle brightness and contrast
+      color.rgb = mix(color.rgb, color.rgb * 1.08, uHover);
+      color.rgb += uHover * 0.02;
+      
       gl_FragColor = color; 
     }
   `,
@@ -63,6 +73,7 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
   const [hasError, setHasError] = useState(false);
   const hoverValue = useRef(0);
+  const mousePosition = useRef(new THREE.Vector2(0.5, 0.5));
   const textureRef = useRef<THREE.Texture | null>(null);
   const { viewport, size } = useThree();
 
@@ -70,12 +81,12 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
   const material = useMemo(() => {
     return new THREE.ShaderMaterial({
       uniforms: {
-        uTime: { value: 0 },
         uTexture: { value: new THREE.Texture() },
         uHover: { value: 0 },
+        uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       },
-      vertexShader: WaveShaderMaterial.vertexShader,
-      fragmentShader: WaveShaderMaterial.fragmentShader,
+      vertexShader: MinimalShaderMaterial.vertexShader,
+      fragmentShader: MinimalShaderMaterial.fragmentShader,
       transparent: true,
     });
   }, []);
@@ -157,13 +168,14 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
 
   useFrame((state, delta) => {
     if (material && texture) {
-      material.uniforms.uTime.value += delta;
-      // Lerp hover value
+      // Smooth hover transition
       material.uniforms.uHover.value = THREE.MathUtils.lerp(
         material.uniforms.uHover.value,
         hoverValue.current,
-        0.1,
+        0.15,
       );
+      // Update mouse position for parallax - smoother tracking
+      material.uniforms.uMouse.value.lerp(mousePosition.current, 0.2);
     }
   });
 
@@ -206,11 +218,24 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
     scaleY = viewport.width / textureAspect;
   }
 
+  const handlePointerMove = (event: THREE.Event) => {
+    if (mesh.current && material) {
+      const intersection = (event as any).uv;
+      if (intersection) {
+        mousePosition.current.set(intersection.x, 1.0 - intersection.y);
+      }
+    }
+  };
+
   return (
     <mesh
       ref={mesh}
       onPointerOver={() => (hoverValue.current = 1)}
-      onPointerOut={() => (hoverValue.current = 0)}
+      onPointerOut={() => {
+        hoverValue.current = 0;
+        mousePosition.current.set(0.5, 0.5);
+      }}
+      onPointerMove={handlePointerMove}
       scale={[scaleX, scaleY, 1]}
     >
       <planeGeometry args={[1, 1, 32, 32]} />
