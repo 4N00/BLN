@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google"; // Import fonts
+import { Inter, Cormorant_Garamond, Playfair_Display } from "next/font/google"; // Import fonts
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navigation from "@/components/Navigation";
@@ -9,6 +9,12 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-cormorant",
   weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
 });
 
@@ -25,8 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
-       <body className="antialiased bg-white text-black selection:bg-black selection:text-white cursor-none">
+    <html
+      lang="en"
+      className={`${inter.variable} ${cormorant.variable} ${playfair.variable}`}
+    >
+      <body className="antialiased bg-white text-black selection:bg-black selection:text-white cursor-none">
         <SmoothScroll>
           <CustomCursor />
           <Navigation />

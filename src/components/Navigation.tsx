@@ -17,7 +17,7 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
       <Link href="/" className="pointer-events-auto group">
-        <span className="font-serif text-xl tracking-tighter italic">
+        <span className="font-playfair text-xl tracking-tighter">
           Loes Nooitgedagt
         </span>
       </Link>
@@ -29,7 +29,7 @@ export default function Navigation() {
               href={link.href}
               className={cn(
                 "uppercase text-xs tracking-widest hover:text-gray-300 transition-colors duration-300",
-                pathname === link.href && "text-gray-400"
+                pathname === link.href && "text-gray-400",
               )}
             >
               {link.label}

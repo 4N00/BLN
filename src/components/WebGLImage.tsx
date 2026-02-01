@@ -45,22 +45,23 @@ const MinimalShaderMaterial = {
       // Calculate distance from mouse to current pixel
       vec2 mouseOffset = (uMouse - center) * uHover;
       
-      // Parallax displacement - image shifts opposite to mouse movement
-      uv -= mouseOffset * 0.12;
+      // Stronger parallax displacement - image shifts opposite to mouse movement
+      uv -= mouseOffset * 0.2;
       
-      // Subtle zoom towards mouse position
-      vec2 zoomCenter = mix(center, uMouse, uHover * 0.4);
-      uv = zoomCenter + (uv - zoomCenter) * (1.0 - uHover * 0.05);
+      // Zoom towards mouse position
+      vec2 zoomCenter = mix(center, uMouse, uHover * 0.5);
+      uv = zoomCenter + (uv - zoomCenter) * (1.0 - uHover * 0.08);
       
-      // Sample texture with slight chromatic aberration effect
-      float r = texture2D(uTexture, uv + mouseOffset * 0.003).r;
+      // More noticeable chromatic aberration effect
+      vec2 aberrationOffset = mouseOffset * 0.008;
+      float r = texture2D(uTexture, uv + aberrationOffset).r;
       float g = texture2D(uTexture, uv).g;
-      float b = texture2D(uTexture, uv - mouseOffset * 0.003).b;
+      float b = texture2D(uTexture, uv - aberrationOffset).b;
       vec4 color = vec4(r, g, b, texture2D(uTexture, uv).a);
       
-      // Subtle brightness and contrast
-      color.rgb = mix(color.rgb, color.rgb * 1.08, uHover);
-      color.rgb += uHover * 0.02;
+      // Enhanced brightness and contrast
+      color.rgb = mix(color.rgb, color.rgb * 1.12, uHover);
+      color.rgb += uHover * 0.03;
       
       gl_FragColor = color; 
     }
@@ -75,6 +76,7 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
   const hoverValue = useRef(0);
   const mousePosition = useRef(new THREE.Vector2(0.5, 0.5));
   const textureRef = useRef<THREE.Texture | null>(null);
+  const scaleRef = useRef(1);
   const { viewport, size } = useThree();
 
   // Create a unique material instance for each component
@@ -176,6 +178,37 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
       );
       // Update mouse position for parallax - smoother tracking
       material.uniforms.uMouse.value.lerp(mousePosition.current, 0.2);
+
+      // Scale up on hover (8% larger)
+      scaleRef.current = THREE.MathUtils.lerp(
+        scaleRef.current,
+        1 + hoverValue.current * 0.08,
+        0.15,
+      );
+
+      if (mesh.current) {
+        const baseScaleX = viewport.width;
+        const baseScaleY = viewport.height;
+        const textureAspect = texture.image
+          ? texture.image.width / texture.image.height
+          : 3 / 4;
+        const containerAspect = size.width / size.height;
+
+        let finalScaleX = baseScaleX;
+        let finalScaleY = baseScaleY;
+
+        if (textureAspect > containerAspect) {
+          finalScaleX = viewport.height * textureAspect;
+        } else {
+          finalScaleY = viewport.width / textureAspect;
+        }
+
+        mesh.current.scale.set(
+          finalScaleX * scaleRef.current,
+          finalScaleY * scaleRef.current,
+          1,
+        );
+      }
     }
   });
 
@@ -206,18 +239,6 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
   // Calculate container aspect ratio
   const containerAspect = size.width / size.height;
 
-  // Scale to cover the container (like CSS object-cover)
-  let scaleX = viewport.width;
-  let scaleY = viewport.height;
-
-  if (textureAspect > containerAspect) {
-    // Texture is wider - fit to height
-    scaleX = viewport.height * textureAspect;
-  } else {
-    // Texture is taller - fit to width
-    scaleY = viewport.width / textureAspect;
-  }
-
   const handlePointerMove = (event: THREE.Event) => {
     if (mesh.current && material) {
       const intersection = (event as any).uv;
@@ -226,6 +247,16 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
       }
     }
   };
+
+  // Initial scale calculation
+  let initialScaleX = viewport.width;
+  let initialScaleY = viewport.height;
+
+  if (textureAspect > containerAspect) {
+    initialScaleX = viewport.height * textureAspect;
+  } else {
+    initialScaleY = viewport.width / textureAspect;
+  }
 
   return (
     <mesh
@@ -236,7 +267,7 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
         mousePosition.current.set(0.5, 0.5);
       }}
       onPointerMove={handlePointerMove}
-      scale={[scaleX, scaleY, 1]}
+      scale={[initialScaleX, initialScaleY, 1]}
     >
       <planeGeometry args={[1, 1, 32, 32]} />
       <primitive object={material} attach="material" />
