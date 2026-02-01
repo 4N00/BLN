@@ -14,7 +14,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Image from "next/image";
 import * as THREE from "three";
 
-// Minimalistic shader with subtle parallax and depth
+// Minimalistic shader with subtle parallax and depth - no color effects
 const MinimalShaderMaterial = {
   uniforms: {
     uTexture: { value: new THREE.Texture() },
@@ -24,7 +24,7 @@ const MinimalShaderMaterial = {
   vertexShader: `
     varying vec2 vUv;
     varying vec3 vPosition;
-    
+
     void main() {
       vUv = uv;
       vPosition = position;
@@ -41,29 +41,21 @@ const MinimalShaderMaterial = {
     void main() {
       vec2 uv = vUv;
       vec2 center = vec2(0.5, 0.5);
-      
+
       // Calculate distance from mouse to current pixel
       vec2 mouseOffset = (uMouse - center) * uHover;
-      
-      // Stronger parallax displacement - image shifts opposite to mouse movement
-      uv -= mouseOffset * 0.2;
-      
-      // Zoom towards mouse position
-      vec2 zoomCenter = mix(center, uMouse, uHover * 0.5);
-      uv = zoomCenter + (uv - zoomCenter) * (1.0 - uHover * 0.08);
-      
-      // More noticeable chromatic aberration effect
-      vec2 aberrationOffset = mouseOffset * 0.008;
-      float r = texture2D(uTexture, uv + aberrationOffset).r;
-      float g = texture2D(uTexture, uv).g;
-      float b = texture2D(uTexture, uv - aberrationOffset).b;
-      vec4 color = vec4(r, g, b, texture2D(uTexture, uv).a);
-      
-      // Enhanced brightness and contrast
-      color.rgb = mix(color.rgb, color.rgb * 1.12, uHover);
-      color.rgb += uHover * 0.03;
-      
-      gl_FragColor = color; 
+
+      // Subtle parallax displacement - image shifts opposite to mouse movement
+      uv -= mouseOffset * 0.15;
+
+      // Gentle zoom towards mouse position
+      vec2 zoomCenter = mix(center, uMouse, uHover * 0.4);
+      uv = zoomCenter + (uv - zoomCenter) * (1.0 - uHover * 0.06);
+
+      // Clean color output - no chromatic aberration or color manipulation
+      vec4 color = texture2D(uTexture, uv);
+
+      gl_FragColor = color;
     }
   `,
 };
@@ -195,20 +187,20 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
 
   useFrame((state, delta) => {
     if (material && texture) {
-      // Smooth hover transition
+      // Very smooth hover transition - much slower for elegant feel
       material.uniforms.uHover.value = THREE.MathUtils.lerp(
         material.uniforms.uHover.value,
         hoverValue.current,
-        0.15,
+        0.015,
       );
-      // Update mouse position for parallax - smoother tracking
-      material.uniforms.uMouse.value.lerp(mousePosition.current, 0.2);
+      // Update mouse position for parallax - very smooth tracking
+      material.uniforms.uMouse.value.lerp(mousePosition.current, 0.03);
 
-      // Scale up on hover (8% larger)
+      // Scale up on hover (5% larger) - very slow and smooth transition
       scaleRef.current = THREE.MathUtils.lerp(
         scaleRef.current,
-        1 + hoverValue.current * 0.08,
-        0.15,
+        1 + hoverValue.current * 0.05,
+        0.015,
       );
 
       if (mesh.current && stableScaleRef.current && texture) {

@@ -1,9 +1,113 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import WebGLImage from "@/components/WebGLImage";
 import ProjectModal from "@/components/ProjectModal";
 import { useEffect, useRef, useState } from "react";
+
+// Services data
+const services = [
+  {
+    title: "Lifestyle Photography",
+    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+  },
+  {
+    title: "Wedding Photography",
+    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg"
+  },
+  {
+    title: "Brand Photography",
+    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+  },
+  {
+    title: "Portrait Photography",
+    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+  },
+  {
+    title: "Event Photography",
+    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+  },
+];
+
+// Service item component with hover effect
+function ServiceItem({
+  title,
+  index,
+  image
+}: {
+  title: string;
+  index: number;
+  image: string;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      className="group relative border-b border-gray-200 py-6 sm:py-8 cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+    >
+      <div className="flex justify-between items-center">
+        <div className="flex items-baseline gap-4 sm:gap-8">
+          <span className="text-xs text-gray-400 font-mono">
+            {(index + 1).toString().padStart(2, "0")}
+          </span>
+          <motion.h3
+            className="font-serif text-2xl sm:text-4xl md:text-5xl"
+            animate={{ x: isHovered ? 20 : 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {title}
+          </motion.h3>
+        </div>
+        <motion.div
+          className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center"
+          animate={{
+            scale: isHovered ? 1.2 : 1,
+            backgroundColor: isHovered ? "#000" : "transparent"
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.span
+            className="text-lg"
+            animate={{ color: isHovered ? "#fff" : "#000" }}
+          >
+            +
+          </motion.span>
+        </motion.div>
+      </div>
+
+      {/* Floating image on hover */}
+      <motion.div
+        className="fixed pointer-events-none z-50 w-64 h-80 overflow-hidden"
+        style={{
+          top: "50%",
+          right: "10%",
+          translateY: "-50%",
+        }}
+        initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+        animate={{
+          opacity: isHovered ? 1 : 0,
+          scale: isHovered ? 1 : 0.8,
+          rotate: isHovered ? 0 : -5
+        }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
 
 const projects = [
   {
@@ -148,23 +252,6 @@ const projects = [
     colStart: "md:col-start-4",
     aspectRatio: "4/5",
     width: "w-full md:w-[70%] md:mx-auto",
-  },
-  {
-    id: 9,
-    title: "Maternity Portrait",
-    category: "Portrait",
-    slug: "maternity-portrait",
-    description: "Celebrating the beauty and strength of motherhood.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_WATER_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    ],
-    colSpan: "md:col-span-4",
-    colStart: "md:col-start-8",
-    aspectRatio: "3/4",
-    width: "w-full",
   },
 ];
 
@@ -336,18 +423,28 @@ export default function Home() {
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{ y: isMounted ? 0 : "100%" }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 className="block"
               >
-                LOES NOOITGEDAGT
+                LOES
               </motion.span>
             </span>
-            <span className="block overflow-hidden mt-2">
+            <span className="block overflow-hidden">
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{ y: isMounted ? 0 : "100%" }}
-                transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="block text-[3vw] sm:text-[2vw] tracking-wider"
+                transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="block"
+              >
+                NOOITGEDAGT
+              </motion.span>
+            </span>
+            <span className="block overflow-hidden mt-4">
+              <motion.span
+                initial={{ y: "100%" }}
+                animate={{ y: isMounted ? 0 : "100%" }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="block text-[3vw] sm:text-[2vw] tracking-wider text-gray-400"
               >
                 CAPTURING LIFE | LOVE | STYLE | YOU
               </motion.span>
@@ -432,6 +529,41 @@ export default function Home() {
               </div>
             );
           })}
+        </section>
+
+        {/* Services Section */}
+        <section className="mb-32 sm:mb-48">
+          <div className="mb-16 sm:mb-24">
+            <motion.span
+              className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 block"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              Services
+            </motion.span>
+
+            <motion.h2
+              className="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[0.95]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              What I <span className="italic">offer</span>
+            </motion.h2>
+          </div>
+
+          <div className="border-t border-gray-200">
+            {services.map((service, index) => (
+              <ServiceItem
+                key={service.title}
+                title={service.title}
+                index={index}
+                image={service.image}
+              />
+            ))}
+          </div>
         </section>
 
         {/* Footer */}
