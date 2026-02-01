@@ -77,7 +77,10 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
   const mousePosition = useRef(new THREE.Vector2(0.5, 0.5));
   const textureRef = useRef<THREE.Texture | null>(null);
   const scaleRef = useRef(1);
-  const { viewport, size } = useThree();
+  const stableScaleRef = useRef<{ x: number; y: number } | null>(null);
+  const three = useThree();
+  const viewport = three.viewport;
+  const size = three.size as { width: number; height: number };
 
   // Create a unique material instance for each component
   const material = useMemo(() => {
@@ -165,8 +168,30 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
     if (material && texture) {
       material.uniforms.uTexture.value = texture;
       material.needsUpdate = true;
+      
+      // Calculate and cache stable scale when texture loads
+      if (texture.image && !stableScaleRef.current) {
+        const textureAspect = texture.image.width / texture.image.height;
+        // @ts-ignore - useThree size type
+        const containerAspect = size.width > 0 && size.height > 0 
+          ? size.width / size.height
+          : viewport.width / viewport.height;
+        
+        let scaleX = viewport.width;
+        let scaleY = viewport.height;
+        
+        if (textureAspect > containerAspect) {
+          scaleX = viewport.height * textureAspect;
+          scaleY = viewport.height;
+        } else {
+          scaleX = viewport.width;
+          scaleY = viewport.width / textureAspect;
+        }
+        
+        stableScaleRef.current = { x: scaleX, y: scaleY };
+      }
     }
-  }, [material, texture]);
+  }, [material, texture, viewport, size]);
 
   useFrame((state, delta) => {
     if (material && texture) {
@@ -186,26 +211,36 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
         0.15,
       );
 
-      if (mesh.current) {
-        const baseScaleX = viewport.width;
-        const baseScaleY = viewport.height;
-        const textureAspect = texture.image
-          ? texture.image.width / texture.image.height
-          : 3 / 4;
-        const containerAspect = size.width / size.height;
-
-        let finalScaleX = baseScaleX;
-        let finalScaleY = baseScaleY;
-
-        if (textureAspect > containerAspect) {
-          finalScaleX = viewport.height * textureAspect;
-        } else {
-          finalScaleY = viewport.width / textureAspect;
-        }
-
+      if (mesh.current && stableScaleRef.current && texture) {
+        // Use cached stable scale to prevent flickering during layout animations
+        // Only update scale if texture is loaded and stable scale is set
         mesh.current.scale.set(
-          finalScaleX * scaleRef.current,
-          finalScaleY * scaleRef.current,
+          stableScaleRef.current.x * scaleRef.current,
+          stableScaleRef.current.y * scaleRef.current,
+          1,
+        );
+      } else if (mesh.current && texture && texture.image) {
+        // Fallback: calculate scale if stable scale not set yet
+        const textureAspect = texture.image.width / texture.image.height;
+        let scaleX = viewport.width;
+        let scaleY = viewport.height;
+        
+        // @ts-ignore
+        const containerAspect = size.width > 0 && size.height > 0 
+          ? size.width / size.height
+          : viewport.width / viewport.height;
+        
+        if (textureAspect > containerAspect) {
+          scaleX = viewport.height * textureAspect;
+          scaleY = viewport.height;
+        } else {
+          scaleX = viewport.width;
+          scaleY = viewport.width / textureAspect;
+        }
+        
+        mesh.current.scale.set(
+          scaleX * scaleRef.current,
+          scaleY * scaleRef.current,
           1,
         );
       }
@@ -236,8 +271,11 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
     ? texture.image.width / texture.image.height
     : 3 / 4; // Default aspect ratio
 
-  // Calculate container aspect ratio
-  const containerAspect = size.width / size.height;
+  // Calculate container aspect ratio from actual container size
+  // @ts-ignore - useThree size type
+  const containerAspect = size.width > 0 && size.height > 0 
+    ? size.width / size.height
+    : viewport.width / viewport.height;
 
   const handlePointerMove = (event: THREE.Event) => {
     if (mesh.current && material) {
@@ -248,17 +286,31 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
     }
   };
 
-  // Initial scale calculation
-  let initialScaleX = viewport.width;
-  let initialScaleY = viewport.height;
+  // Use stable scale if available, otherwise calculate
+  const getInitialScale = () => {
+    if (stableScaleRef.current) {
+      return stableScaleRef.current;
+    }
+    
+    // Fallback calculation
+    let scaleX = viewport.width;
+    let scaleY = viewport.height;
 
-  if (textureAspect > containerAspect) {
-    initialScaleX = viewport.height * textureAspect;
-  } else {
-    initialScaleY = viewport.width / textureAspect;
-  }
+    if (textureAspect > containerAspect) {
+      scaleX = viewport.height * textureAspect;
+      scaleY = viewport.height;
+    } else {
+      scaleX = viewport.width;
+      scaleY = viewport.width / textureAspect;
+    }
+    
+    return { x: scaleX, y: scaleY };
+  };
+
+  const initialScale = getInitialScale();
 
   return (
+    // @ts-ignore - React Three Fiber types
     <mesh
       ref={mesh}
       onPointerOver={() => (hoverValue.current = 1)}
@@ -267,9 +319,11 @@ function ImagePlane({ src, onError }: { src: string; onError?: () => void }) {
         mousePosition.current.set(0.5, 0.5);
       }}
       onPointerMove={handlePointerMove}
-      scale={[initialScaleX, initialScaleY, 1]}
+      scale={[initialScale.x, initialScale.y, 1]}
     >
+      {/* @ts-ignore - React Three Fiber types */}
       <planeGeometry args={[1, 1, 32, 32]} />
+      {/* @ts-ignore - React Three Fiber types */}
       <primitive object={material} attach="material" />
     </mesh>
   );
@@ -312,6 +366,7 @@ export default function WebGLImage({
   className?: string;
 }) {
   const [useFallback, setUseFallback] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const fallbackImage = (
     <div className={`${className} relative`}>
@@ -331,11 +386,16 @@ export default function WebGLImage({
 
   return (
     <WebGLErrorBoundary fallback={fallbackImage}>
-      <div className={className} style={{ width: "100%", height: "100%" }}>
+      <div
+        ref={containerRef}
+        className={className}
+        style={{ width: "100%", height: "100%", position: "relative" }}
+      >
         <Canvas
           camera={{ position: [0, 0, 1], fov: 75 }}
           gl={{ antialias: true, alpha: true }}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", display: "block" }}
+          dpr={[1, 2]}
         >
           <Suspense fallback={null}>
             {/* @ts-ignore: Intrinsic elements handling if strictly typed */}

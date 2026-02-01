@@ -279,7 +279,23 @@ export default function Home() {
               className={`${project.colSpan} ${project.colStart}`}
             >
               <ParallaxContainer scrollSpeed={scrollSpeed}>
-                <Link href={`/work/${project.slug}`}>
+                <Link
+                  href={`/work/${project.slug}`}
+                  onClick={(e) => {
+                    // Scroll to top immediately when clicking, before navigation
+                    const lenis = (window as any).lenis;
+                    if (lenis) {
+                      lenis.scrollTo(0, {
+                        duration: 0.8,
+                        easing: (t: number) =>
+                          Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        immediate: false,
+                      });
+                    } else {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                >
                   <motion.div
                     className="group cursor-pointer"
                     initial={{ opacity: 0, y: 20 }}
@@ -287,13 +303,18 @@ export default function Home() {
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <div
-                      className={`relative overflow-hidden mb-6 ${project.width}`}
+                    <motion.div
+                      layoutId={`image-container-${project.slug}`}
+                      className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
+                      style={{ aspectRatio: project.aspectRatio }}
+                      transition={{
+                        layout: {
+                          duration: 1.8,
+                          ease: [0.16, 1, 0.3, 1],
+                        },
+                      }}
                     >
-                      <div
-                        className="relative w-full"
-                        style={{ aspectRatio: project.aspectRatio }}
-                      >
+                      <div className="absolute inset-0 w-full h-full">
                         <WebGLImage
                           key={project.id}
                           src={project.image}
@@ -301,7 +322,7 @@ export default function Home() {
                           className="w-full h-full"
                         />
                       </div>
-                    </div>
+                    </motion.div>
 
                     <div
                       className={`flex flex-col items-start ${project.width}`}
