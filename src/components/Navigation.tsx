@@ -101,7 +101,7 @@ export default function Navigation() {
                 isActive("/") ? "opacity-100" : "opacity-50 hover:opacity-100"
               )}
             >
-              Index
+              Home
               {isActive("/") && (
                 <motion.span
                   layoutId="nav-underline"
@@ -292,7 +292,7 @@ export default function Navigation() {
                       "font-playfair text-5xl md:text-6xl transition-all duration-500 group-hover:translate-x-4",
                       isActive("/") ? "text-white" : "text-white/70 group-hover:text-white"
                     )}>
-                      Index
+                      Home
                     </span>
                     <motion.div
                       className="h-[1px] bg-white/30 flex-1 origin-left"

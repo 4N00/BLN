@@ -8,6 +8,7 @@ export default function CustomCursor() {
   const [isPointer, setIsPointer] = useState(false);
   const [isGalleryImage, setIsGalleryImage] = useState(false);
   const [isNavLink, setIsNavLink] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -21,6 +22,14 @@ export default function CustomCursor() {
   const scaleSpring = useSpring(scale, { damping: 20, stiffness: 300 });
 
   useEffect(() => {
+    // Check if mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -40,6 +49,7 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", moveCursor);
     return () => {
       window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener("resize", checkMobile);
     };
   }, [cursorX, cursorY]);
 
@@ -58,6 +68,11 @@ export default function CustomCursor() {
 
   // Cursor size
   const size = 16;
+
+  // Don't render cursor on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <motion.div

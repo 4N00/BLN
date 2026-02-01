@@ -362,7 +362,7 @@ function GalleryItem({
   );
 }
 
-// Parallax container component
+// Parallax container component - disabled on mobile
 function ParallaxContainer({
   children,
   className,
@@ -375,12 +375,18 @@ function ParallaxContainer({
   const ref = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 120, damping: 50 });
   const springY = useSpring(y, { stiffness: 120, damping: 50 });
 
   useEffect(() => {
+    // Check if mobile device
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -396,11 +402,13 @@ function ParallaxContainer({
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
   useEffect(() => {
-    if (!ref.current) return;
+    // Disable parallax on mobile
+    if (isMobile || !ref.current) return;
 
     const updateParallax = () => {
       if (!ref.current) return;
@@ -447,7 +455,12 @@ function ParallaxContainer({
     };
 
     updateParallax();
-  }, [mousePos, scrollY, x, y, scrollSpeed]);
+  }, [mousePos, scrollY, x, y, scrollSpeed, isMobile]);
+
+  // On mobile, render without parallax effect
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
