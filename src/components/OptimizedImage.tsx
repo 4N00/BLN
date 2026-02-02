@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface OptimizedImageProps {
@@ -15,6 +15,7 @@ interface OptimizedImageProps {
   sizes?: string;
   quality?: number;
   objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 export default function OptimizedImage({
@@ -28,14 +29,47 @@ export default function OptimizedImage({
   sizes = "100vw",
   quality = 85,
   objectFit = "cover",
+  fetchPriority = "auto",
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [isInView, setIsInView] = useState(priority); // If priority, load immediately
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  // Enhanced Intersection Observer for better lazy loading control
+  useEffect(() => {
+    if (priority || typeof window === 'undefined') {
+      return; // Skip observer for priority images
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect(); // Stop observing once visible
+          }
+        });
+      },
+      {
+        rootMargin: "50px", // Start loading 50px before entering viewport
+        threshold: 0.01,
+      }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [priority]);
 
   return (
-    <div className={`relative ${className}`}>
+    <div ref={imgRef} className={`relative ${className}`}>
       <AnimatePresence>
-        {isLoading && (
+        {isLoading && isInView && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -45,7 +79,7 @@ export default function OptimizedImage({
         )}
       </AnimatePresence>
 
-      {!hasError ? (
+      {!hasError && isInView ? (
         <Image
           src={src}
           alt={alt}
@@ -64,12 +98,14 @@ export default function OptimizedImage({
             setHasError(true);
           }}
           loading={priority ? "eager" : "lazy"}
+          // @ts-ignore - fetchPriority is valid but TypeScript may not recognize it yet
+          fetchPriority={fetchPriority}
         />
-      ) : (
+      ) : hasError ? (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
           <span className="text-gray-700 text-sm">Failed to load image</span>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

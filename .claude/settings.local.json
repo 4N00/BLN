@@ -14,7 +14,12 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd automated Vercel deployment workflow\n\n- Add deploy.sh script for automated git push and Vercel deployment\n- Add npm scripts for triggering Vercel deployments via webhook\n- Configure git hooks for deployment automation\n- Enable seamless CI/CD workflow with Vercel deploy hooks\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(./deploy.sh)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(LOVE)",
+      "Bash(STYLE)",
+      "Bash(YOU\" in English for both\nlocales to maintain brand consistency and international appeal.\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(npm run deploy:vercel:*)"
     ]
   }
 }
