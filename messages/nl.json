@@ -28,7 +28,7 @@
       "title2": "NOOITGEDAGT",
       "subtitle": "CAPTURING LIFE | LOVE | STYLE | YOU"
     },
-    "intro": "Een zorgvuldig samengestelde collectie van visuele verhalen die het ongeziene en het onuitgesproken vastleggen. Loes Nooitgedagt verkent de grens tussen realiteit en verbeelding.",
+    "intro": "Elke foto vertelt een verhaal. Echte momenten leg ik vast op een creatieve, artistieke manier.\n\nIk creëer beelden die verder gaan dan het alledaagse. Of het nu gaat om jouw bruiloft, bedrijf, lifestyle of branding – ik leg het vast op een manier die echt, creatief en uniek voor jou is.",
     "services": {
       "title": "Wat ik",
       "titleItalic": "aanbied",
@@ -127,9 +127,9 @@
     "intro2": "Ik geloof in het creëren van een ontspannen en comfortabele sfeer tijdens shoots om authentieke momenten vast te leggen die jouw unieke verhaal vertellen.",
     "philosophy": {
       "label": "Filosofie",
-      "title": "De essentie van momenten vastleggen door een lens die de wereld als kunstwerk ziet",
-      "text1": "Fotografie is meer dan op een knop drukken—het gaat om verbinding, emotie en schoonheid vinden op onverwachte plekken. Elke sessie is een kans om iets tijdloos te creëren.",
-      "text2": "Ik werk intuïtief en laat momenten natuurlijk ontstaan, terwijl ik je begeleid door poses die comfortabel en authentiek aanvoelen. Het resultaat? Beelden die voelen als jij, niet als iedereen."
+      "title": "Verhalen van emotie en verbinding",
+      "text1": "Voor mij draait fotografie om het vastleggen van emoties en de band tussen mensen – of het nu gaat om liefde op een bruiloft, de energie van een merk of de schoonheid van alledaagse momenten. Ik maak geen standaard foto's; ik vertel verhalen die voelen en blijven hangen.\n\nIk werk graag op een ontspannen, creatieve manier. Geen stijve poses, geen onnatuurlijke momenten. Ik laat situaties ontstaan en vang op wat echt is. Dat zorgt voor foto's die niet alleen mooi zijn, maar ook herkenbaar en tijdloos.",
+      "text2": "Het bewaren van een gevoel\n\nWat mij drijft, is het idee dat een foto meer kan zijn dan een plaatje. Het kan een gevoel zijn dat je opnieuw beleeft, een herinnering die je niet wilt vergeten, of een verhaal dat je wilt delen. Of je nu op zoek bent naar bruiloftsfotografie, lifestyle content of beelden voor je bedrijf – ik zorg ervoor dat het resultaat voelt als jou.\n\nMijn stijl? Creatief, eerlijk en met aandacht voor detail. Ik hou van natuurlijk licht, spontane momenten en beelden die er net iets anders uitzien dan de rest."
     },
     "stats": [
       { "number": "150+", "label": "Projecten Voltooid" },
@@ -171,13 +171,13 @@
           "title": "Lifestyle",
           "subtitle": "Dagelijkse schoonheid vastleggen",
           "price": "375",
-          "prefix": "vanaf",
+          "prefix": "Vanaf",
           "description": "Perfect voor persoonlijke portretten, familiemomenten en lifestyle content die jouw unieke verhaal vertelt.",
           "features": [
-            "2 uur sessie",
-            "20+ bewerkte afbeeldingen",
+            "1,5-2 uur fotografie",
+            "Vanaf 20+ bewerkte foto's",
             "Online galerij",
-            "Printrechten inbegrepen"
+            "Onbeperkt gebruik"
           ],
           "cta": "Meer info"
         },
@@ -185,14 +185,14 @@
           "id": 2,
           "title": "Merk",
           "subtitle": "Visuele identiteit voor bedrijven",
-          "price": "600",
-          "prefix": "vanaf",
+          "price": "599",
+          "prefix": "Vanaf",
           "description": "Til je merk naar een hoger niveau met professionele beelden die jouw essentie vastleggen en verbinden met je publiek.",
           "features": [
-            "Halve dag sessie",
-            "40+ bewerkte afbeeldingen",
-            "Merk consultatie",
-            "Commerciële licentie"
+            "2-3 uur fotografie",
+            "Vanaf 40+ bewerkte foto's",
+            "Styling advies",
+            "Onbeperkt gebruik"
           ],
           "cta": "Meer info"
         },
@@ -200,14 +200,14 @@
           "id": 3,
           "title": "Bruiloft",
           "subtitle": "Jouw liefdesverhaal, bewaard",
-          "price": "1800",
-          "prefix": "vanaf",
+          "price": "1995",
+          "prefix": "Vanaf",
           "description": "Van intieme ceremonies tot grote vieringen, elk kostbaar moment gedocumenteerd met kunstzinnigheid en hart.",
           "features": [
-            "Hele dag dekking",
-            "300+ bewerkte afbeeldingen",
-            "Verlovingssessie",
-            "Premium album"
+            "Volledige dag fotografie",
+            "Vanaf 300+ bewerkte foto's",
+            "Gratis kennismakingsgesprek",
+            "Online galerij + onbeperkt gebruik"
           ],
           "cta": "Meer info"
         },
@@ -267,9 +267,9 @@
   "Portfolio": {
     "wedding": {
       "label": "Portfolio — Bruiloft",
-      "title": "Liefde,",
-      "titleItalic": "voor altijd.",
-      "description": "Jouw trouwdag, verteld door beelden die tijdloos aanvoelen. Van gestolen blikken tot emotionele geloften, ik documenteer de authentieke emoties en intieme momenten die jouw liefdesverhaal uniek maken.",
+      "title": "Jouw bruiloft,",
+      "titleItalic": "vast voor altijd.",
+      "description": "Ik vang échte momenten op een creatieve, artistieke manier. Jouw bruiloft is uniek, en ik zorg ervoor dat de foto's dat ook zijn. Van kleine details tot grote emoties – alles wordt vastgelegd met aandacht en stijl, zodat je nog jaren kunt terugkijken op een dag die echt voelt.",
       "worksCount": "{count} Werken",
       "images": [
         {
@@ -313,9 +313,9 @@
     },
     "lifestyle": {
       "label": "Portfolio — Lifestyle",
-      "title": "Leven,",
-      "titleItalic": "ongeschreven.",
-      "description": "Dagelijkse momenten getransformeerd tot kunst. Lifestyle fotografie die de schoonheid in jouw dagelijkse rituelen, familieverbindingen en persoonlijke stijl vastlegt met een authentieke, editorial benadering.",
+      "title": "Het echte leven,",
+      "titleItalic": "vastgelegd als kunst.",
+      "description": "Ik maak graag foto's voor content creators, influencers en ondernemers die op zoek zijn naar lifestyle content die echt en creatief is. Of je nu foto's zoekt voor social media, je website of gewoon mooie persoonlijke herinneringen – ik leg het vast op een manier die bij je past.",
       "worksCount": "{count} Werken",
       "images": [
         {
@@ -359,9 +359,9 @@
     },
     "brand": {
       "label": "Portfolio — Merk",
-      "title": "Jouw verhaal,",
-      "titleItalic": "gevisualiseerd.",
-      "description": "Merkfotografie die verder gaat dan esthetiek. Ik creëer visuele verhalen die jouw waarden communiceren, verbinden met je publiek en jouw bedrijfspresentie verheffen.",
+      "title": "Jouw merk,",
+      "titleItalic": "visueel verteld.",
+      "description": "Ik leg merken en verhalen vast op een creatieve, visuele manier. Bedrijven, personal brands en ondernemers die op zoek zijn naar foto's die passen bij hun identiteit en waarden. Of je nu foto's nodig hebt voor je website, campagnes of social media – ik creëer content die opvalt en blijft hangen.",
       "worksCount": "{count} Werken",
       "images": [
         {
