@@ -361,3 +361,11 @@ export const projects = [
     width: "w-full md:w-[90%]",
   },
 ];
+
+// Export type for use in components
+export type Project = typeof projects[0];
+export type LocalizedProject = Omit<Project, 'title' | 'category' | 'description'> & {
+  title: string;
+  category: string;
+  description: string;
+};

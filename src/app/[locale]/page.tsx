@@ -9,7 +9,7 @@ import { useSplitTransition } from "@/context/SplitTransitionContext";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
-import { projects as projectsData } from "@/data/projects";
+import { projects as projectsData, type LocalizedProject } from "@/data/projects";
 
 // Easing curves
 const ease = [0.22, 1, 0.36, 1];
@@ -140,7 +140,7 @@ function ServiceItem({
 }
 
 // Helper function to get localized project data
-function getLocalizedProjects(locale: string) {
+function getLocalizedProjects(locale: string): LocalizedProject[] {
   return projectsData.map((project) => ({
     ...project,
     title: typeof project.title === 'object' ? project.title[locale as 'nl' | 'en'] || project.title.en : project.title,
@@ -159,13 +159,13 @@ function GalleryItem({
   isModalOpen,
   selectedProject,
 }: {
-  project: typeof projects[0];
+  project: LocalizedProject;
   index: number;
   isExiting: boolean;
-  onProjectClick: (project: typeof projects[0]) => void;
+  onProjectClick: (project: LocalizedProject) => void;
   imageRefs: React.MutableRefObject<Map<string, HTMLDivElement>>;
   isModalOpen: boolean;
-  selectedProject: typeof projects[0] | null;
+  selectedProject: LocalizedProject | null;
 }) {
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
 
@@ -349,7 +349,7 @@ function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const imageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<LocalizedProject | null>(null);
   const [selectedImageRect, setSelectedImageRect] = useState<{
     top: number;
     left: number;
@@ -471,7 +471,7 @@ function HomeContent() {
     });
   };
 
-  const handleProjectClick = (project: typeof projects[0]) => {
+  const handleProjectClick = (project: LocalizedProject) => {
     const imageContainer = imageRefs.current.get(project.slug);
     if (imageContainer) {
       isOpeningModal.current = true;
