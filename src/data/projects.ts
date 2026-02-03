@@ -3,17 +3,17 @@ export const projects = [
   {
     id: 1,
     title: {
-      nl: "Wedding F&M",
-      en: "Wedding F&M"
+      nl: "Wedding J&A",
+      en: "Wedding J&A"
     },
     category: {
       nl: "WEDDING",
       en: "WEDDING"
     },
-    slug: "wedding-fm",
+    slug: "wedding-ja",
     description: {
-      nl: "F & M's bruiloft bij het ouderlijk huis van de bruid was een intieme dag vol warmte, lachen en oprechte verbinding. Omringd door hun dierbaarste mensen werd vanaf het allereerste moment duidelijk dat dit niet zomaar een bruiloft was, maar een viering van liefde — voor elkaar én voor hun families — en van de kleine momenten die een dag onvergetelijk maken.",
-      en: "F & M's wedding at the bride's parental home was an intimate day full of warmth, laughter and genuine connection. Surrounded by their dearest people, it was clear from the very first moment that this was not just a wedding, but a celebration of love — for each other and for their families — and of the small moments that make a day unforgettable."
+      nl: "J & A's bruiloft bij het ouderlijk huis van de bruid was een intieme dag vol warmte, lachen en oprechte verbinding. Omringd door hun dierbaarste mensen werd vanaf het allereerste moment duidelijk dat dit niet zomaar een bruiloft was, maar een viering van liefde — voor elkaar én voor hun families — en van de kleine momenten die een dag onvergetelijk maken.",
+      en: "J & A's wedding at the bride's parental home was an intimate day full of warmth, laughter and genuine connection. Surrounded by their dearest people, it was clear from the very first moment that this was not just a wedding, but a celebration of love — for each other and for their families — and of the small moments that make a day unforgettable."
     },
     image: "/images/home/HOME 1.jpg",
     images: [
