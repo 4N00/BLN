@@ -8,7 +8,8 @@ import { useEffect, useRef, useState, Suspense } from "react";
 import { useSplitTransition } from "@/context/SplitTransitionContext";
 import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { projects as projectsData } from "@/data/projects";
 
 // Easing curves
 const ease = [0.22, 1, 0.36, 1];
@@ -138,151 +139,15 @@ function ServiceItem({
   );
 }
 
-const projects = [
-  {
-    id: 1,
-    title: "Ethereal Gaze",
-    category: "Portrait",
-    slug: "ethereal-gaze",
-    description:
-      "A deep dive into the human soul through the eyes of the beholder. This series explores the vulnerability and strength found in silence.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    ],
-    colSpan: "md:col-span-5",
-    colStart: "md:col-start-1",
-    aspectRatio: "3/4",
-    width: "w-full md:w-[85%]",
-  },
-  {
-    id: 2,
-    title: "Urban Solitude",
-    category: "Editorial",
-    slug: "urban-solitude",
-    description:
-      "Finding peace in the chaos of the city. A study of shadows, light, and the lonely figures that inhabit the concrete jungle.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    ],
-    colSpan: "md:col-span-4",
-    colStart: "md:col-start-6",
-    aspectRatio: "4/5",
-    width: "w-full md:w-[90%] md:ml-auto",
-  },
-  {
-    id: 3,
-    title: "Liquid Dreams",
-    category: "Abstract",
-    slug: "liquid-dreams",
-    description:
-      "Forms that flow and change, representing the ever-shifting nature of our dreams and subconsciously.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_WATER_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    ],
-    colSpan: "md:col-span-3",
-    colStart: "md:col-start-8",
-    aspectRatio: "3/4",
-    width: "w-full",
-  },
-  {
-    id: 4,
-    title: "Silent Forms",
-    category: "Still Life",
-    slug: "silent-forms",
-    description:
-      "Inanimate objects telling a living story. The beauty of stillness.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    ],
-    colSpan: "md:col-span-4",
-    colStart: "md:col-start-2",
-    aspectRatio: "4/3",
-    width: "w-full md:w-[80%]",
-  },
-  {
-    id: 5,
-    title: "Portrait Study",
-    category: "Portrait",
-    slug: "portrait-study",
-    description:
-      "A study of human expression and emotion captured in intimate moments.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_04_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    ],
-    colSpan: "md:col-span-3",
-    colStart: "md:col-start-7",
-    aspectRatio: "3/4",
-    width: "w-full md:w-[75%] md:ml-auto",
-  },
-  {
-    id: 6,
-    title: "Natural Light",
-    category: "Portrait",
-    slug: "natural-light",
-    description:
-      "Exploring the interplay between natural light and human form.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    ],
-    colSpan: "md:col-span-5",
-    colStart: "md:col-start-1",
-    aspectRatio: "5/6",
-    width: "w-full md:w-[82%]",
-  },
-  {
-    id: 7,
-    title: "Editorial Story",
-    category: "Editorial",
-    slug: "editorial-story",
-    description: "Editorial photography that tells compelling visual stories.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    ],
-    colSpan: "md:col-span-4",
-    colStart: "md:col-start-6",
-    aspectRatio: "3/4",
-    width: "w-full md:w-[88%] md:ml-auto",
-  },
-  {
-    id: 8,
-    title: "Wedding Moments",
-    category: "Wedding",
-    slug: "wedding-moments",
-    description: "Capturing the most precious moments of love and celebration.",
-    image:
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    images: [
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-      "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    ],
-    colSpan: "md:col-span-3",
-    colStart: "md:col-start-4",
-    aspectRatio: "4/5",
-    width: "w-full md:w-[70%] md:mx-auto",
-  },
-];
+// Helper function to get localized project data
+function getLocalizedProjects(locale: string) {
+  return projectsData.map((project) => ({
+    ...project,
+    title: typeof project.title === 'object' ? project.title[locale as 'nl' | 'en'] || project.title.en : project.title,
+    category: typeof project.category === 'object' ? project.category[locale as 'nl' | 'en'] || project.category.en : project.category,
+    description: typeof project.description === 'object' ? project.description[locale as 'nl' | 'en'] || project.description.en : project.description,
+  }));
+}
 
 // Gallery item component with proper exit animation handling
 function GalleryItem({
@@ -479,6 +344,8 @@ function ParallaxContainer({
 function HomeContent() {
   const t = useTranslations("Home");
   const tCommon = useTranslations("Common");
+  const locale = useLocale();
+  const projects = getLocalizedProjects(locale);
   const router = useRouter();
   const searchParams = useSearchParams();
   const imageRefs = useRef<Map<string, HTMLDivElement>>(new Map());

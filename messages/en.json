@@ -28,7 +28,7 @@
       "title2": "NOOITGEDAGT",
       "subtitle": "CAPTURING LIFE | LOVE | STYLE | YOU"
     },
-    "intro": "A curated collection of visual narratives capturing the unseen and the unspoken. Loes Nooitgedagt explores the boundary between reality and imagination.",
+    "intro": "Every photo tells a story. I capture real moments in a creative, artistic way.\n\nI create images that go beyond the ordinary: every image is a work of art, carefully composed to capture the atmosphere, emotion and story of your day. Between reality and imagination, I capture moments as they truly are – intimate, pure and timeless.",
     "services": {
       "title": "What I",
       "titleItalic": "offer",
@@ -127,9 +127,9 @@
     "intro2": "I believe in creating a relaxed and comfortable atmosphere during shoots to capture authentic moments that tell your unique story.",
     "philosophy": {
       "label": "Philosophy",
-      "title": "Capturing the essence of moments through a lens that sees the world as artwork",
-      "text1": "Photography is more than clicking a button—it's about connection, emotion, and finding beauty in unexpected places. Every session is an opportunity to create something timeless.",
-      "text2": "I work intuitively, letting moments unfold naturally while guiding you through poses that feel comfortable and authentic. The result? Images that feel like you, not like everyone else."
+      "title": "Stories of emotion and connection",
+      "text1": "That's me – the face behind Loes Nooitgedagt Photography.\n\nAs a photographer, I capture stories: stories of emotion, connection and the unexpected. My work revolves around moments as they truly are, with all their nuance and beauty. With every photo shoot, I strive for a relaxed, natural atmosphere, because it is precisely that calm that is the key to images that radiate purity and authenticity. Whether it's a wedding, lifestyle or brand shoot, my goal is always the same: to capture the essence of the moment, in a timeless and authentic way.",
+      "text2": "Preserving a feeling\n\nWhat sets my work apart is my eye for detail and the personal approach I bring. Every wedding, every shoot is unique, and I capture those moments with attention, precision and an artistic eye. For me, photography is much more than capturing an image: it's about preserving a feeling, a memory that continues to live. For me, it's not just about the end result, but about the experience from start to finish – a process in which you feel free and relaxed, so that the images capture exactly what is dear to you: pure, timeless and sincere."
     },
     "stats": [
       { "number": "150+", "label": "Projects Completed" },
@@ -174,10 +174,10 @@
           "prefix": "from",
           "description": "Perfect for personal portraits, family moments, and lifestyle content that tells your unique story.",
           "features": [
-            "2-hour session",
-            "20+ edited images",
-            "Online gallery",
-            "Print rights included"
+            "1 hour session",
+            "Moodboard + Styling advice",
+            "30 edited images within 3 weeks",
+            "Online gallery"
           ],
           "cta": "More info"
         },
@@ -185,14 +185,15 @@
           "id": 2,
           "title": "Brand",
           "subtitle": "Visual identity for businesses",
-          "price": "600",
-          "prefix": "from",
+          "price": "599",
+          "prefix": "From",
           "description": "Elevate your brand with professional imagery that captures your essence and connects with your audience.",
           "features": [
-            "Half-day session",
-            "40+ edited images",
-            "Brand consultation",
-            "Commercial license"
+            "3 hour session",
+            "Consultation meeting",
+            "Moodboard + Styling advice",
+            "50+ edited images 3 weeks",
+            "Online gallery"
           ],
           "cta": "More info"
         },
@@ -200,14 +201,16 @@
           "id": 3,
           "title": "Wedding",
           "subtitle": "Your love story, preserved",
-          "price": "1800",
-          "prefix": "from",
+          "price": "1995",
+          "prefix": "From",
           "description": "From intimate ceremonies to grand celebrations, every precious moment documented with artistry and heart.",
           "features": [
-            "Full day coverage",
-            "300+ edited images",
-            "Engagement session",
-            "Premium album"
+            "6 hour session",
+            "Consultation & detail meeting",
+            "Preview within a week",
+            "300+ edited photos within 8 weeks",
+            "Online gallery",
+            "Mini album"
           ],
           "cta": "More info"
         },
@@ -267,9 +270,9 @@
   "Portfolio": {
     "wedding": {
       "label": "Portfolio — Wedding",
-      "title": "Love,",
-      "titleItalic": "forever.",
-      "description": "Your wedding day, told through images that feel timeless. From stolen glances to tearful vows, I document the authentic emotions and intimate moments that make your love story uniquely yours.",
+      "title": "I capture real moments in a creative,",
+      "titleItalic": "artistic way. Every photo is a work of art – never ordinary.",
+      "description": "No two weddings are the same, and that's what makes my work so special. I move with the rhythm of your day: sometimes unobtrusively in the background, at other times subtly present to capture the perfect moment. With an eye for atmosphere and emotion, I capture your day as it truly was – pure, timeless and sincere.",
       "worksCount": "{count} Works",
       "images": [
         {
@@ -313,9 +316,9 @@
     },
     "lifestyle": {
       "label": "Portfolio — Lifestyle",
-      "title": "Life,",
-      "titleItalic": "unscripted.",
-      "description": "Everyday moments elevated into art. Lifestyle photography that captures the beauty in your daily rituals, family connections, and personal style with an authentic, editorial approach.",
+      "title": "Real life,",
+      "titleItalic": "captured as art.",
+      "description": "I capture the beauty of everyday moments, family connections and personal rituals in an authentic, editorial way. Spontaneous, timeless and full of emotion – images that tell the story of your life as it truly is.",
       "worksCount": "{count} Works",
       "images": [
         {
@@ -359,9 +362,9 @@
     },
     "brand": {
       "label": "Portfolio — Brand",
-      "title": "Your story,",
-      "titleItalic": "visualized.",
-      "description": "Brand photography that goes beyond aesthetics. I create visual narratives that communicate your values, connect with your audience, and elevate your business presence.",
+      "title": "I capture brands and stories in a creative,",
+      "titleItalic": "visual way.",
+      "description": "Every photo is carefully created to capture the essence, style and identity of your brand – unique, powerful and timeless.\n\nTogether we transform vision, atmosphere and authenticity into images that speak, connect and make an impression.",
       "worksCount": "{count} Works",
       "images": [
         {

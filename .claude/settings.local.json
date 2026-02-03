@@ -19,7 +19,8 @@
       "Bash(STYLE)",
       "Bash(YOU\" in English for both\nlocales to maintain brand consistency and international appeal.\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git push)",
-      "Bash(npm run deploy:vercel:*)"
+      "Bash(npm run deploy:vercel:*)",
+      "Bash(wc:*)"
     ]
   }
 }
