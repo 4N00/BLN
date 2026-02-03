@@ -59,59 +59,66 @@
     "projects": [
       {
         "id": 1,
-        "title": "Etherische Blik",
-        "category": "Portret",
-        "slug": "ethereal-gaze",
-        "description": "Een diepe duik in de menselijke ziel door de ogen van de toeschouwer. Deze serie verkent de kwetsbaarheid en kracht die gevonden worden in stilte."
+        "title": "Wedding J&A",
+        "category": "WEDDING",
+        "slug": "wedding-ja",
+        "description": "J & A's bruiloft bij het ouderlijk huis van de bruid was een intieme dag vol warmte, lachen en oprechte verbinding. Omringd door hun dierbaarste mensen werd vanaf het allereerste moment duidelijk dat dit niet zomaar een bruiloft was, maar een viering van liefde — voor elkaar én voor hun families — en van de kleine momenten die een dag onvergetelijk maken."
       },
       {
         "id": 2,
-        "title": "Stedelijke Eenzaamheid",
-        "category": "Redactioneel",
-        "slug": "urban-solitude",
-        "description": "Vrede vinden in de chaos van de stad. Een studie van schaduwen, licht en de eenzame figuren die de betonnen jungle bewonen."
+        "title": "Ochtendlicht in Friesland",
+        "category": "LIFESTYLE",
+        "slug": "ochtendlicht-friesland",
+        "description": "Een gezin van vijf, laarzen aan, spelend en knuffelend in de vroege ochtend. Kleine momenten, grote avonturen — puur, spontaan en vastgelegd met liefde."
       },
       {
         "id": 3,
-        "title": "Vloeibare Dromen",
-        "category": "Abstract",
-        "slug": "liquid-dreams",
-        "description": "Vormen die stromen en veranderen, vertegenwoordigend de steeds veranderende aard van onze dromen en onderbewustzijn."
+        "title": "Haar Energie",
+        "category": "PERSONAL BRANDING",
+        "slug": "haar-energie",
+        "description": "Personal branding met Tess\n\nIn de lichte, creatieve sfeer van Studio Ventidue kwam Tess volledig tot haar recht. Alles mocht er zijn. Samen legden we haar energie, stijl en persoonlijkheid vast — op een creatieve, authentieke manier."
       },
       {
         "id": 4,
-        "title": "Stille Vormen",
-        "category": "Stilleven",
-        "slug": "silent-forms",
-        "description": "Levenloze objecten die een levend verhaal vertellen. De schoonheid van stilte."
+        "title": "Parisian Love Story",
+        "category": "WEDDING",
+        "slug": "parisian-love-story",
+        "description": "Samen lachen, knuffelen en wandelen door Parijs.\n\nEen dag vol intieme momenten en de magie van de liefde van A&S, tijdloos en puur vastgelegd."
       },
       {
         "id": 5,
-        "title": "Portret Studie",
-        "category": "Portret",
-        "slug": "portrait-study",
-        "description": "Een studie van menselijke expressie en emotie vastgelegd in intieme momenten."
+        "title": "Waiting For You",
+        "category": "LIFESTYLE",
+        "slug": "waiting-for-you",
+        "description": "In het zachte licht van NJ Space Amsterdam straalden T&A één en al liefde en geluk. Zo bijzonder om dit te mogen vastleggen voor mijn broer en schoonzus — wat zijn jullie prachtig"
       },
       {
         "id": 6,
-        "title": "Natuurlijk Licht",
-        "category": "Portret",
-        "slug": "natural-light",
-        "description": "Het verkennen van de wisselwerking tussen natuurlijk licht en menselijke vorm."
+        "title": "Natural Glow",
+        "category": "PERSONAL BRANDING",
+        "slug": "natural-glow",
+        "description": "Een prachtige dag in de natuur, waar alles mocht zijn. Echt, puur en in verbinding met de omgeving legden we de energie en essentie van S vast."
       },
       {
         "id": 7,
-        "title": "Redactioneel Verhaal",
-        "category": "Redactioneel",
-        "slug": "editorial-story",
-        "description": "Redactionele fotografie die meeslepende visuele verhalen vertelt."
+        "title": "Wedding J&T",
+        "category": "WEDDING",
+        "slug": "wedding-jt",
+        "description": "Een prachtige dag bij Restaurant Dorset, vol liefde, lachen en echte momenten. J&T omringd door hun dierbaarste mensen — een dag om nooit te vergeten."
       },
       {
         "id": 8,
-        "title": "Bruiloft Momenten",
-        "category": "Bruiloft",
-        "slug": "wedding-moments",
-        "description": "Het vastleggen van de meest kostbare momenten van liefde en viering."
+        "title": "Momenten die Blijven",
+        "category": "LIFESTYLE",
+        "slug": "momenten-die-blijven",
+        "description": "Rennen door de duinen, springen, lachen en genieten van het samen zijn — een avond vol plezier en momenten die puur, spontaan en tijdloos zijn. Zo bijzonder om deze mooie beelden te mogen maken met je day 1-vriendinnen, die altijd dichtbij je staan en waar je zoveel herinneringen mee deelt."
+      },
+      {
+        "id": 9,
+        "title": "DE BRASS",
+        "category": "BRANDING",
+        "slug": "de-brass",
+        "description": "Momenten vol karakter, energie en sfeer. Spontaan, echt en tijdloos vastgelegd — beelden die het verhaal van DE BRASS vertellen."
       }
     ]
   },

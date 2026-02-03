@@ -59,59 +59,66 @@
     "projects": [
       {
         "id": 1,
-        "title": "Ethereal Gaze",
-        "category": "Portrait",
-        "slug": "ethereal-gaze",
-        "description": "A deep dive into the human soul through the eyes of the beholder. This series explores the vulnerability and strength found in silence."
+        "title": "Wedding J&A",
+        "category": "WEDDING",
+        "slug": "wedding-ja",
+        "description": "J & A's wedding at the bride's parental home was an intimate day full of warmth, laughter and genuine connection. Surrounded by their dearest people, it was clear from the very first moment that this was not just a wedding, but a celebration of love — for each other and for their families — and of the small moments that make a day unforgettable."
       },
       {
         "id": 2,
-        "title": "Urban Solitude",
-        "category": "Editorial",
-        "slug": "urban-solitude",
-        "description": "Finding peace in the chaos of the city. A study of shadows, light, and the lonely figures that inhabit the concrete jungle."
+        "title": "Morning Light in Friesland",
+        "category": "LIFESTYLE",
+        "slug": "ochtendlicht-friesland",
+        "description": "A family of five, boots on, playing and cuddling in the early morning. Small moments, big adventures — pure, spontaneous and captured with love."
       },
       {
         "id": 3,
-        "title": "Liquid Dreams",
-        "category": "Abstract",
-        "slug": "liquid-dreams",
-        "description": "Forms that flow and change, representing the ever-shifting nature of our dreams and subconsciously."
+        "title": "Her Energy",
+        "category": "PERSONAL BRANDING",
+        "slug": "haar-energie",
+        "description": "Personal branding with Tess\n\nIn the light, creative atmosphere of Studio Ventidue, Tess came fully into her own. Everything was allowed to be there. Together we captured her energy, style and personality — in a creative, authentic way."
       },
       {
         "id": 4,
-        "title": "Silent Forms",
-        "category": "Still Life",
-        "slug": "silent-forms",
-        "description": "Inanimate objects telling a living story. The beauty of stillness."
+        "title": "Parisian Love Story",
+        "category": "WEDDING",
+        "slug": "parisian-love-story",
+        "description": "Laughing, cuddling and walking through Paris together.\n\nA day full of intimate moments and the magic of A&S's love, captured timelessly and purely."
       },
       {
         "id": 5,
-        "title": "Portrait Study",
-        "category": "Portrait",
-        "slug": "portrait-study",
-        "description": "A study of human expression and emotion captured in intimate moments."
+        "title": "Waiting For You",
+        "category": "LIFESTYLE",
+        "slug": "waiting-for-you",
+        "description": "In the soft light of NJ Space Amsterdam, T&A radiated nothing but love and happiness. So special to be able to capture this for my brother and sister-in-law — you are beautiful"
       },
       {
         "id": 6,
-        "title": "Natural Light",
-        "category": "Portrait",
-        "slug": "natural-light",
-        "description": "Exploring the interplay between natural light and human form."
+        "title": "Natural Glow",
+        "category": "PERSONAL BRANDING",
+        "slug": "natural-glow",
+        "description": "A beautiful day in nature, where everything was allowed to be. Real, pure and in connection with the environment, we captured S's energy and essence."
       },
       {
         "id": 7,
-        "title": "Editorial Story",
-        "category": "Editorial",
-        "slug": "editorial-story",
-        "description": "Editorial photography that tells compelling visual stories."
+        "title": "Wedding J&T",
+        "category": "WEDDING",
+        "slug": "wedding-jt",
+        "description": "A beautiful day at Restaurant Dorset, full of love, laughter and genuine moments. J&T surrounded by their dearest people — a day never to forget."
       },
       {
         "id": 8,
-        "title": "Wedding Moments",
-        "category": "Wedding",
-        "slug": "wedding-moments",
-        "description": "Capturing the most precious moments of love and celebration."
+        "title": "Moments That Last",
+        "category": "LIFESTYLE",
+        "slug": "momenten-die-blijven",
+        "description": "Running through the dunes, jumping, laughing and enjoying being together — an evening full of fun and moments that are pure, spontaneous and timeless. So special to be able to make these beautiful images with your day 1 friends, who are always close to you and with whom you share so many memories."
+      },
+      {
+        "id": 9,
+        "title": "DE BRASS",
+        "category": "BRANDING",
+        "slug": "de-brass",
+        "description": "Moments full of character, energy and atmosphere. Spontaneous, real and timeless captured — images that tell the story of DE BRASS."
       }
     ]
   },
