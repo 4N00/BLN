@@ -111,9 +111,6 @@ export default async function RootLayout({
         <meta name="geo.region" content="NL" />
         <meta name="geo.placename" content="Netherlands" />
         <meta name="language" content={locale} />
-        {/* Preconnect to external domains for faster resource loading */}
-        <link rel="preconnect" href="https://loesnooitgedagt.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://loesnooitgedagt.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
