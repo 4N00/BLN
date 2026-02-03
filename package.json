@@ -9,7 +9,8 @@
     "lint": "eslint",
     "analyze": "ANALYZE=true next build",
     "deploy:vercel": "curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_K6e2m1HGK1IY3kxVn6VQkBJ47CVA/sqXEbLxnPm",
-    "push:deploy": "git push && npm run deploy:vercel"
+    "push:deploy": "git push && npm run deploy:vercel",
+    "resize-images": "node scripts/resize-images.js"
   },
   "dependencies": {
     "@react-three/drei": "^9.100.0",
@@ -36,6 +37,7 @@
     "eslint": "^9.0.0",
     "eslint-config-next": "latest",
     "postcss": "^8.4.35",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

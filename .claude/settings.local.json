@@ -20,7 +20,8 @@
       "Bash(YOU\" in English for both\nlocales to maintain brand consistency and international appeal.\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git push)",
       "Bash(npm run deploy:vercel:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(xargs -I {} sh -c 'echo \"\"File: {}\"\"; file {}; du -h {}')"
     ]
   }
 }
