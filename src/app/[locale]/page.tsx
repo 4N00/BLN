@@ -198,6 +198,7 @@ function GalleryItem({
           className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
           style={{
             aspectRatio: project.aspectRatio,
+            maxHeight: '90vh',
             visibility:
               isModalOpen && selectedProject?.slug === project.slug
                 ? "hidden"
