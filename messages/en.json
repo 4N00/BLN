@@ -59,10 +59,10 @@
     "projects": [
       {
         "id": 1,
-        "title": "Wedding J&A",
+        "title": "Wedding F&M",
         "category": "WEDDING",
-        "slug": "wedding-ja",
-        "description": "J & A's wedding at the bride's parental home was an intimate day full of warmth, laughter and genuine connection. Surrounded by their dearest people, it was clear from the very first moment that this was not just a wedding, but a celebration of love — for each other and for their families — and of the small moments that make a day unforgettable."
+        "slug": "wedding-fm",
+        "description": "F & M's wedding at the bride's parental home was an intimate day full of warmth, laughter and genuine connection. Surrounded by their dearest people, it was clear from the very first moment that this was not just a wedding, but a celebration of love — for each other and for their families — and of the small moments that make a day unforgettable."
       },
       {
         "id": 2,

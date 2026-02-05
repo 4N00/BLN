@@ -59,10 +59,10 @@
     "projects": [
       {
         "id": 1,
-        "title": "Wedding J&A",
+        "title": "Wedding F&M",
         "category": "WEDDING",
-        "slug": "wedding-ja",
-        "description": "J & A's bruiloft bij het ouderlijk huis van de bruid was een intieme dag vol warmte, lachen en oprechte verbinding. Omringd door hun dierbaarste mensen werd vanaf het allereerste moment duidelijk dat dit niet zomaar een bruiloft was, maar een viering van liefde — voor elkaar én voor hun families — en van de kleine momenten die een dag onvergetelijk maken."
+        "slug": "wedding-fm",
+        "description": "F & M's bruiloft bij het ouderlijk huis van de bruid was een intieme dag vol warmte, lachen en oprechte verbinding. Omringd door hun dierbaarste mensen werd vanaf het allereerste moment duidelijk dat dit niet zomaar een bruiloft was, maar een viering van liefde — voor elkaar én voor hun families — en van de kleine momenten die een dag onvergetelijk maken."
       },
       {
         "id": 2,
@@ -176,7 +176,7 @@
         {
           "id": 1,
           "title": "Lifestyle",
-          "subtitle": "Dagelijkse schoonheid vastleggen",
+          "subtitle": "I capture the beauty in real life",
           "price": "375",
           "prefix": "Vanaf",
           "description": "Perfect voor persoonlijke portretten, familiemomenten en lifestyle content die jouw unieke verhaal vertelt.",
@@ -191,8 +191,8 @@
         {
           "id": 2,
           "title": "Merk",
-          "subtitle": "Visuele identiteit voor bedrijven",
-          "price": "599",
+          "subtitle": "Building your visual story together",
+          "price": "595",
           "prefix": "Vanaf",
           "description": "Til je merk naar een hoger niveau met professionele beelden die jouw essentie vastleggen en verbinden met je publiek.",
           "features": [
@@ -207,7 +207,7 @@
         {
           "id": 3,
           "title": "Bruiloft",
-          "subtitle": "Jouw liefdesverhaal, bewaard",
+          "subtitle": "Your love story, captured",
           "price": "1995",
           "prefix": "Vanaf",
           "description": "Van intieme ceremonies tot grote vieringen, elk kostbaar moment gedocumenteerd met kunstzinnigheid en hart.",
@@ -224,9 +224,9 @@
         {
           "id": 4,
           "title": "Portret",
-          "subtitle": "De kunst van jou",
+          "subtitle": "The art of you",
           "price": null,
-          "prefix": "op aanvraag",
+          "prefix": "On request",
           "description": "Op maat gemaakte portraitsessies afgestemd op jouw visie. Fine art, editorial of persoonlijk—speciaal voor jou gemaakt.",
           "features": [
             "Aangepaste sessieduur",
@@ -239,9 +239,9 @@
         {
           "id": 5,
           "title": "Evenement",
-          "subtitle": "Momenten die ertoe doen",
+          "subtitle": "Moments that matter",
           "price": null,
-          "prefix": "op aanvraag",
+          "prefix": "On request",
           "description": "Zakelijke evenementen, vieringen en bijeenkomsten vastgelegd met discretie en oog voor authentieke momenten.",
           "features": [
             "Flexibele duur",
@@ -257,18 +257,40 @@
       "label": "Vragen?",
       "title": "Veelgestelde vragen,",
       "titleItalic": "beantwoord",
+      "description": "Still have questions? Feel free to reach out—I'm always happy to chat about your vision.",
+      "ctaLabel": "Neem contact op",
       "items": [
         {
           "q": "Hoe boek ik een sessie?",
-          "a": "Neem gewoon contact op via het contactformulier of e-mail. We bespreken jouw visie, gewenste data en pakketopties om de perfecte match te vinden."
+          "a": "Neem contact op via e-mail. We bespreken jouw visie, gewenste data en pakketopties om de perfecte match te vinden."
         },
         {
           "q": "Wanneer ontvang ik mijn foto's?",
-          "a": "Bewerkte afbeeldingen worden meestal binnen 2-3 weken geleverd voor lifestyle en portraitsessies, en 4-6 weken voor bruiloften. Spoedlevering is mogelijk op aanvraag."
+          "a": "Bewerkte afbeeldingen worden meestal binnen 2–3 weken geleverd voor lifestyle-, portrait- en brandfotografie. Bij bruiloften ontvang je binnen een week een preview van een selectie van de mooiste foto's, zodat je alvast kunt nagenieten. De volledige bewerkte collectie volgt binnen 6–8 weken. Spoedlevering is mogelijk op aanvraag."
         },
         {
           "q": "Kan ik specifieke shots of poses aanvragen?",
           "a": "Absoluut! Ik moedig je aan om inspiratie en ideeën te delen. Hoewel ik de sessie natuurlijk begeleid, helpt jouw input mij om precies vast te leggen wat jij voor ogen hebt."
+        },
+        {
+          "q": "Waar vindt de shoot plaats?",
+          "a": "De fotoshoot kan thuis plaatsvinden, in een fotostudio of op een mooie buitenlocatie. Alle opties hebben hun voordelen; het belangrijkste is dat jij je op je gemak voelt en dat de locatie bij jou past."
+        },
+        {
+          "q": "Bij hoeveel weken kan ik het beste een maternity shoot inplannen?",
+          "a": "Vaak plannen we de shoot tussen 30 en 34 weken. Iedere zwangerschap verloopt anders, dus mocht je liever bij 28 weken of juist bij 35 weken een shoot willen, dan kan dat natuurlijk ook. Het belangrijkste is dat jij je comfortabel en mooi voelt tijdens de shoot."
+        },
+        {
+          "q": "Werk je ook in het buitenland?",
+          "a": "Zeker! Zowel lifestyle-, wedding- als brandfotografie is mogelijk in het buitenland. Neem voor meer informatie contact op via e-mail."
+        },
+        {
+          "q": "Is het mogelijk om een cadeaubon te bestellen?",
+          "a": "Ja, dat kan zeker. Je kunt kiezen voor een bedrag vanaf €150 of voor een volledige fotoshoot."
+        },
+        {
+          "q": "Mag je de foto's gebruiken voor website en socials?",
+          "a": "Ja, ik mag de beelden gebruiken voor mijn website, sociale media en promotie. Als je liever hebt dat ik de foto's niet gebruik, geef dit dan vóór de fotoshoot aan. Zo respecteer ik jouw privacy volledig."
         }
       ]
     },
