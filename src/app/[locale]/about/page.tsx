@@ -297,7 +297,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl uppercase tracking-[0.3em] text-gray-700">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-[1.1] text-gray-900">
               CAPTURING LIFE | LOVE | STYLE | YOU
             </h2>
           </motion.div>
