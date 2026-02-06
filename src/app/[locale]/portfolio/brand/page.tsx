@@ -480,7 +480,8 @@ export default function BrandPortfolioPage() {
                         alt={image.alt}
                         width={1200}
                         height={1600}
-                        className="w-auto h-auto max-h-[90vh] max-w-full"
+                        className="w-full md:w-auto h-auto max-h-[90vh] md:min-w-[450px] max-w-full"
+                        style={{ objectFit: 'contain' }}
                       />
                     </div>
 
