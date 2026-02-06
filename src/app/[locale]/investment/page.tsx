@@ -179,27 +179,6 @@ function PackageCard({
           )}
         </div>
 
-        {/* Description */}
-        <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-xs">
-          {pkg.description}
-        </p>
-
-        {/* Features */}
-        <ul className="space-y-3 mb-10">
-          {pkg.features.map((feature, i) => (
-            <motion.li
-              key={i}
-              className="flex items-center gap-3 text-sm text-gray-600"
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 + i * 0.05 }}
-            >
-              <span className="w-1 h-1 bg-gray-400 rounded-full" />
-              {feature}
-            </motion.li>
-          ))}
-        </ul>
 
         {/* CTA */}
         <TransitionLink
@@ -494,9 +473,11 @@ export default function InvestmentPage() {
               <h3 className="font-serif text-3xl sm:text-4xl mb-6">
                 {t("faq.title")} <span className="italic">{t("faq.titleItalic")}</span>
               </h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                Still have questions? Feel free to reach out—I'm always happy to chat about your vision.
-              </p>
+              {t("faq.description") && (
+                <p className="text-gray-500 text-sm leading-relaxed mb-8">
+                  {t("faq.description")}
+                </p>
+              )}
               <TransitionLink
                 href="/contact"
                 className="text-sm uppercase tracking-[0.15em] border-b border-black pb-1 hover:border-gray-400 transition-colors"
