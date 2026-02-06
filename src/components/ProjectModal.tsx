@@ -112,18 +112,31 @@ export default function ProjectModal({
       }
 
       // Get the current position of the original image on the home page
-      const originalImage = document.querySelector(
+      const originalImageContainer = document.querySelector(
         `[data-gallery-image][data-project-slug="${project.slug}"]`
       ) as HTMLElement;
 
-      if (originalImage) {
-        const rect = originalImage.getBoundingClientRect();
-        closeTargetRect.current = {
-          top: rect.top,
-          left: rect.left,
-          width: rect.width,
-          height: rect.height,
-        };
+      if (originalImageContainer) {
+        // Get the actual img element inside the container
+        const imgElement = originalImageContainer.querySelector('img') as HTMLImageElement;
+        if (imgElement) {
+          const rect = imgElement.getBoundingClientRect();
+          closeTargetRect.current = {
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height,
+          };
+        } else {
+          // Fallback to container rect if img not found
+          const rect = originalImageContainer.getBoundingClientRect();
+          closeTargetRect.current = {
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height,
+          };
+        }
       } else {
         // Fallback to saved rect if element not found
         closeTargetRect.current = savedImageRect.current;
@@ -322,13 +335,13 @@ export default function ProjectModal({
             <div className="bg-white min-h-screen">
               {/* Hero Image - static, shown when modal is open */}
               <div className="w-full h-[60vh] relative overflow-hidden bg-gray-100">
-                <div className="absolute inset-0 w-full h-full">
-                  <WebGLImage
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full"
-                  />
-                </div>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
 
               {/* Content Section */}

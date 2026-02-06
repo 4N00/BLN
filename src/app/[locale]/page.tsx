@@ -475,7 +475,9 @@ function HomeContent() {
     const imageContainer = imageRefs.current.get(project.slug);
     if (imageContainer) {
       isOpeningModal.current = true;
-      const rect = imageContainer.getBoundingClientRect();
+      // Get the actual img element inside the container for accurate dimensions
+      const imgElement = imageContainer.querySelector('img') as HTMLImageElement;
+      const rect = imgElement ? imgElement.getBoundingClientRect() : imageContainer.getBoundingClientRect();
       setSelectedImageRect({
         top: rect.top,
         left: rect.left,
