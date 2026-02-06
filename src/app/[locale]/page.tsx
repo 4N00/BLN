@@ -195,7 +195,7 @@ function GalleryItem({
           }}
           data-gallery-image
           data-project-slug={project.slug}
-          className={`relative overflow-hidden mb-6 bg-gray-100 flex items-center justify-center`}
+          className={`relative overflow-hidden mb-6 bg-gray-100`}
           style={{
             visibility:
               isModalOpen && selectedProject?.slug === project.slug
@@ -207,7 +207,7 @@ function GalleryItem({
             key={project.id}
             src={project.image}
             alt={project.title}
-            className="w-full md:w-auto md:min-w-[450px] max-h-[90vh] object-contain"
+            className="w-full h-auto max-h-[90vh] object-cover"
           />
         </div>
 

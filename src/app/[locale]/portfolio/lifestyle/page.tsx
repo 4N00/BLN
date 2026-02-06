@@ -496,7 +496,7 @@ export default function LifestylePortfolioPage() {
                   >
                     <div
                       data-gallery-image
-                      className="relative overflow-hidden mb-6 bg-gray-100 flex items-center justify-center"
+                      className="relative overflow-hidden mb-6 bg-gray-100"
                       onMouseEnter={() => setIsHovered(index)}
                       onMouseLeave={() => setIsHovered(null)}
                     >
@@ -505,7 +505,7 @@ export default function LifestylePortfolioPage() {
                         alt={image.alt}
                         width={1200}
                         height={1600}
-                        className="w-full md:w-auto md:min-w-[450px] max-h-[90vh] object-contain"
+                        className="w-full h-auto max-h-[90vh] object-cover"
                       />
                     </div>
 
