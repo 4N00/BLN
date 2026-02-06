@@ -19,7 +19,7 @@ const services = [
   {
     title: "Lifestyle Photography",
     slug: "lifestyle",
-    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - PORTRAIT.jpg"
   },
   {
     title: "Wedding Photography",
@@ -29,17 +29,17 @@ const services = [
   {
     title: "Brand Photography",
     slug: "brand",
-    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - BRAND.jpg"
   },
   {
     title: "Portrait Photography",
     slug: "portrait",
-    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_SYL_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - LIFESTYLE.jpg"
   },
   {
     title: "Event Photography",
     slug: "event",
-    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - EVENT.jpg"
   },
 ];
 
