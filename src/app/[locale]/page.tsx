@@ -195,7 +195,7 @@ function GalleryItem({
           }}
           data-gallery-image
           data-project-slug={project.slug}
-          className={`relative mb-6 w-full md:w-auto md:min-w-[450px] md:max-w-full`}
+          className={`relative mb-16 md:mb-24 w-full md:w-auto md:min-w-[450px] md:max-w-full`}
           style={{
             visibility:
               isModalOpen && selectedProject?.slug === project.slug
@@ -601,7 +601,7 @@ function HomeContent() {
         </section>
 
         {/* Gallery Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-48 md:mb-64 pb-24">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-64 md:mb-96 pb-32 md:pb-48">
           {localizedProjects.map((project, index) => {
             const scrollSpeed =
               index % 3 === 0 ? 0.08 : index % 3 === 1 ? -0.05 : 0.1;

@@ -471,7 +471,7 @@ export default function BrandPortfolioPage() {
                   >
                     <div
                       data-gallery-image
-                      className="relative mb-6 w-full md:w-auto md:min-w-[450px] md:max-w-full"
+                      className="relative mb-16 md:mb-24 w-full md:w-auto md:min-w-[450px] md:max-w-full"
                       style={{ maxHeight: '90vh' }}
                       onMouseEnter={() => setIsHovered(index)}
                       onMouseLeave={() => setIsHovered(null)}
