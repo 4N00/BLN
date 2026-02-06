@@ -287,34 +287,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Quote Section */}
       <section className="py-20 sm:py-32 bg-gray-50">
         <div className="px-6 sm:px-12 max-w-[1800px] mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <motion.span
-                  className="font-serif text-5xl sm:text-7xl lg:text-8xl block mb-2"
-                  initial={{ scale: 0.5 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.2, type: "spring" }}
-                >
-                  {stat.number}
-                </motion.span>
-                <span className="text-xs uppercase tracking-[0.2em] text-gray-500">
-                  {stat.label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl uppercase tracking-[0.3em] text-gray-700">
+              CAPTURING LIFE | LOVE | STYLE | YOU
+            </h2>
+          </motion.div>
         </div>
       </section>
 
