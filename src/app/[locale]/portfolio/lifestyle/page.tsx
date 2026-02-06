@@ -506,7 +506,7 @@ export default function LifestylePortfolioPage() {
                         alt={image.alt}
                         width={1200}
                         height={1600}
-                        className="w-full h-full object-cover"
+                        className="w-full md:w-auto h-auto max-h-[90vh] md:max-w-[30vw] md:min-w-[450px]"
                       />
                     </div>
 

@@ -195,13 +195,12 @@ function GalleryItem({
           }}
           data-gallery-image
           data-project-slug={project.slug}
-          className={`relative mb-16 md:mb-24 w-full md:w-auto md:min-w-[450px] md:max-w-full`}
+          className={`relative mb-16 md:mb-24`}
           style={{
             visibility:
               isModalOpen && selectedProject?.slug === project.slug
                 ? "hidden"
                 : "visible",
-            maxHeight: '90vh',
           }}
         >
           <Image
@@ -210,7 +209,7 @@ function GalleryItem({
             alt={project.title}
             width={1200}
             height={1600}
-            className="w-full h-full object-cover"
+            className="w-full md:w-auto h-auto max-h-[90vh] md:max-w-[30vw] md:min-w-[450px]"
             priority={index < 3}
           />
         </div>
