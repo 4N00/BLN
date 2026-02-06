@@ -52,7 +52,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-5",
     colStart: "md:col-start-1",
-    aspectRatio: "3/4",
     width: "w-full md:w-[85%]",
   },
   {
@@ -102,7 +101,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-4",
     colStart: "md:col-start-6",
-    aspectRatio: "4/5",
     width: "w-full md:w-[90%] md:ml-auto",
   },
   {
@@ -132,7 +130,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-8",
-    aspectRatio: "3/4",
     width: "w-full",
   },
   {
@@ -166,7 +163,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-4",
     colStart: "md:col-start-2",
-    aspectRatio: "4/3",
     width: "w-full md:w-[80%]",
   },
   {
@@ -209,7 +205,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-7",
-    aspectRatio: "3/4",
     width: "w-full md:w-[75%] md:ml-auto",
   },
   {
@@ -244,7 +239,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-5",
     colStart: "md:col-start-4",
-    aspectRatio: "16/9",
     width: "w-full",
   },
   {
@@ -293,7 +287,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-4",
     colStart: "md:col-start-2",
-    aspectRatio: "3/4",
     width: "w-full md:w-[85%]",
   },
   {
@@ -320,7 +313,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-7",
-    aspectRatio: "4/5",
     width: "w-full md:w-[90%]",
   },
   {
@@ -357,7 +349,6 @@ export const projects = [
     ],
     colSpan: "md:col-span-5",
     colStart: "md:col-start-3",
-    aspectRatio: "16/9",
     width: "w-full md:w-[90%]",
   },
 ];

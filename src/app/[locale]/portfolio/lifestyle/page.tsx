@@ -496,23 +496,17 @@ export default function LifestylePortfolioPage() {
                   >
                     <div
                       data-gallery-image
-                      className="relative overflow-hidden mb-6 bg-gray-100 w-full md:w-auto md:min-w-[450px]"
-                      style={{ aspectRatio: image.aspectRatio, maxHeight: "90vh" }}
+                      className="relative overflow-hidden mb-6 bg-gray-100 flex items-center justify-center"
                       onMouseEnter={() => setIsHovered(index)}
                       onMouseLeave={() => setIsHovered(null)}
                     >
-                      <motion.div
-                        className="absolute inset-0 w-full h-full"
-                        animate={{ scale: isHovered === index ? 1.05 : 1 }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          className="object-cover"
-                        />
-                      </motion.div>
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={1200}
+                        height={1600}
+                        className="w-full md:w-auto md:min-w-[450px] max-h-[90vh] object-contain"
+                      />
                     </div>
 
                     <div className="flex flex-col items-start">

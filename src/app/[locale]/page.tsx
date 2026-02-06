@@ -195,24 +195,20 @@ function GalleryItem({
           }}
           data-gallery-image
           data-project-slug={project.slug}
-          className={`relative overflow-hidden mb-6 bg-gray-100 w-full md:w-auto md:min-w-[450px]`}
+          className={`relative overflow-hidden mb-6 bg-gray-100 flex items-center justify-center`}
           style={{
-            aspectRatio: project.aspectRatio,
-            maxHeight: '90vh',
             visibility:
               isModalOpen && selectedProject?.slug === project.slug
                 ? "hidden"
                 : "visible",
           }}
         >
-          <div className="absolute inset-0 w-full h-full">
-            <WebGLImage
-              key={project.id}
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full"
-            />
-          </div>
+          <WebGLImage
+            key={project.id}
+            src={project.image}
+            alt={project.title}
+            className="w-full md:w-auto md:min-w-[450px] max-h-[90vh] object-contain"
+          />
         </div>
 
         <div className={`flex flex-col items-start ${project.width}`}>

@@ -21,7 +21,8 @@
       "Bash(git push)",
       "Bash(npm run deploy:vercel:*)",
       "Bash(wc:*)",
-      "Bash(xargs -I {} sh -c 'echo \"\"File: {}\"\"; file {}; du -h {}')"
+      "Bash(xargs -I {} sh -c 'echo \"\"File: {}\"\"; file {}; du -h {}')",
+      "Bash(git checkout:*)"
     ]
   }
 }
