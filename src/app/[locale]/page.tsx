@@ -207,7 +207,7 @@ function GalleryItem({
             key={project.id}
             src={project.image}
             alt={project.title}
-            className="w-full h-auto max-h-[90vh]"
+            className="w-auto h-auto max-h-[90vh] max-w-full"
           />
         </div>
 

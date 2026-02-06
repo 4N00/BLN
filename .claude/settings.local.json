@@ -22,7 +22,10 @@
       "Bash(npm run deploy:vercel:*)",
       "Bash(wc:*)",
       "Bash(xargs -I {} sh -c 'echo \"\"File: {}\"\"; file {}; du -h {}')",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(YOU\"\n- Investment: Fix package order \\(Wedding #2, Brand #3\\)\n- Investment: Correct prices \\(Wedding 1995, Brand 595, Lifestyle 375\\)\n- Investment: Update package subtitles to English versions\n- Investment: Portrait and Event remain \"On request\"\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(curl:*)",
+      "Bash(sips:*)"
     ]
   }
 }

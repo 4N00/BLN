@@ -480,7 +480,7 @@ export default function BrandPortfolioPage() {
                         alt={image.alt}
                         width={1200}
                         height={1600}
-                        className="w-full h-auto max-h-[90vh]"
+                        className="w-auto h-auto max-h-[90vh] max-w-full"
                       />
                     </div>
 
