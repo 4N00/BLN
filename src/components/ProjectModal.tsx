@@ -385,7 +385,7 @@ export default function ProjectModal({
                     }}
                     className={`flex flex-col ${idx % 2 === 0 ? "items-start" : "items-end"}`}
                   >
-                    <div className="w-full md:w-[80%] aspect-[4/5] max-h-[90vh] relative overflow-hidden bg-gray-50">
+                    <div className="relative overflow-hidden bg-gray-50" style={{ aspectRatio: '3/4', maxHeight: '90vh', maxWidth: '30vw', width: 'auto' }}>
                       <Image
                         src={img}
                         alt={`${project.title} detail ${idx + 1}`}

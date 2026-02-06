@@ -456,7 +456,7 @@ export default function EventPortfolioPage() {
                   >
                     <div
                       className="relative overflow-hidden mb-6 bg-gray-100"
-                      style={{ aspectRatio: image.aspectRatio, maxHeight: "90vh" }}
+                      style={{ aspectRatio: image.aspectRatio, maxHeight: "90vh", maxWidth: '30vw', width: 'auto' }}
                       onMouseEnter={() => setIsHovered(index)}
                       onMouseLeave={() => setIsHovered(null)}
                     >

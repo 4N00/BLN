@@ -195,10 +195,12 @@ function GalleryItem({
           }}
           data-gallery-image
           data-project-slug={project.slug}
-          className={`relative overflow-hidden mb-6 bg-gray-100 ${project.width}`}
+          className={`relative overflow-hidden mb-6 bg-gray-100`}
           style={{
             aspectRatio: project.aspectRatio,
             maxHeight: '90vh',
+            maxWidth: '30vw',
+            width: 'auto',
             visibility:
               isModalOpen && selectedProject?.slug === project.slug
                 ? "hidden"
