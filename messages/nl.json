@@ -190,22 +190,6 @@
         },
         {
           "id": 2,
-          "title": "Merk",
-          "subtitle": "Building your visual story together",
-          "price": "595",
-          "prefix": "Vanaf",
-          "description": "Til je merk naar een hoger niveau met professionele beelden die jouw essentie vastleggen en verbinden met je publiek.",
-          "features": [
-            "3 uur sessie",
-            "Kennismakingsgesprek",
-            "Moodboard + Stylingadvies",
-            "50+ bewerkte beelden 3 weken",
-            "Online galerij"
-          ],
-          "cta": "Meer info"
-        },
-        {
-          "id": 3,
           "title": "Bruiloft",
           "subtitle": "Your love story, captured",
           "price": "1995",
@@ -218,6 +202,22 @@
             "300+ bewerkte foto's binnen 8 weken",
             "Online galerij",
             "Mini album"
+          ],
+          "cta": "Meer info"
+        },
+        {
+          "id": 3,
+          "title": "Merk",
+          "subtitle": "Building your visual story together",
+          "price": "595",
+          "prefix": "Vanaf",
+          "description": "Til je merk naar een hoger niveau met professionele beelden die jouw essentie vastleggen en verbinden met je publiek.",
+          "features": [
+            "3 uur sessie",
+            "Kennismakingsgesprek",
+            "Moodboard + Stylingadvies",
+            "50+ bewerkte beelden 3 weken",
+            "Online galerij"
           ],
           "cta": "Meer info"
         },

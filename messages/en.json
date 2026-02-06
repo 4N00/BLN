@@ -190,26 +190,10 @@
         },
         {
           "id": 2,
-          "title": "Brand",
-          "subtitle": "Visual identity for businesses",
-          "price": "599",
-          "prefix": "From",
-          "description": "Elevate your brand with professional imagery that captures your essence and connects with your audience.",
-          "features": [
-            "3 hour session",
-            "Consultation meeting",
-            "Moodboard + Styling advice",
-            "50+ edited images 3 weeks",
-            "Online gallery"
-          ],
-          "cta": "More info"
-        },
-        {
-          "id": 3,
           "title": "Wedding",
-          "subtitle": "Your love story, preserved",
+          "subtitle": "Your love story, captured",
           "price": "1995",
-          "prefix": "From",
+          "prefix": "Vanaf",
           "description": "From intimate ceremonies to grand celebrations, every precious moment documented with artistry and heart.",
           "features": [
             "6 hour session",
@@ -218,6 +202,22 @@
             "300+ edited photos within 8 weeks",
             "Online gallery",
             "Mini album"
+          ],
+          "cta": "More info"
+        },
+        {
+          "id": 3,
+          "title": "Brand",
+          "subtitle": "Building your visual story together",
+          "price": "595",
+          "prefix": "Vanaf",
+          "description": "Elevate your brand with professional imagery that captures your essence and connects with your audience.",
+          "features": [
+            "3 hour session",
+            "Consultation meeting",
+            "Moodboard + Styling advice",
+            "50+ edited images 3 weeks",
+            "Online gallery"
           ],
           "cta": "More info"
         },
