@@ -164,17 +164,19 @@ function PackageCard({
 
         {/* Price */}
         <div className="mb-8">
-          <span className="text-xs uppercase tracking-[0.2em] text-gray-700 block mb-1">
-            {pkg.prefix}
-          </span>
           {pkg.price ? (
-            <span className="font-serif text-5xl sm:text-6xl tracking-tight">
-              €{pkg.price}
-              <span className="text-2xl text-gray-700">,-</span>
-            </span>
+            <>
+              <span className="text-xs uppercase tracking-[0.2em] text-gray-700 block mb-1">
+                {pkg.prefix}
+              </span>
+              <span className="font-serif text-5xl sm:text-6xl tracking-tight">
+                €{pkg.price}
+                <span className="text-2xl text-gray-700">,-</span>
+              </span>
+            </>
           ) : (
-            <span className="font-serif text-3xl sm:text-4xl italic text-gray-500">
-              {onRequestText}
+            <span className="font-serif text-5xl sm:text-6xl tracking-tight">
+              {pkg.prefix}
             </span>
           )}
         </div>
