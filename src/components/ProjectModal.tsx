@@ -385,12 +385,13 @@ export default function ProjectModal({
                     }}
                     className={`flex flex-col ${idx % 2 === 0 ? "items-start" : "items-end"}`}
                   >
-                    <div className="relative overflow-hidden bg-gray-50" style={{ aspectRatio: '3/4', maxHeight: '90vh', maxWidth: '30vw', width: 'auto' }}>
+                    <div className="relative overflow-hidden bg-gray-50" style={{ maxHeight: '90vh', maxWidth: '100%', display: 'flex' }}>
                       <Image
                         src={img}
                         alt={`${project.title} detail ${idx + 1}`}
-                        fill
-                        className="object-cover"
+                        width={1200}
+                        height={1600}
+                        className="object-contain w-auto h-auto max-h-[90vh] max-w-full"
                         unoptimized
                       />
                     </div>
