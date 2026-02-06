@@ -203,11 +203,14 @@ function GalleryItem({
                 : "visible",
           }}
         >
-          <WebGLImage
+          <Image
             key={project.id}
             src={project.image}
             alt={project.title}
+            width={1200}
+            height={1600}
             className="w-auto h-auto max-h-[90vh] max-w-full"
+            priority={index < 3}
           />
         </div>
 

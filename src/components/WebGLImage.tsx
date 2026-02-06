@@ -384,7 +384,7 @@ export default function WebGLImage({
       <div
         ref={containerRef}
         className={className}
-        style={{ width: "100%", height: "100%", position: "relative" }}
+        style={{ position: "relative" }}
       >
         <Canvas
           camera={{ position: [0, 0, 1], fov: 75 }}
