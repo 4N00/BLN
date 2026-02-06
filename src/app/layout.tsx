@@ -111,8 +111,6 @@ export default async function RootLayout({
         <meta name="geo.region" content="NL" />
         <meta name="geo.placename" content="Netherlands" />
         <meta name="language" content={locale} />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="alternate" hrefLang="en" href="https://loesnooitgedagt.com" />
         <link rel="alternate" hrefLang="nl" href="https://loesnooitgedagt.com" />
