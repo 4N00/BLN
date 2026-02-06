@@ -268,12 +268,13 @@ export default function ProjectPageClient({
             }}
             className={`flex flex-col ${idx % 2 === 0 ? "items-start" : "items-end"}`}
           >
-            <div className="w-full md:w-[80%] aspect-[4/5] relative overflow-hidden bg-gray-50">
+            <div className="w-full md:w-auto md:min-w-[450px] relative overflow-hidden bg-gray-50" style={{ maxHeight: '90vh' }}>
               <Image
                 src={img}
                 alt={`${project.title} detail ${idx + 1}`}
-                fill
-                className="object-cover"
+                width={1200}
+                height={1600}
+                className="object-contain w-full md:w-auto h-auto max-h-[90vh]"
               />
             </div>
             <span className="mt-4 text-xs text-gray-700 uppercase tracking-widest">

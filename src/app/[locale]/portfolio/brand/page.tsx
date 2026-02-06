@@ -470,8 +470,9 @@ export default function BrandPortfolioPage() {
                     }}
                   >
                     <div
-                      className="relative overflow-hidden mb-6 bg-gray-100"
-                      style={{ aspectRatio: image.aspectRatio, maxHeight: "90vh", maxWidth: '30vw', width: 'auto' }}
+                      data-gallery-image
+                      className="relative overflow-hidden mb-6 bg-gray-100 w-full md:w-auto md:min-w-[450px]"
+                      style={{ aspectRatio: image.aspectRatio, maxHeight: "90vh" }}
                       onMouseEnter={() => setIsHovered(index)}
                       onMouseLeave={() => setIsHovered(null)}
                     >
