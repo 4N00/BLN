@@ -1,15 +1,26 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
 import WebGLImage from "@/components/WebGLImage";
 import ProjectModal from "@/components/ProjectModal";
 import { useEffect, useRef, useState, Suspense } from "react";
 import { useSplitTransition } from "@/context/SplitTransitionContext";
-import { usePageTransition, transitionEase } from "@/context/PageTransitionContext";
+import {
+  usePageTransition,
+  transitionEase,
+} from "@/context/PageTransitionContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
-import { projects as projectsData, type LocalizedProject } from "@/data/projects";
+import {
+  projects as projectsData,
+  type LocalizedProject,
+} from "@/data/projects";
 
 // Easing curves
 const ease = [0.22, 1, 0.36, 1];
@@ -19,27 +30,28 @@ const services = [
   {
     title: "Lifestyle Photography",
     slug: "lifestyle",
-    image: "/images/HOME/HOME - DIENSTEN - LIFESTYLE.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - LIFESTYLE.jpg",
   },
   {
     title: "Wedding Photography",
     slug: "wedding",
-    image: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages.jpg"
+    image:
+      "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages.jpg",
   },
   {
     title: "Brand Photography",
     slug: "brand",
-    image: "/images/HOME/HOME - DIENSTEN - BRAND.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - BRAND.jpg",
   },
   {
     title: "Portrait Photography",
     slug: "portrait",
-    image: "/images/HOME/HOME - DIENSTEN - PORTRAIT.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - PORTRAIT.jpg",
   },
   {
     title: "Event Photography",
     slug: "event",
-    image: "/images/HOME/HOME - DIENSTEN - EVENT.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - EVENT.jpg",
   },
 ];
 
@@ -56,7 +68,11 @@ function ServiceItem({
   slug: string;
   index: number;
   image: string;
-  onServiceClick: (e: React.MouseEvent<HTMLDivElement>, slug: string, title: string) => void;
+  onServiceClick: (
+    e: React.MouseEvent<HTMLDivElement>,
+    slug: string,
+    title: string
+  ) => void;
   isExiting: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -75,11 +91,15 @@ function ServiceItem({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      animate={isExiting ? {
-        opacity: 0,
-        x: -50,
-        transition: { duration: 0.4, delay: index * 0.05, ease }
-      } : {}}
+      animate={
+        isExiting
+          ? {
+              opacity: 0,
+              x: -50,
+              transition: { duration: 0.4, delay: index * 0.05, ease },
+            }
+          : {}
+      }
     >
       <div className="flex justify-between items-center">
         <div className="flex items-baseline gap-4 sm:gap-8">
@@ -98,7 +118,7 @@ function ServiceItem({
           className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center"
           animate={{
             scale: isHovered && !isExiting ? 1.2 : 1,
-            backgroundColor: isHovered && !isExiting ? "#000" : "transparent"
+            backgroundColor: isHovered && !isExiting ? "#000" : "transparent",
           }}
           transition={{ duration: 0.3 }}
         >
@@ -126,12 +146,7 @@ function ServiceItem({
             exit={{ opacity: 0, scale: 0.8, rotate: -5 }}
             transition={{ duration: 0.4, ease }}
           >
-            <Image
-              src={image}
-              alt={title}
-              fill
-              className="object-cover"
-            />
+            <Image src={image} alt={title} fill className="object-cover" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -143,9 +158,18 @@ function ServiceItem({
 function getLocalizedProjects(locale: string): LocalizedProject[] {
   return projectsData.map((project) => ({
     ...project,
-    title: typeof project.title === 'object' ? project.title[locale as 'nl' | 'en'] || project.title.en : project.title,
-    category: typeof project.category === 'object' ? project.category[locale as 'nl' | 'en'] || project.category.en : project.category,
-    description: typeof project.description === 'object' ? project.description[locale as 'nl' | 'en'] || project.description.en : project.description,
+    title:
+      typeof project.title === "object"
+        ? project.title[locale as "nl" | "en"] || project.title.en
+        : project.title,
+    category:
+      typeof project.category === "object"
+        ? project.category[locale as "nl" | "en"] || project.category.en
+        : project.category,
+    description:
+      typeof project.description === "object"
+        ? project.description[locale as "nl" | "en"] || project.description.en
+        : project.description,
   }));
 }
 
@@ -170,10 +194,7 @@ function GalleryItem({
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
 
   return (
-    <div
-      onClick={() => onProjectClick(project)}
-      className="cursor-pointer"
-    >
+    <div onClick={() => onProjectClick(project)} className="cursor-pointer">
       <motion.div
         className="group relative"
         initial={{ opacity: 0, y: 30 }}
@@ -182,11 +203,19 @@ function GalleryItem({
         onAnimationComplete={() => {
           if (!isExiting) setHasAnimatedIn(true);
         }}
-        animate={isExiting ? {
-          opacity: 0,
-          y: -30,
-          transition: { duration: 0.5, delay: Math.min(index * 0.03, 0.15), ease }
-        } : undefined}
+        animate={
+          isExiting
+            ? {
+                opacity: 0,
+                y: -30,
+                transition: {
+                  duration: 0.5,
+                  delay: Math.min(index * 0.03, 0.15),
+                  ease,
+                },
+              }
+            : undefined
+        }
         transition={{ duration: 0.7, delay: Math.min(index * 0.05, 0.3), ease }}
       >
         <div
@@ -349,7 +378,8 @@ function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const imageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
-  const [selectedProject, setSelectedProject] = useState<LocalizedProject | null>(null);
+  const [selectedProject, setSelectedProject] =
+    useState<LocalizedProject | null>(null);
   const [selectedImageRect, setSelectedImageRect] = useState<{
     top: number;
     left: number;
@@ -361,7 +391,8 @@ function HomeContent() {
   const [isMounted, setIsMounted] = useState(false);
 
   // Split transition for services
-  const { startSplitTransition, isExiting: isSplitExiting } = useSplitTransition();
+  const { startSplitTransition, isExiting: isSplitExiting } =
+    useSplitTransition();
   // Page transition for nav links
   const { isExiting: isPageExiting } = usePageTransition();
 
@@ -369,7 +400,10 @@ function HomeContent() {
   const isExiting = isSplitExiting || isPageExiting;
 
   // Get translated services and projects
-  const translatedServices = t.raw("services.items") as Array<{ title: string; slug: string }>;
+  const translatedServices = t.raw("services.items") as Array<{
+    title: string;
+    slug: string;
+  }>;
   const translatedProjects = t.raw("projects") as Array<{
     id: number;
     title: string;
@@ -381,16 +415,16 @@ function HomeContent() {
   // Merge translated content with images and layout
   const localizedServices = services.map((service, index) => ({
     ...service,
-    title: translatedServices[index]?.title || service.title
+    title: translatedServices[index]?.title || service.title,
   }));
 
   const localizedProjects = projects.map((project) => {
-    const translated = translatedProjects.find(p => p.id === project.id);
+    const translated = translatedProjects.find((p) => p.id === project.id);
     return {
       ...project,
       title: translated?.title || project.title,
       category: translated?.category || project.category,
-      description: translated?.description || project.description
+      description: translated?.description || project.description,
     };
   });
 
@@ -449,8 +483,8 @@ function HomeContent() {
         }, 100);
       }
     }
-  // Only run on mount
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Only run on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handle service click - triggers split transition with exit animations
@@ -476,8 +510,12 @@ function HomeContent() {
     if (imageContainer) {
       isOpeningModal.current = true;
       // Get the actual img element inside the container for accurate dimensions
-      const imgElement = imageContainer.querySelector('img') as HTMLImageElement;
-      const rect = imgElement ? imgElement.getBoundingClientRect() : imageContainer.getBoundingClientRect();
+      const imgElement = imageContainer.querySelector(
+        "img"
+      ) as HTMLImageElement;
+      const rect = imgElement
+        ? imgElement.getBoundingClientRect()
+        : imageContainer.getBoundingClientRect();
       setSelectedImageRect({
         top: rect.top,
         left: rect.left,
@@ -489,7 +527,11 @@ function HomeContent() {
       setIsClosing(false);
 
       // Update URL with project slug using history API (creates new history entry)
-      window.history.pushState({ modal: true, project: project.slug }, "", `/?project=${project.slug}`);
+      window.history.pushState(
+        { modal: true, project: project.slug },
+        "",
+        `/?project=${project.slug}`
+      );
 
       // Reset flag after a tick
       setTimeout(() => {
@@ -537,12 +579,12 @@ function HomeContent() {
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{
-                  y: isExiting ? "100%" : isMounted ? 0 : "100%"
+                  y: isExiting ? "100%" : isMounted ? 0 : "100%",
                 }}
                 transition={{
                   duration: isExiting ? 0.5 : 1.2,
                   delay: isExiting ? 0.1 : 0,
-                  ease
+                  ease,
                 }}
                 className="block"
               >
@@ -553,12 +595,12 @@ function HomeContent() {
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{
-                  y: isExiting ? "100%" : isMounted ? 0 : "100%"
+                  y: isExiting ? "100%" : isMounted ? 0 : "100%",
                 }}
                 transition={{
                   duration: isExiting ? 0.5 : 1.2,
                   delay: isExiting ? 0.05 : 0.15,
-                  ease
+                  ease,
                 }}
                 className="block"
               >
@@ -569,12 +611,12 @@ function HomeContent() {
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{
-                  y: isExiting ? "100%" : isMounted ? 0 : "100%"
+                  y: isExiting ? "100%" : isMounted ? 0 : "100%",
                 }}
                 transition={{
                   duration: isExiting ? 0.5 : 1.2,
                   delay: isExiting ? 0 : 0.3,
-                  ease
+                  ease,
                 }}
                 className="block text-[3vw] sm:text-[2vw] tracking-wider text-gray-700"
               >
@@ -586,12 +628,12 @@ function HomeContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{
               opacity: isExiting ? 0 : isMounted ? 1 : 0,
-              y: isExiting ? -20 : isMounted ? 0 : 20
+              y: isExiting ? -20 : isMounted ? 0 : 20,
             }}
             transition={{
               duration: isExiting ? 0.4 : 0.8,
               delay: isExiting ? 0 : 0.3,
-              ease
+              ease,
             }}
             className="mt-12 flex justify-end"
           >
@@ -601,33 +643,131 @@ function HomeContent() {
           </motion.div>
         </section>
 
-        {/* Gallery Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-64 md:mb-96 pb-32 md:pb-48 px-6 md:px-16 lg:px-24">
-          {localizedProjects.map((project, index) => {
-            const scrollSpeed =
-              index % 3 === 0 ? 0.08 : index % 3 === 1 ? -0.05 : 0.1;
-            // Middle column should scroll OVER other images - needs higher z-index
-            const zIndex = index % 3 === 1 ? 'z-20' : 'z-10';
+        {/* Gallery Floating Layout - Free Flow */}
+        <section className="relative mb-32 md:mb-48 pb-64 md:pb-96 px-6 md:px-16 lg:px-24">
+          <div className="hidden md:block">
+            {localizedProjects.map((project, index) => {
+              // Define individual positioning for each image based on your sketch
+              // Reduced marginTop values to minimize gaps
+              const positions = [
+                // Project 1 (Wedding F&M) - Left, top
+                {
+                  left: "0%",
+                  width: "45%",
+                  marginTop: "-200px",
+                  scrollSpeed: 0.08,
+                  zIndex: "z-10",
+                },
+                // Project 2 (Ochtendlicht) - Middle, offset down slightly - BIGGER
+                {
+                  left: "35%",
+                  width: "48%",
+                  marginTop: "-300px",
+                  scrollSpeed: -0.05,
+                  zIndex: "z-20",
+                },
+                // Project 3 (Haar Energie) - Right, overlaps middle
+                {
+                  left: "65%",
+                  width: "30%",
+                  marginTop: "-500px",
+                  scrollSpeed: 0.1,
+                  zIndex: "z-10",
+                },
+                // Project 4 (Parisian) - Left, continues down
+                {
+                  left: "5%",
+                  width: "45%",
+                  marginTop: "80px",
+                  scrollSpeed: 0.08,
+                  zIndex: "z-10",
+                },
+                // Project 5 (Waiting For You) - Middle, overlaps
+                {
+                  left: "30%",
+                  width: "35%",
+                  marginTop: "-200px",
+                  scrollSpeed: -0.05,
+                  zIndex: "z-20",
+                },
+                // Project 6 (Natural Glow) - Right, small
+                {
+                  left: "70%",
+                  width: "28%",
+                  marginTop: "-250px",
+                  scrollSpeed: 0.1,
+                  zIndex: "z-10",
+                },
+                // Project 7 (Wedding J&T) - Left
+                {
+                  left: "0%",
+                  width: "45%",
+                  marginTop: "100px",
+                  scrollSpeed: 0.08,
+                  zIndex: "z-10",
+                },
+                // Project 8 (Momenten) - Middle, overlaps - BIGGER
+                {
+                  left: "38%",
+                  width: "52%",
+                  marginTop: "-180px",
+                  scrollSpeed: -0.05,
+                  zIndex: "z-20",
+                },
+                // Project 9 (DE BRASS) - Right, small
+                {
+                  left: "68%",
+                  width: "28%",
+                  marginTop: "-320px",
+                  scrollSpeed: 0.1,
+                  zIndex: "z-10",
+                },
+              ];
 
-            return (
-              <div
-                key={project.id}
-                className={`${project.colSpan} ${project.colStart} relative ${zIndex}`}
-              >
-                <ParallaxContainer scrollSpeed={scrollSpeed}>
-                  <GalleryItem
-                    project={project}
-                    index={index}
-                    isExiting={isExiting}
-                    onProjectClick={handleProjectClick}
-                    imageRefs={imageRefs}
-                    isModalOpen={isModalOpen}
-                    selectedProject={selectedProject}
-                  />
-                </ParallaxContainer>
-              </div>
-            );
-          })}
+              const position = positions[index];
+
+              return (
+                <div
+                  key={project.id}
+                  className={`relative ${position.zIndex}`}
+                  style={{
+                    marginLeft: position.left,
+                    width: position.width,
+                    marginTop: position.marginTop,
+                  }}
+                >
+                  <ParallaxContainer scrollSpeed={position.scrollSpeed}>
+                    <GalleryItem
+                      project={project}
+                      index={index}
+                      isExiting={isExiting}
+                      onProjectClick={handleProjectClick}
+                      imageRefs={imageRefs}
+                      isModalOpen={isModalOpen}
+                      selectedProject={selectedProject}
+                    />
+                  </ParallaxContainer>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile: Simple stacked layout */}
+          <div className="md:hidden space-y-24">
+            {localizedProjects.map((project, index) => (
+              <ParallaxContainer key={project.id} scrollSpeed={0}>
+                <GalleryItem
+                  project={project}
+                  index={index}
+                  isExiting={isExiting}
+                  onProjectClick={handleProjectClick}
+                  imageRefs={imageRefs}
+                  isModalOpen={isModalOpen}
+                  selectedProject={selectedProject}
+                />
+              </ParallaxContainer>
+            ))}
+          </div>
         </section>
 
         {/* Services Section */}
@@ -638,7 +778,9 @@ function HomeContent() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              animate={isExiting ? { opacity: 0, transition: { duration: 0.3 } } : {}}
+              animate={
+                isExiting ? { opacity: 0, transition: { duration: 0.3 } } : {}
+              }
             >
               {t("services.label")}
             </motion.span>
@@ -649,13 +791,18 @@ function HomeContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              animate={isExiting ? {
-                opacity: 0,
-                y: -30,
-                transition: { duration: 0.4, ease }
-              } : {}}
+              animate={
+                isExiting
+                  ? {
+                      opacity: 0,
+                      y: -30,
+                      transition: { duration: 0.4, ease },
+                    }
+                  : {}
+              }
             >
-              {t("services.title")} <span className="italic">{t("services.titleItalic")}</span>
+              {t("services.title")}{" "}
+              <span className="italic">{t("services.titleItalic")}</span>
             </motion.h2>
           </div>
 
@@ -677,11 +824,15 @@ function HomeContent() {
         {/* Footer */}
         <motion.section
           className="border-t border-gray-200 pt-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8"
-          animate={isExiting ? {
-            opacity: 0,
-            y: 20,
-            transition: { duration: 0.3, delay: 0.2, ease }
-          } : {}}
+          animate={
+            isExiting
+              ? {
+                  opacity: 0,
+                  y: 20,
+                  transition: { duration: 0.3, delay: 0.2, ease },
+                }
+              : {}
+          }
         >
           <div>
             <span className="block text-xs uppercase tracking-widest text-gray-700 mb-2">
