@@ -13,8 +13,8 @@ export default function Navigation() {
   const t = useTranslations("Navigation");
 
   const portfolioCategories = [
-    { href: "/portfolio/lifestyle", label: t("portfolioCategories.lifestyle") },
     { href: "/portfolio/wedding", label: t("portfolioCategories.wedding") },
+    { href: "/portfolio/lifestyle", label: t("portfolioCategories.lifestyle") },
     { href: "/portfolio/brand", label: t("portfolioCategories.brand") },
     { href: "/portfolio/portrait", label: t("portfolioCategories.portrait") },
     { href: "/portfolio/event", label: t("portfolioCategories.event") },
