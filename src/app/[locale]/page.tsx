@@ -606,8 +606,8 @@ function HomeContent() {
           {localizedProjects.map((project, index) => {
             const scrollSpeed =
               index % 3 === 0 ? 0.08 : index % 3 === 1 ? -0.05 : 0.1;
-            // Middle column should be behind others - apply z-index at grid item level
-            const zIndex = index % 3 === 1 ? 'z-0' : 'z-10';
+            // Middle column should scroll OVER other images - needs higher z-index
+            const zIndex = index % 3 === 1 ? 'z-20' : 'z-10';
 
             return (
               <div
