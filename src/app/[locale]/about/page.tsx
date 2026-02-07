@@ -347,13 +347,17 @@ export default function AboutPage() {
 
               <div className="flex gap-8 mt-4">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/byloesnooitgedagt/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs uppercase tracking-widest hover:text-gray-500 transition-colors"
                 >
                   Instagram
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/loes-nooitgedagt-72006314b/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs uppercase tracking-widest hover:text-gray-500 transition-colors"
                 >
                   LinkedIn

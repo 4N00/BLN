@@ -847,13 +847,17 @@ function HomeContent() {
           </div>
           <div className="flex gap-6">
             <a
-              href="#"
+              href="https://www.instagram.com/byloesnooitgedagt/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-xs uppercase tracking-widest hover:text-gray-500"
             >
               {tCommon("instagram")}
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/loes-nooitgedagt-72006314b/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-xs uppercase tracking-widest hover:text-gray-500"
             >
               {tCommon("linkedin")}
