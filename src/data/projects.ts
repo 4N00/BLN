@@ -237,9 +237,9 @@ export const projects = [
       "/images/HOME 6 Modal Page /HOME 6 Modal pages 11.jpg",
       "/images/HOME 6 Modal Page /HOME 6 Modal pages 12.jpg",
     ],
-    colSpan: "md:col-span-5",
-    colStart: "md:col-start-3",
-    width: "w-full",
+    colSpan: "md:col-span-4",
+    colStart: "md:col-start-8",
+    width: "w-full md:w-[75%] md:ml-auto",
   },
   {
     id: 7,
@@ -347,9 +347,9 @@ export const projects = [
       "/images/HOME 9 Modal Page/HOME 8 Modal pages 13.jpg",
       "/images/HOME 9 Modal Page/HOME 8 Modal pages 15.jpg",
     ],
-    colSpan: "md:col-span-5",
-    colStart: "md:col-start-2",
-    width: "w-full md:w-[90%]",
+    colSpan: "md:col-span-4",
+    colStart: "md:col-start-8",
+    width: "w-full md:w-[75%] md:ml-auto",
   },
 ];
 
