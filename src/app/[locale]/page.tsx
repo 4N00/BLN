@@ -24,7 +24,7 @@ const services = [
   {
     title: "Wedding Photography",
     slug: "wedding",
-    image: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg"
+    image: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages.jpg"
   },
   {
     title: "Brand Photography",

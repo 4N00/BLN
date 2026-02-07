@@ -9,8 +9,8 @@ import { useTranslations } from "next-intl";
 const weddingImages = [
   {
     id: 1,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Wedding Romance",
+    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages.jpg",
+    alt: "Bruiloftsfotografie - Romantisch moment vastgelegd door Loes Nooitgedagt",
     caption: "Where two hearts become one",
     year: "2024",
     size: "large",
@@ -19,8 +19,8 @@ const weddingImages = [
   },
   {
     id: 2,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/WEDDING_RA_06_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Wedding Moments",
+    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-2.jpg",
+    alt: "Bruiloft momenten - Emotionele hoogtepunten van de trouwdag",
     caption: "The promise of forever",
     year: "2024",
     size: "small",
@@ -29,8 +29,8 @@ const weddingImages = [
   },
   {
     id: 3,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Intimate Ceremony",
+    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-3.jpg",
+    alt: "Intieme huwelijksceremonie fotografie - Loes Nooitgedagt",
     caption: "Love in its purest form",
     year: "2023",
     size: "medium",
@@ -39,8 +39,8 @@ const weddingImages = [
   },
   {
     id: 4,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Bridal Portrait",
+    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-4.jpg",
+    alt: "Bruidsfotografie portret - Elegante trouwfoto",
     caption: "Elegance personified",
     year: "2024",
     size: "small",
@@ -49,8 +49,8 @@ const weddingImages = [
   },
   {
     id: 5,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FLOWERS_FS_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Floral Details",
+    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-5.jpg",
+    alt: "Bruiloft details fotografie - Bloemen en decoratie",
     caption: "Nature's blessing",
     year: "2023",
     size: "medium",

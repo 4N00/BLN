@@ -11,8 +11,8 @@ import { useTranslations } from "next-intl";
 const lifestyleImages = [
   {
     id: 1,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/FAM_01_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Lifestyle Portrait",
+    src: "/images/portfolio/lifestyle/lifestyle-fotografie-1.jpg",
+    alt: "Lifestyle fotografie - Authentiek portret door Loes Nooitgedagt",
     caption: "Authenticity in every frame",
     year: "2024",
     size: "medium",
@@ -21,8 +21,8 @@ const lifestyleImages = [
   },
   {
     id: 2,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg",
-    alt: "Family Moments",
+    src: "/images/portfolio/lifestyle/lifestyle-fotografie-2.jpg",
+    alt: "Familie fotografie - Verbindende momenten vastgelegd",
     caption: "Stories of connection",
     year: "2024",
     size: "small",
@@ -31,8 +31,8 @@ const lifestyleImages = [
   },
   {
     id: 3,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_LIZZY_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Natural Light",
+    src: "/images/portfolio/lifestyle/lifestyle-fotografie-3.jpg",
+    alt: "Natuurlijk licht portretfotografie - Loes Nooitgedagt",
     caption: "Beauty in simplicity",
     year: "2023",
     size: "large",
@@ -41,8 +41,8 @@ const lifestyleImages = [
   },
   {
     id: 4,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_ANOUK_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Candid Shot",
+    src: "/images/portfolio/lifestyle/lifestyle-fotografie-4.jpg",
+    alt: "Candid lifestyle fotografie - Ongedwongen momenten",
     caption: "Moments that matter",
     year: "2024",
     size: "small",
@@ -51,8 +51,8 @@ const lifestyleImages = [
   },
   {
     id: 5,
-    src: "https://loesnooitgedagt.com/wp-content/uploads/2023/10/newborn_BYLOESNOOITGEDAGTPHOTOGRAPHY.jpg",
-    alt: "Lifestyle Detail",
+    src: "/images/portfolio/lifestyle/lifestyle-fotografie-5.jpg",
+    alt: "Lifestyle detail fotografie - Jouw verhaal in beeld",
     caption: "Your story, told beautifully",
     year: "2023",
     size: "medium",

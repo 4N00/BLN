@@ -339,14 +339,14 @@ export default function InvestmentPage() {
             {/* Hero images */}
             <div className="col-span-12 lg:col-span-6 relative h-[60vh] lg:h-[80vh] hidden lg:block">
               <FloatingImage
-                src="https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg"
-                alt="Maternity photography"
+                src="/images/investering/investering-fotografie-1.jpg"
+                alt="Professionele fotografie investering - Loes Nooitgedagt Photography"
                 className="absolute right-0 top-[10%] w-[55%] h-[65%]"
                 delay={0.3}
               />
               <FloatingImage
-                src="https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_WATER_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg"
-                alt="Portrait photography"
+                src="/images/investering/investering-fotografie-2.jpg"
+                alt="Fotografie pakketten en prijzen - Loes Nooitgedagt Photography"
                 className="absolute left-[5%] bottom-[5%] w-[40%] h-[45%]"
                 delay={0.5}
               />

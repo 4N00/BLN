@@ -194,8 +194,8 @@ export default function AboutPage() {
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <SimpleImage
-              src="https://loesnooitgedagt.com/wp-content/uploads/2023/10/MATERNITY_KIKI_02_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg"
-              alt="Loes Nooitgedagt"
+              src="/images/over-mij/over-mij-fotografie-1.jpg"
+              alt="Loes Nooitgedagt - Professionele fotografe gespecialiseerd in lifestyle, bruiloft en portretfotografie"
               aspectRatio="3/4"
             />
           </motion.div>
@@ -238,8 +238,8 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
           <ParallaxSection className="lg:col-span-5" speed={0.3}>
             <SimpleImage
-              src="https://loesnooitgedagt.com/wp-content/uploads/2023/10/PORTRAIT_WATER_BYLOESNOOITGEDAGTPHOTOGRAPHY-1.jpg"
-              alt="Philosophy"
+              src="/images/over-mij/over-mij-fotografie-2.jpg"
+              alt="Fotografie filosofie en werkwijze van Loes Nooitgedagt - Authentieke momenten vastleggen"
               aspectRatio="4/5"
             />
           </ParallaxSection>
