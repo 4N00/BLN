@@ -175,7 +175,7 @@ function GalleryItem({
       className="cursor-pointer"
     >
       <motion.div
-        className="group"
+        className="group relative"
         initial={{ opacity: 0, y: 30 }}
         whileInView={!isExiting ? { opacity: 1, y: 0 } : undefined}
         viewport={{ once: true, amount: 0.1 }}
@@ -209,7 +209,7 @@ function GalleryItem({
             alt={project.title}
             width={1200}
             height={1600}
-            className="w-full md:w-auto h-auto max-h-[90vh] md:max-w-[30vw] md:min-w-[450px]"
+            className="w-full md:w-auto h-auto max-h-[90vh] md:max-w-[26vw] md:min-w-[450px]"
             priority={index < 3}
           />
         </div>
@@ -602,17 +602,17 @@ function HomeContent() {
         </section>
 
         {/* Gallery Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-64 md:mb-96 pb-32 md:pb-48 px-6 md:px-12">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-64 md:mb-96 pb-32 md:pb-48 px-6 md:px-16 lg:px-24">
           {localizedProjects.map((project, index) => {
             const scrollSpeed =
               index % 3 === 0 ? 0.08 : index % 3 === 1 ? -0.05 : 0.1;
-            // Middle column should be behind others
+            // Middle column should be behind others - apply z-index at grid item level
             const zIndex = index % 3 === 1 ? 'z-0' : 'z-10';
 
             return (
               <div
                 key={project.id}
-                className={`${project.colSpan} ${project.colStart} ${zIndex} relative`}
+                className={`${project.colSpan} ${project.colStart} relative ${zIndex}`}
               >
                 <ParallaxContainer scrollSpeed={scrollSpeed}>
                   <GalleryItem

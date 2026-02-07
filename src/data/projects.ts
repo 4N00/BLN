@@ -130,7 +130,7 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-8",
-    width: "w-full md:w-[70%]",
+    width: "w-full md:w-[60%]",
   },
   {
     id: 4,
@@ -205,7 +205,7 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-7",
-    width: "w-full md:w-[65%] md:ml-auto",
+    width: "w-full md:w-[60%] md:ml-auto",
   },
   {
     id: 6,
@@ -313,7 +313,7 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-7",
-    width: "w-full md:w-[65%]",
+    width: "w-full md:w-[55%]",
   },
   {
     id: 9,
