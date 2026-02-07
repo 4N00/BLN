@@ -19,7 +19,7 @@ const services = [
   {
     title: "Lifestyle Photography",
     slug: "lifestyle",
-    image: "/images/HOME/HOME - DIENSTEN - PORTRAIT.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - LIFESTYLE.jpg"
   },
   {
     title: "Wedding Photography",
@@ -34,7 +34,7 @@ const services = [
   {
     title: "Portrait Photography",
     slug: "portrait",
-    image: "/images/HOME/HOME - DIENSTEN - LIFESTYLE.jpg"
+    image: "/images/HOME/HOME - DIENSTEN - PORTRAIT.jpg"
   },
   {
     title: "Event Photography",
