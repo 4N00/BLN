@@ -195,7 +195,7 @@ function GalleryItem({
           }}
           data-gallery-image
           data-project-slug={project.slug}
-          className={`relative mb-16 md:mb-24`}
+          className={`relative mb-6 md:mb-8`}
           style={{
             visibility:
               isModalOpen && selectedProject?.slug === project.slug
@@ -602,15 +602,17 @@ function HomeContent() {
         </section>
 
         {/* Gallery Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-64 md:mb-96 pb-32 md:pb-48">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 gap-x-6 mb-64 md:mb-96 pb-32 md:pb-48 px-6 md:px-12">
           {localizedProjects.map((project, index) => {
             const scrollSpeed =
               index % 3 === 0 ? 0.08 : index % 3 === 1 ? -0.05 : 0.1;
+            // Middle column should be behind others
+            const zIndex = index % 3 === 1 ? 'z-0' : 'z-10';
 
             return (
               <div
                 key={project.id}
-                className={`${project.colSpan} ${project.colStart}`}
+                className={`${project.colSpan} ${project.colStart} ${zIndex} relative`}
               >
                 <ParallaxContainer scrollSpeed={scrollSpeed}>
                   <GalleryItem

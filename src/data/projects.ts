@@ -100,7 +100,7 @@ export const projects = [
       "/images/HOME 2 Modal pages/HOME 2 Modal pages 27.jpg",
     ],
     colSpan: "md:col-span-4",
-    colStart: "md:col-start-6",
+    colStart: "md:col-start-5",
     width: "w-full md:w-[90%] md:ml-auto",
   },
   {
@@ -130,7 +130,7 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-8",
-    width: "w-full",
+    width: "w-full md:w-[70%]",
   },
   {
     id: 4,
@@ -205,7 +205,7 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-7",
-    width: "w-full md:w-[75%] md:ml-auto",
+    width: "w-full md:w-[65%] md:ml-auto",
   },
   {
     id: 6,
@@ -238,7 +238,7 @@ export const projects = [
       "/images/HOME 6 Modal Page /HOME 6 Modal pages 12.jpg",
     ],
     colSpan: "md:col-span-5",
-    colStart: "md:col-start-4",
+    colStart: "md:col-start-3",
     width: "w-full",
   },
   {
@@ -313,7 +313,7 @@ export const projects = [
     ],
     colSpan: "md:col-span-3",
     colStart: "md:col-start-7",
-    width: "w-full md:w-[90%]",
+    width: "w-full md:w-[65%]",
   },
   {
     id: 9,
@@ -348,7 +348,7 @@ export const projects = [
       "/images/HOME 9 Modal Page/HOME 8 Modal pages 15.jpg",
     ],
     colSpan: "md:col-span-5",
-    colStart: "md:col-start-3",
+    colStart: "md:col-start-2",
     width: "w-full md:w-[90%]",
   },
 ];
