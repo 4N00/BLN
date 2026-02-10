@@ -19,7 +19,7 @@ export function OrganizationSchema() {
       "height": 630,
     },
     "description": "Professional photography services specializing in lifestyle, wedding, brand, portrait, and event photography in the Netherlands",
-    "email": "hello@loesnooitgedagt.com",
+    "email": "info@loesnooitgedagt.com",
     "telephone": "+31-XXX-XXXXXX",
     "address": {
       "@type": "PostalAddress",

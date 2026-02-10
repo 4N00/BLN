@@ -278,7 +278,7 @@ export default function ProjectPageClient({
               />
             </div>
             <span className="mt-4 text-xs text-gray-700 uppercase tracking-widest">
-              Figure 0{idx + 1}
+              {(idx + 1).toString().padStart(2, "0")}
             </span>
           </motion.div>
         ))}

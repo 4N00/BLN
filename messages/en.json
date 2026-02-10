@@ -1,7 +1,7 @@
 {
   "Common": {
     "contact": "Contact",
-    "email": "hello@loesnooitgedagt.com",
+    "email": "info@loesnooitgedagt.com",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
     "getInTouch": "Get in touch",
@@ -278,7 +278,7 @@
     "wedding": {
       "label": "Portfolio — Wedding",
       "title": "I capture real moments in a creative,",
-      "titleItalic": "artistic way. Every photo is a work of art – never ordinary.",
+      "titleItalic": "artistic way.",
       "description": "No two weddings are the same, and that's what makes my work so special. I move with the rhythm of your day: sometimes unobtrusively in the background, at other times subtly present to capture the perfect moment. With an eye for atmosphere and emotion, I capture your day as it truly was – pure, timeless and sincere.",
       "worksCount": "{count} Works",
       "images": [

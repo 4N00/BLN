@@ -479,10 +479,10 @@ export default function Navigation() {
                 <div className="space-y-2">
                   <p className="text-white/40 text-[11px] tracking-[0.2em] uppercase">Get in touch</p>
                   <a
-                    href="mailto:hello@loesnooitgedagt.com"
+                    href="mailto:info@loesnooitgedagt.com"
                     className="text-white/70 hover:text-white text-sm transition-colors duration-300"
                   >
-                    hello@loesnooitgedagt.com
+                    info@loesnooitgedagt.com
                   </a>
                 </div>
 

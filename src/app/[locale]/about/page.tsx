@@ -338,10 +338,10 @@ export default function AboutPage() {
               transition={{ delay: 0.3 }}
             >
               <a
-                href="mailto:hello@loesnooitgedagt.com"
+                href="mailto:info@loesnooitgedagt.com"
                 className="font-serif text-3xl sm:text-4xl hover:italic transition-all duration-300 group"
               >
-                hello@loesnooitgedagt.com
+                info@loesnooitgedagt.com
                 <span className="block h-[1px] w-0 group-hover:w-full bg-black transition-all duration-500" />
               </a>
 

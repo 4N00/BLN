@@ -7,7 +7,7 @@ export default function StructuredData() {
     "url": "https://loesnooitgedagt.com",
     "logo": "https://loesnooitgedagt.com/logo.png",
     "image": "https://loesnooitgedagt.com/og-image.jpg",
-    "email": "hello@loesnooitgedagt.com",
+    "email": "info@loesnooitgedagt.com",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "NL"
