@@ -35,8 +35,7 @@ const services = [
   {
     title: "Wedding Photography",
     slug: "wedding",
-    image:
-      "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages.jpg",
+    image: "/images/PORTFOLIO/WEDDING/PORTFOLIO WEDDING 1 Modal pages/PORTFOLIO WEDDING 1 Modal pages.jpg",
   },
   {
     title: "Brand Photography",

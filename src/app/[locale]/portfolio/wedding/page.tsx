@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 const weddingImages = [
   {
     id: 1,
-    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages.jpg",
+    src: "/images/PORTFOLIO/WEDDING/PORTFOLIO WEDDING 1 Modal pages/PORTFOLIO WEDDING 1 Modal pages.jpg",
     alt: "Bruiloftsfotografie - Romantisch moment vastgelegd door Loes Nooitgedagt",
     caption: "Where two hearts become one",
     year: "2024",
@@ -19,7 +19,7 @@ const weddingImages = [
   },
   {
     id: 2,
-    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-2.jpg",
+    src: "/images/PORTFOLIO/WEDDING/PORTFOLIO WEDDING 1 Modal pages/PORTFOLIO WEDDING 1 Modal pages 2.jpg",
     alt: "Bruiloft momenten - Emotionele hoogtepunten van de trouwdag",
     caption: "The promise of forever",
     year: "2024",
@@ -29,7 +29,7 @@ const weddingImages = [
   },
   {
     id: 3,
-    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-3.jpg",
+    src: "/images/PORTFOLIO/WEDDING/PORTFOLIO WEDDING 1 Modal pages/PORTFOLIO WEDDING 1 Modal pages 3.jpg",
     alt: "Intieme huwelijksceremonie fotografie - Loes Nooitgedagt",
     caption: "Love in its purest form",
     year: "2023",
@@ -39,7 +39,7 @@ const weddingImages = [
   },
   {
     id: 4,
-    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-4.jpg",
+    src: "/images/PORTFOLIO/WEDDING/PORTFOLIO WEDDING 1 Modal pages/PORTFOLIO WEDDING 1 Modal pages 4.jpg",
     alt: "Bruidsfotografie portret - Elegante trouwfoto",
     caption: "Elegance personified",
     year: "2024",
@@ -49,7 +49,7 @@ const weddingImages = [
   },
   {
     id: 5,
-    src: "/images/portfolio/wedding/set-1/portfolio-wedding-1-modal-pages-5.jpg",
+    src: "/images/PORTFOLIO/WEDDING/PORTFOLIO WEDDING 1 Modal pages/PORTFOLIO WEDDING 1 Modal pages 5.jpg",
     alt: "Bruiloft details fotografie - Bloemen en decoratie",
     caption: "Nature's blessing",
     year: "2023",

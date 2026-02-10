@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 const lifestyleImages = [
   {
     id: 1,
-    src: "/images/portfolio/lifestyle/lifestyle-fotografie-1.jpg",
+    src: "/images/PORTFOLIO/LIFESTYLE /PORTFOLIO LIFESTYLE 1 Modal pages.jpg",
     alt: "Lifestyle fotografie - Authentiek portret door Loes Nooitgedagt",
     caption: "Authenticity in every frame",
     year: "2024",
@@ -21,7 +21,7 @@ const lifestyleImages = [
   },
   {
     id: 2,
-    src: "/images/portfolio/lifestyle/lifestyle-fotografie-2.jpg",
+    src: "/images/PORTFOLIO/LIFESTYLE /PORTFOLIO LIFESTYLE 2 Modal pages.jpg",
     alt: "Familie fotografie - Verbindende momenten vastgelegd",
     caption: "Stories of connection",
     year: "2024",
@@ -31,7 +31,7 @@ const lifestyleImages = [
   },
   {
     id: 3,
-    src: "/images/portfolio/lifestyle/lifestyle-fotografie-3.jpg",
+    src: "/images/PORTFOLIO/LIFESTYLE /PORTFOLIO LIFESTYLE 3 Modal pages.jpg",
     alt: "Natuurlijk licht portretfotografie - Loes Nooitgedagt",
     caption: "Beauty in simplicity",
     year: "2023",
@@ -41,7 +41,7 @@ const lifestyleImages = [
   },
   {
     id: 4,
-    src: "/images/portfolio/lifestyle/lifestyle-fotografie-4.jpg",
+    src: "/images/PORTFOLIO/LIFESTYLE /PORTFOLIO LIFESTYLE 4 Modal pages.jpg",
     alt: "Candid lifestyle fotografie - Ongedwongen momenten",
     caption: "Moments that matter",
     year: "2024",
@@ -51,7 +51,7 @@ const lifestyleImages = [
   },
   {
     id: 5,
-    src: "/images/portfolio/lifestyle/lifestyle-fotografie-5.jpg",
+    src: "/images/PORTFOLIO/LIFESTYLE /PORTFOLIO LIFESTYLE 5 Modal pages.jpg",
     alt: "Lifestyle detail fotografie - Jouw verhaal in beeld",
     caption: "Your story, told beautifully",
     year: "2023",
