@@ -297,7 +297,7 @@
         {
           "id": 3,
           "caption": "Love in its purest form",
-          "year": "2023",
+          "year": "2024",
           "alt": "Intimate wedding ceremony photography with natural light"
         },
         {
@@ -309,8 +309,170 @@
         {
           "id": 5,
           "caption": "Nature's blessing",
-          "year": "2023",
-          "alt": "Wedding floral details and decoration photography"
+          "year": "2024",
+          "alt": "Atmospheric wedding day photography"
+        },
+        {
+          "id": 6,
+          "caption": "Sealed with a kiss",
+          "year": "2024",
+          "alt": "Wedding ceremony captured in natural light"
+        },
+        {
+          "id": 7,
+          "caption": "Joy shared is joy doubled",
+          "year": "2024",
+          "alt": "Wedding guests sharing an emotional moment"
+        },
+        {
+          "id": 8,
+          "caption": "A vision in white",
+          "year": "2024",
+          "alt": "Bridal portrait in soft tones"
+        },
+        {
+          "id": 9,
+          "caption": "Whispers of forever",
+          "year": "2024",
+          "alt": "Intimate moment between the wedding couple"
+        },
+        {
+          "id": 10,
+          "caption": "Where dreams unfold",
+          "year": "2024",
+          "alt": "Wedding venue atmosphere by Loes Nooitgedagt"
+        },
+        {
+          "id": 11,
+          "caption": "Dancing into forever",
+          "year": "2024",
+          "alt": "Emotional wedding photography - first dance"
+        },
+        {
+          "id": 12,
+          "caption": "It's all in the details",
+          "year": "2024",
+          "alt": "Wedding details - rings and flowers"
+        },
+        {
+          "id": 13,
+          "caption": "Walking into our story",
+          "year": "2024",
+          "alt": "Wedding couple walking through nature"
+        },
+        {
+          "id": 14,
+          "caption": "Golden hour, golden love",
+          "year": "2024",
+          "alt": "Wedding photography - golden hour portrait"
+        },
+        {
+          "id": 15,
+          "caption": "Blooming with love",
+          "year": "2024",
+          "alt": "Bridal bouquet captured with attention to detail"
+        },
+        {
+          "id": 16,
+          "caption": "The moment that changed everything",
+          "year": "2024",
+          "alt": "Wedding ceremony - emotional moment"
+        },
+        {
+          "id": 17,
+          "caption": "Laughter fills the air",
+          "year": "2024",
+          "alt": "Wedding guests laughing during reception"
+        },
+        {
+          "id": 18,
+          "caption": "Under the evening glow",
+          "year": "2024",
+          "alt": "Atmospheric evening photography at the wedding"
+        },
+        {
+          "id": 19,
+          "caption": "Timeless elegance",
+          "year": "2024",
+          "alt": "Wedding couple portrait - timeless elegance"
+        },
+        {
+          "id": 20,
+          "caption": "Every second matters",
+          "year": "2024",
+          "alt": "Wedding day highlights captured"
+        },
+        {
+          "id": 21,
+          "caption": "Grace unveiled",
+          "year": "2024",
+          "alt": "Bridal portrait with veil in natural light"
+        },
+        {
+          "id": 22,
+          "caption": "A setting for love",
+          "year": "2024",
+          "alt": "Wedding venue decoration and flowers"
+        },
+        {
+          "id": 23,
+          "caption": "Words from the heart",
+          "year": "2024",
+          "alt": "Emotional moment during wedding vows"
+        },
+        {
+          "id": 24,
+          "caption": "Sweet celebrations",
+          "year": "2024",
+          "alt": "Wedding celebration - cutting the cake"
+        },
+        {
+          "id": 25,
+          "caption": "Love in every landscape",
+          "year": "2024",
+          "alt": "Wedding couple in romantic landscape"
+        },
+        {
+          "id": 26,
+          "caption": "Bonds that sparkle",
+          "year": "2024",
+          "alt": "Bridesmaids laughing together"
+        },
+        {
+          "id": 27,
+          "caption": "Rhythm of the night",
+          "year": "2024",
+          "alt": "Wedding photography - candid moment on the dance floor"
+        },
+        {
+          "id": 28,
+          "caption": "Twilight tenderness",
+          "year": "2024",
+          "alt": "Bridal portrait at dusk"
+        },
+        {
+          "id": 29,
+          "caption": "The calm before the joy",
+          "year": "2024",
+          "alt": "Wedding preparations - getting ready"
+        },
+        {
+          "id": 30,
+          "caption": "Circles of commitment",
+          "year": "2024",
+          "alt": "Wedding ring details macro photography"
+        },
+        {
+          "id": 31,
+          "caption": "Into the golden light",
+          "year": "2024",
+          "alt": "Wedding couple walking at sunset"
+        },
+        {
+          "id": 32,
+          "caption": "The last dance, the first forever",
+          "year": "2024",
+          "alt": "Last dance at the wedding - emotional closing"
         }
       ],
       "cta": {
@@ -357,6 +519,78 @@
           "caption": "Your story, told beautifully",
           "year": "2023",
           "alt": "Lifestyle detail photography telling your unique story"
+        },
+        {
+          "id": 6,
+          "caption": "Where light meets life",
+          "year": "2024",
+          "alt": "Lifestyle portrait in a natural setting by Loes Nooitgedagt"
+        },
+        {
+          "id": 7,
+          "caption": "Warmth in every glance",
+          "year": "2024",
+          "alt": "Intimate family portrait with warm connection"
+        },
+        {
+          "id": 8,
+          "caption": "Unscripted and unforgettable",
+          "year": "2023",
+          "alt": "Spontaneous lifestyle moment captured candidly"
+        },
+        {
+          "id": 9,
+          "caption": "Golden hour magic",
+          "year": "2024",
+          "alt": "Portrait photography with beautiful natural light"
+        },
+        {
+          "id": 10,
+          "caption": "Feelings framed forever",
+          "year": "2023",
+          "alt": "Emotional lifestyle photography moment"
+        },
+        {
+          "id": 11,
+          "caption": "Together is our favorite place",
+          "year": "2024",
+          "alt": "Outdoor family lifestyle photography session"
+        },
+        {
+          "id": 12,
+          "caption": "Soft light, real moments",
+          "year": "2024",
+          "alt": "Authentic portrait with soft natural tones"
+        },
+        {
+          "id": 13,
+          "caption": "A chapter worth remembering",
+          "year": "2023",
+          "alt": "Personal story lifestyle photography"
+        },
+        {
+          "id": 14,
+          "caption": "Grace in motion",
+          "year": "2024",
+          "alt": "Natural portrait photography capturing movement"
+        },
+        {
+          "id": 15,
+          "caption": "The beauty of being present",
+          "year": "2023",
+          "alt": "Lifestyle session capturing connection and emotion"
+        },
+        {
+          "id": 16,
+          "caption": "Creativity captured naturally",
+          "year": "2024",
+          "alt": "Creative lifestyle portrait photography"
+        },
+        {
+          "id": 17,
+          "caption": "Timeless by nature",
+          "year": "2024",
+          "alt": "Timeless lifestyle portrait by Loes Nooitgedagt"
         }
       ],
       "cta": {
