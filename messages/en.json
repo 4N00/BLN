@@ -766,31 +766,103 @@
           "id": 1,
           "caption": "The art of presence",
           "year": "2024",
-          "alt": "Portrait"
+          "alt": "Portrait photography by Loes Nooitgedagt"
         },
         {
           "id": 2,
           "caption": "Capturing character",
           "year": "2024",
-          "alt": "Fine Art Portrait"
+          "alt": "Fine art portrait photography"
         },
         {
           "id": 3,
           "caption": "Depth and dimension",
-          "year": "2023",
-          "alt": "Editorial Portrait"
+          "year": "2024",
+          "alt": "Editorial portrait with natural light"
         },
         {
           "id": 4,
           "caption": "Timeless elegance",
           "year": "2024",
-          "alt": "Studio Portrait"
+          "alt": "Creative portrait in soft tones"
         },
         {
           "id": 5,
           "caption": "Your unique story",
-          "year": "2023",
-          "alt": "Creative Portrait"
+          "year": "2024",
+          "alt": "Portrait photography - personal and unique"
+        },
+        {
+          "id": 6,
+          "caption": "Emotion unveiled",
+          "year": "2024",
+          "alt": "Artistic portrait with emotion"
+        },
+        {
+          "id": 7,
+          "caption": "Strength in stillness",
+          "year": "2024",
+          "alt": "Portrait photography with character"
+        },
+        {
+          "id": 8,
+          "caption": "A wider perspective",
+          "year": "2024",
+          "alt": "Landscape format portrait"
+        },
+        {
+          "id": 9,
+          "caption": "Quiet confidence",
+          "year": "2024",
+          "alt": "Intimate portrait with soft lighting"
+        },
+        {
+          "id": 10,
+          "caption": "Raw and real",
+          "year": "2024",
+          "alt": "Portrait photography - expressive and pure"
+        },
+        {
+          "id": 11,
+          "caption": "Natural radiance",
+          "year": "2024",
+          "alt": "Portrait with natural glow"
+        },
+        {
+          "id": 12,
+          "caption": "Sculpted by light",
+          "year": "2024",
+          "alt": "Fine art portrait session"
+        },
+        {
+          "id": 13,
+          "caption": "Layers of you",
+          "year": "2024",
+          "alt": "Creative portrait with depth"
+        },
+        {
+          "id": 14,
+          "caption": "The soul speaks",
+          "year": "2024",
+          "alt": "Atmospheric portrait photography"
+        },
+        {
+          "id": 15,
+          "caption": "Beyond the frame",
+          "year": "2024",
+          "alt": "Landscape format portrait"
+        },
+        {
+          "id": 16,
+          "caption": "A masterpiece in making",
+          "year": "2024",
+          "alt": "Artistic portrait by Loes Nooitgedagt"
+        },
+        {
+          "id": 17,
+          "caption": "Forever in a glance",
+          "year": "2024",
+          "alt": "Timeless portrait with elegance"
         }
       ],
       "cta": {
