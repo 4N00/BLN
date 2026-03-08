@@ -57,25 +57,25 @@ export const metadata: Metadata = {
   creator: "Loes Nooitgedagt",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    alternateLocale: ["nl_NL"],
+    locale: "nl_NL",
+    alternateLocale: ["en_US"],
     url: "https://loesnooitgedagt.com",
-    siteName: "Loes Nooitgedagt Photography",
-    title: "Loes Nooitgedagt | Photography Portfolio",
-    description: "Professional photography services specializing in lifestyle, wedding, brand, portrait, and event photography.",
+    siteName: "Loes Nooitgedagt Fotografie",
+    title: "Loes Nooitgedagt | Fotograaf",
+    description: "Fotograaf gespecialiseerd in bruiloften, lifestyle, brand & portretfotografie. Persoonlijk, creatief en tijdloos.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Loes Nooitgedagt Photography"
+        alt: "Loes Nooitgedagt Fotografie"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Loes Nooitgedagt | Photography Portfolio",
-    description: "Professional photography services specializing in lifestyle, wedding, brand, portrait, and event photography.",
+    title: "Loes Nooitgedagt | Fotograaf",
+    description: "Fotograaf gespecialiseerd in bruiloften, lifestyle, brand & portretfotografie. Persoonlijk, creatief en tijdloos.",
     images: ["/og-image.jpg"],
   },
   robots: {

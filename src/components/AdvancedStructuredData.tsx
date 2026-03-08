@@ -3,7 +3,7 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://loesnooitgedagt.com/#organization",
-    "name": "Loes Nooitgedagt Photography",
+    "name": "Loes Nooitgedagt Fotografie",
     "alternateName": "Loes Nooitgedagt",
     "url": "https://loesnooitgedagt.com",
     "logo": {
@@ -18,9 +18,9 @@ export function OrganizationSchema() {
       "width": 1200,
       "height": 630,
     },
-    "description": "Professional photography services specializing in lifestyle, wedding, brand, portrait, and event photography in the Netherlands",
+    "description": "Fotograaf gespecialiseerd in bruiloften, lifestyle, brand, portret en evenementfotografie in Nederland",
     "email": "info@loesnooitgedagt.com",
-    "telephone": "+31-XXX-XXXXXX",
+    "telephone": "+31618431148",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "NL",
@@ -42,7 +42,7 @@ export function OrganizationSchema() {
       },
     ],
     "priceRange": "€€€",
-    "paymentAccepted": ["Bank Transfer", "Credit Card", "PayPal"],
+    "paymentAccepted": ["Bankoverschrijving", "Creditcard", "PayPal"],
     "currenciesAccepted": "EUR",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -82,8 +82,8 @@ export function PersonSchema() {
     "familyName": "Nooitgedagt",
     "url": "https://loesnooitgedagt.com",
     "image": "https://loesnooitgedagt.com/loes-portrait.jpg",
-    "description": "Professional photographer specializing in lifestyle, wedding, brand, portrait, and event photography",
-    "jobTitle": "Professional Photographer",
+    "description": "Fotograaf gespecialiseerd in lifestyle, bruiloft, brand, portret en evenementfotografie",
+    "jobTitle": "Fotograaf",
     "worksFor": {
       "@id": "https://loesnooitgedagt.com/#organization",
     },
@@ -92,13 +92,13 @@ export function PersonSchema() {
       "https://www.linkedin.com/in/loesnooitgedagt",
     ],
     "knowsAbout": [
-      "Wedding Photography",
-      "Lifestyle Photography",
-      "Brand Photography",
-      "Portrait Photography",
-      "Event Photography",
-      "Editorial Photography",
-      "Commercial Photography",
+      "Bruiloftsfotografie",
+      "Lifestyle fotografie",
+      "Merkfotografie",
+      "Portretfotografie",
+      "Evenementfotografie",
+      "Editorial fotografie",
+      "Commerciële fotografie",
     ],
     "award": [
       "8+ Jaar Professionele Ervaring",
@@ -140,7 +140,7 @@ export function ServiceSchema({ service }: { service: string }) {
     wedding: {
       "@context": "https://schema.org",
       "@type": "Service",
-      "serviceType": "Wedding Photography",
+      "serviceType": "Bruiloftsfotografie",
       "provider": {
         "@id": "https://loesnooitgedagt.com/#organization",
       },
@@ -150,14 +150,14 @@ export function ServiceSchema({ service }: { service: string }) {
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Wedding Photography Packages",
+        "name": "Bruiloftsfotografie Pakketten",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Wedding Photography Package",
-              "description": "Full day coverage of your wedding day with professional editing",
+              "name": "Bruiloftsfotografie Pakket",
+              "description": "Volledige dagdekking van jullie trouwdag met professionele bewerking",
             },
             "priceSpecification": {
               "@type": "PriceSpecification",
@@ -169,12 +169,12 @@ export function ServiceSchema({ service }: { service: string }) {
         ],
       },
       "image": "https://loesnooitgedagt.com/og-wedding.jpg",
-      "description": "Professional wedding photography capturing your love story with artistry and emotion",
+      "description": "Bruiloftsfotografie die jullie liefdesverhaal vastlegt met creativiteit en emotie",
     },
     lifestyle: {
       "@context": "https://schema.org",
       "@type": "Service",
-      "serviceType": "Lifestyle Photography",
+      "serviceType": "Lifestyle Fotografie",
       "provider": {
         "@id": "https://loesnooitgedagt.com/#organization",
       },
@@ -184,14 +184,14 @@ export function ServiceSchema({ service }: { service: string }) {
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Lifestyle Photography Packages",
+        "name": "Lifestyle Fotografie Pakketten",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Lifestyle Photography Session",
-              "description": "2-hour lifestyle photography session with professional editing",
+              "name": "Lifestyle Fotografie Sessie",
+              "description": "2 uur lifestyle fotografie sessie met professionele bewerking",
             },
             "priceSpecification": {
               "@type": "PriceSpecification",
@@ -203,12 +203,12 @@ export function ServiceSchema({ service }: { service: string }) {
         ],
       },
       "image": "https://loesnooitgedagt.com/og-lifestyle.jpg",
-      "description": "Authentic lifestyle photography capturing everyday beauty and personal moments",
+      "description": "Authentieke lifestyle fotografie die de schoonheid van het dagelijks leven en persoonlijke momenten vastlegt",
     },
     brand: {
       "@context": "https://schema.org",
       "@type": "Service",
-      "serviceType": "Brand Photography",
+      "serviceType": "Merkfotografie",
       "provider": {
         "@id": "https://loesnooitgedagt.com/#organization",
       },
@@ -218,14 +218,14 @@ export function ServiceSchema({ service }: { service: string }) {
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Brand Photography Packages",
+        "name": "Merkfotografie Pakketten",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Brand Photography Package",
-              "description": "Half-day brand photography session with consultation and commercial license",
+              "name": "Merkfotografie Pakket",
+              "description": "Halve dag merkfotografie sessie met consultatie en commerciële licentie",
             },
             "priceSpecification": {
               "@type": "PriceSpecification",
@@ -237,7 +237,7 @@ export function ServiceSchema({ service }: { service: string }) {
         ],
       },
       "image": "https://loesnooitgedagt.com/og-brand.jpg",
-      "description": "Professional brand photography for businesses and entrepreneurs",
+      "description": "Professionele merkfotografie voor bedrijven en ondernemers",
     },
   };
 
@@ -277,8 +277,8 @@ export function ImageGallerySchema({ images }: { images: Array<{ url: string; ca
   const schema = {
     "@context": "https://schema.org",
     "@type": "ImageGallery",
-    "name": "Photography Portfolio",
-    "description": "Professional photography portfolio by Loes Nooitgedagt",
+    "name": "Fotografie Portfolio",
+    "description": "Fotografie portfolio van Loes Nooitgedagt",
     "image": images.map((img) => ({
       "@type": "ImageObject",
       "contentUrl": img.url,
@@ -307,7 +307,7 @@ export function WebSiteSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Loes Nooitgedagt Photography",
+    "name": "Loes Nooitgedagt Fotografie",
     "url": "https://loesnooitgedagt.com",
     "potentialAction": {
       "@type": "SearchAction",
@@ -317,7 +317,7 @@ export function WebSiteSchema() {
       },
       "query-input": "required name=search_term_string",
     },
-    "inLanguage": ["en", "nl"],
+    "inLanguage": ["nl", "en"],
   };
 
   return (
