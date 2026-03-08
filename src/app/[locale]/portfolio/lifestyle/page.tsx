@@ -497,6 +497,7 @@ export default function LifestylePortfolioPage() {
   }, []);
 
   const openLightbox = (index: number) => {
+    if (window.innerWidth < 768) return;
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
@@ -601,7 +602,7 @@ export default function LifestylePortfolioPage() {
               >
                 <div
                   onClick={() => openLightbox(index)}
-                  className="cursor-pointer"
+                  className="md:cursor-pointer"
                 >
                   <motion.div
                     className="group"

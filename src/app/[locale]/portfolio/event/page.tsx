@@ -346,6 +346,7 @@ export default function EventPortfolioPage() {
   }, []);
 
   const openLightbox = (index: number) => {
+    if (window.innerWidth < 768) return;
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
@@ -441,7 +442,7 @@ export default function EventPortfolioPage() {
               >
                 <div
                   onClick={() => openLightbox(index)}
-                  className="cursor-pointer"
+                  className="md:cursor-pointer"
                 >
                   <motion.div
                     className="group"
