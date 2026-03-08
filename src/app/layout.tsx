@@ -32,25 +32,26 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://loesnooitgedagt.com"),
   title: {
-    default: "Loes Nooitgedagt | Photography Portfolio",
-    template: "%s | Loes Nooitgedagt Photography"
+    default: "Loes Nooitgedagt | Fotograaf",
+    template: "%s | Loes Nooitgedagt Fotografie"
   },
-  description: "Award-winning photographer in Netherlands ✨ Specializing in Wedding, Lifestyle, Brand & Portrait Photography | 150+ Happy Clients | Book Your Session →",
+  description: "Fotograaf gespecialiseerd in bruiloften, lifestyle, brand & portretfotografie. Persoonlijk, creatief en tijdloos | Plan jouw shoot →",
   keywords: [
-    "photographer Netherlands",
-    "wedding photographer",
-    "bruidsfotograaf",
-    "lifestyle photography",
-    "lifestyle fotografie",
-    "brand photography",
-    "bedrijfsfotografie",
-    "portrait photographer",
-    "portretfotograaf",
-    "event photography",
-    "professional photographer Netherlands",
     "fotograaf Nederland",
-    "Amsterdam photographer",
-    "destination wedding photographer"
+    "bruidsfotograaf",
+    "trouwfotograaf",
+    "lifestyle fotografie",
+    "lifestyle fotograaf",
+    "bedrijfsfotografie",
+    "merkfotografie",
+    "portretfotograaf",
+    "portretfotografie",
+    "evenement fotograaf",
+    "fotograaf Amsterdam",
+    "fotograaf Flevoland",
+    "bruiloft fotograaf Nederland",
+    "gezinsfotografie",
+    "newborn fotografie"
   ],
   authors: [{ name: "Loes Nooitgedagt" }],
   creator: "Loes Nooitgedagt",

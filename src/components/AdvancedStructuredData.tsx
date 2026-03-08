@@ -101,9 +101,9 @@ export function PersonSchema() {
       "Commercial Photography",
     ],
     "award": [
-      "8+ Years Professional Experience",
-      "150+ Completed Projects",
-      "50+ Happy Clients",
+      "8+ Jaar Professionele Ervaring",
+      "150+ Afgeronde Projecten",
+      "50+ Tevreden Klanten",
     ],
   };
 

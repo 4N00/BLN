@@ -141,8 +141,7 @@
     "stats": [
       { "number": "150+", "label": "Projecten Voltooid" },
       { "number": "8", "label": "Jaar Ervaring" },
-      { "number": "50+", "label": "Tevreden Klanten" },
-      { "number": "12", "label": "Awards Gewonnen" }
+      { "number": "50+", "label": "Tevreden Klanten" }
     ],
     "cta": {
       "title": "Laten we iets",

@@ -141,8 +141,7 @@
     "stats": [
       { "number": "150+", "label": "Projects Completed" },
       { "number": "8", "label": "Years Experience" },
-      { "number": "50+", "label": "Happy Clients" },
-      { "number": "12", "label": "Awards Won" }
+      { "number": "50+", "label": "Happy Clients" }
     ],
     "cta": {
       "title": "Let's create",
