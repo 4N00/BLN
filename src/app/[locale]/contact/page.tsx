@@ -96,7 +96,7 @@ export default function ContactPage() {
             </span>
             <div className="flex justify-center gap-8 sm:gap-12">
               <a
-                href="https://instagram.com/loesnooitgedagt"
+                href="https://www.instagram.com/byloesnooitgedagt/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"
@@ -107,7 +107,7 @@ export default function ContactPage() {
                 <span className="block h-[1px] w-0 group-hover:w-full bg-current transition-all duration-300 mt-1" />
               </a>
               <a
-                href="https://linkedin.com/in/loesnooitgedagt"
+                href="https://www.linkedin.com/in/loes-nooitgedagt-72006314b/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"

@@ -51,9 +51,8 @@ export function OrganizationSchema() {
       "closes": "18:00",
     },
     "sameAs": [
-      "https://www.instagram.com/loesnooitgedagt",
-      "https://www.linkedin.com/in/loesnooitgedagt",
-      "https://www.facebook.com/loesnooitgedagt",
+      "https://www.instagram.com/byloesnooitgedagt/",
+      "https://www.linkedin.com/in/loes-nooitgedagt-72006314b/",
     ],
     "potentialAction": {
       "@type": "ReserveAction",
@@ -88,8 +87,8 @@ export function PersonSchema() {
       "@id": "https://loesnooitgedagt.com/#organization",
     },
     "sameAs": [
-      "https://www.instagram.com/loesnooitgedagt",
-      "https://www.linkedin.com/in/loesnooitgedagt",
+      "https://www.instagram.com/byloesnooitgedagt/",
+      "https://www.linkedin.com/in/loes-nooitgedagt-72006314b/",
     ],
     "knowsAbout": [
       "Bruiloftsfotografie",

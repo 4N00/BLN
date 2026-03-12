@@ -883,31 +883,121 @@
           "id": 1,
           "caption": "Capturing the atmosphere",
           "year": "2024",
-          "alt": "Event Photography"
+          "alt": "Event photography by Loes Nooitgedagt"
         },
         {
           "id": 2,
           "caption": "Authentic connections",
           "year": "2024",
-          "alt": "Corporate Event"
+          "alt": "Corporate event captured"
         },
         {
           "id": 3,
           "caption": "Energy and emotion",
-          "year": "2023",
-          "alt": "Celebration"
+          "year": "2024",
+          "alt": "Festive atmosphere captured"
         },
         {
           "id": 4,
           "caption": "Details that matter",
           "year": "2024",
-          "alt": "Event Details"
+          "alt": "Event detail photography"
         },
         {
           "id": 5,
           "caption": "Memorable moments",
-          "year": "2023",
-          "alt": "Event Coverage"
+          "year": "2024",
+          "alt": "Event atmosphere"
+        },
+        {
+          "id": 6,
+          "caption": "People in their element",
+          "year": "2024",
+          "alt": "Event guests"
+        },
+        {
+          "id": 7,
+          "caption": "The highlight reel",
+          "year": "2024",
+          "alt": "Event highlights"
+        },
+        {
+          "id": 8,
+          "caption": "Setting the scene",
+          "year": "2024",
+          "alt": "Event venue atmosphere"
+        },
+        {
+          "id": 9,
+          "caption": "Unposed and unforgettable",
+          "year": "2024",
+          "alt": "Candid event moment"
+        },
+        {
+          "id": 10,
+          "caption": "Together we celebrate",
+          "year": "2024",
+          "alt": "Group photo at event"
+        },
+        {
+          "id": 11,
+          "caption": "Emotion in every frame",
+          "year": "2024",
+          "alt": "Emotional moment at event"
+        },
+        {
+          "id": 12,
+          "caption": "Style speaks",
+          "year": "2024",
+          "alt": "Event decoration and styling"
+        },
+        {
+          "id": 13,
+          "caption": "Quiet moments, loud memories",
+          "year": "2024",
+          "alt": "Intimate moment at celebration"
+        },
+        {
+          "id": 14,
+          "caption": "Under the lights",
+          "year": "2024",
+          "alt": "Evening event photography"
+        },
+        {
+          "id": 15,
+          "caption": "Faces of the night",
+          "year": "2024",
+          "alt": "Portrait at event"
+        },
+        {
+          "id": 16,
+          "caption": "In the moment",
+          "year": "2024",
+          "alt": "Spontaneous event moment"
+        },
+        {
+          "id": 17,
+          "caption": "The bigger picture",
+          "year": "2024",
+          "alt": "Event overview"
+        },
+        {
+          "id": 18,
+          "caption": "Joy overflows",
+          "year": "2024",
+          "alt": "Celebration captured"
+        },
+        {
+          "id": 19,
+          "caption": "Character captured",
+          "year": "2024",
+          "alt": "Event portrait photography"
+        },
+        {
+          "id": 20,
+          "caption": "The perfect ending",
+          "year": "2024",
+          "alt": "Closing moment at event"
         }
       ],
       "cta": {

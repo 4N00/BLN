@@ -488,7 +488,7 @@ export default function Navigation() {
 
                 <div className="flex gap-6">
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/byloesnooitgedagt/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white/40 hover:text-white text-[11px] tracking-[0.2em] uppercase transition-colors duration-300"
@@ -496,7 +496,7 @@ export default function Navigation() {
                     Instagram
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/loes-nooitgedagt-72006314b/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white/40 hover:text-white text-[11px] tracking-[0.2em] uppercase transition-colors duration-300"

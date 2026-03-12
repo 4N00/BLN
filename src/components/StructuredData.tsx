@@ -25,8 +25,8 @@ export default function StructuredData() {
       "name": "Netherlands"
     },
     "sameAs": [
-      "https://www.instagram.com/loesnooitgedagt",
-      "https://www.linkedin.com/in/loesnooitgedagt"
+      "https://www.instagram.com/byloesnooitgedagt/",
+      "https://www.linkedin.com/in/loes-nooitgedagt-72006314b/"
     ]
   };
 

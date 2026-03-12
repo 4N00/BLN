@@ -462,9 +462,6 @@ function CinematicLightbox({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <span className="text-white/30 text-xs tracking-[0.3em] uppercase block mb-2">
-              {currentImage.year}
-            </span>
             <h3 className="font-serif text-white text-2xl sm:text-4xl italic">
               {currentImage.caption}
             </h3>
@@ -668,9 +665,6 @@ export default function BrandPortfolioPage() {
                     </div>
 
                     <div className="flex flex-col items-start">
-                      <span className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-                        {(index + 1).toString().padStart(2, "0")} / {image.year}
-                      </span>
                       <h3 className="font-serif text-2xl sm:text-3xl italic group-hover:text-gray-600 transition-colors duration-300">
                         {image.caption}
                       </h3>

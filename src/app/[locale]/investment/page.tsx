@@ -17,7 +17,7 @@ const packages = [
     prefix: "Vanaf",
     description: "Perfect for personal portraits, family moments, and lifestyle content that tells your unique story.",
     features: ["2-hour session", "20+ edited images", "Online gallery", "Print rights included"],
-    image: "/images/investering/investering-fotografie-1.jpg",
+    image: "/images/HOME/HOME - DIENSTEN - LIFESTYLE.jpg",
     href: "/portfolio/lifestyle",
   },
   {
@@ -28,7 +28,7 @@ const packages = [
     prefix: "Vanaf",
     description: "From intimate ceremonies to grand celebrations, every precious moment documented with artistry and heart.",
     features: ["Full day coverage", "300+ edited images", "Engagement session", "Premium album"],
-    image: "/images/investering/investering-fotografie-2.jpg",
+    image: "/images/PORTFOLIO/WeddingNew/wedding1.jpg",
     href: "/portfolio/wedding",
   },
   {
@@ -39,7 +39,7 @@ const packages = [
     prefix: "Vanaf",
     description: "Elevate your brand with professional imagery that captures your essence and connects with your audience.",
     features: ["Half-day session", "40+ edited images", "Brand consultation", "Commercial license"],
-    image: "/images/investering/investering-fotografie-1.jpg",
+    image: "/images/HOME/HOME - DIENSTEN - BRAND.jpg",
     href: "/portfolio/brand",
   },
   {
@@ -50,7 +50,7 @@ const packages = [
     prefix: "On request",
     description: "Bespoke portrait sessions tailored to your vision. Fine art, editorial, or personal—crafted just for you.",
     features: ["Custom session length", "Artistic direction", "Retouching included", "Fine art prints"],
-    image: "/images/investering/investering-fotografie-2.jpg",
+    image: "/images/HOME/HOME - DIENSTEN - PORTRAIT.jpg",
     href: "/portfolio/portrait",
   },
   {
@@ -61,7 +61,7 @@ const packages = [
     prefix: "On request",
     description: "Corporate events, celebrations, and gatherings captured with discretion and an eye for authentic moments.",
     features: ["Flexible duration", "Quick turnaround", "Multiple photographers", "Event coverage"],
-    image: "/images/investering/investering-fotografie-1.jpg",
+    image: "/images/HOME/HOME - DIENSTEN - EVENT.jpg",
     href: "/portfolio/event",
   },
 ];

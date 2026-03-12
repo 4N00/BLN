@@ -905,31 +905,121 @@
           "id": 1,
           "caption": "De sfeer vastleggen",
           "year": "2024",
-          "alt": "Evenement Fotografie"
+          "alt": "Evenement fotografie door Loes Nooitgedagt"
         },
         {
           "id": 2,
           "caption": "Authentieke verbindingen",
           "year": "2024",
-          "alt": "Zakelijk Evenement"
+          "alt": "Zakelijk evenement vastgelegd"
         },
         {
           "id": 3,
           "caption": "Energie en emotie",
-          "year": "2023",
-          "alt": "Viering"
+          "year": "2024",
+          "alt": "Feestelijke sfeer vastgelegd"
         },
         {
           "id": 4,
           "caption": "Details die ertoe doen",
           "year": "2024",
-          "alt": "Evenement Details"
+          "alt": "Evenement details fotografie"
         },
         {
           "id": 5,
           "caption": "Onvergetelijke momenten",
-          "year": "2023",
-          "alt": "Evenement Verslag"
+          "year": "2024",
+          "alt": "Evenement sfeerbeeld"
+        },
+        {
+          "id": 6,
+          "caption": "Mensen in hun element",
+          "year": "2024",
+          "alt": "Gasten op een evenement"
+        },
+        {
+          "id": 7,
+          "caption": "De hoogtepunten",
+          "year": "2024",
+          "alt": "Evenement hoogtepunten"
+        },
+        {
+          "id": 8,
+          "caption": "Het decor neerzetten",
+          "year": "2024",
+          "alt": "Locatie sfeer evenement"
+        },
+        {
+          "id": 9,
+          "caption": "Ongeposeerd en onvergetelijk",
+          "year": "2024",
+          "alt": "Candid moment evenement"
+        },
+        {
+          "id": 10,
+          "caption": "Samen vieren we",
+          "year": "2024",
+          "alt": "Groepsfoto evenement"
+        },
+        {
+          "id": 11,
+          "caption": "Emotie in elk beeld",
+          "year": "2024",
+          "alt": "Emotioneel moment op evenement"
+        },
+        {
+          "id": 12,
+          "caption": "Stijl spreekt",
+          "year": "2024",
+          "alt": "Evenement decoratie en styling"
+        },
+        {
+          "id": 13,
+          "caption": "Stille momenten, luide herinneringen",
+          "year": "2024",
+          "alt": "Intiem moment op feest"
+        },
+        {
+          "id": 14,
+          "caption": "Onder de lichten",
+          "year": "2024",
+          "alt": "Feestelijke avond fotografie"
+        },
+        {
+          "id": 15,
+          "caption": "Gezichten van de avond",
+          "year": "2024",
+          "alt": "Portret op evenement"
+        },
+        {
+          "id": 16,
+          "caption": "In het moment",
+          "year": "2024",
+          "alt": "Spontaan moment evenement"
+        },
+        {
+          "id": 17,
+          "caption": "Het grotere plaatje",
+          "year": "2024",
+          "alt": "Evenement overzicht"
+        },
+        {
+          "id": 18,
+          "caption": "Vreugde stroomt over",
+          "year": "2024",
+          "alt": "Viering vastgelegd"
+        },
+        {
+          "id": 19,
+          "caption": "Karakter vastgelegd",
+          "year": "2024",
+          "alt": "Evenement portretfotografie"
+        },
+        {
+          "id": 20,
+          "caption": "Het perfecte einde",
+          "year": "2024",
+          "alt": "Afsluitend moment evenement"
         }
       ],
       "cta": {
